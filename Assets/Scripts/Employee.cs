@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Employee : MonoBehaviour
@@ -12,30 +13,55 @@ public class Employee : MonoBehaviour
     [SerializeField] private int currentFatigueLevel = 0,
                                  maxFatigueLevel = 0;
 
+    [SerializeField]
     private float currentFatigueRate = 0,
                   currentFatigueDelay = 0;
 
-    //private enum SnackType {level1, level2, level3};
+    public GameObject fatigueUI;
+    private Slider fatigueSlider;
+    private Text fatigueText;
+    private Image fillColor;
+
+    private GameManager gameManager;
+    private CarManager car;
+    #endregion
+
+    #region Accessors
+    public CarManager Car
+    {
+        get { return car; }
+    }
     #endregion
 
     #region Methods
     private void IncreaseFatigueLevel()
     {
-        //randomly generate a number
-        currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
-
         //countdown then incease fatigue level
         if (currentFatigueDelay < Time.time)
         {
+            //randomly generate a number
+            currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
             currentFatigueDelay = currentFatigueRate + Time.time;
-            currentFatigueLevel = currentFatigueLevel > maxFatigueLevel ? maxFatigueLevel : currentFatigueLevel++;
+            
+            //limits the current fatigue level
+            int temp = ++currentFatigueLevel;
+            if (temp > maxFatigueLevel)
+            {
+                temp = maxFatigueLevel;
+            }
+            currentFatigueLevel = temp;
+            
+            //reset slider fill then change color
+            fatigueSlider.value = 0;
+            fatigueSlider.maxValue = currentFatigueRate;
+            fillColor.color = gameManager.fatigueLevelColors[currentFatigueLevel];
         }
     }
 
     private void DecreaseFatigueLevel()
     {
         //decrease fatigue level when given the appropriate snack
-        currentFatigueLevel = currentFatigueLevel < 0 ? 0 : currentFatigueLevel--;
+        currentFatigueLevel = currentFatigueLevel < 0 ? 0 : --currentFatigueLevel;
     }
 
     private void CheckForSnack(Collider2D collision)
@@ -46,7 +72,7 @@ public class Employee : MonoBehaviour
             case 1:
                 if (givenSnack.SnackLevel == Snack.SnackLevels.level1)
                 {
-
+                    ResetFatigueLevel();
                 }
                 else
                 {
@@ -60,13 +86,16 @@ public class Employee : MonoBehaviour
             case 2:
                 if (givenSnack.SnackLevel == Snack.SnackLevels.level2)
                 {
-
+                    ResetFatigueLevel();
                 }
                 else
                 {
                     if (givenSnack.SnackLevel < Snack.SnackLevels.level2)
                     {
                         //give 25% effectiveness
+                        float temp = currentFatigueDelay - Time.time < 0 ? 0 : currentFatigueDelay - Time.time;
+                        temp = (temp + (currentFatigueRate * 0.25f)) + Time.time;
+                        currentFatigueDelay = temp;
                     }
                     else if (givenSnack.SnackLevel > Snack.SnackLevels.level2)
                     {
@@ -78,18 +107,21 @@ public class Employee : MonoBehaviour
             case 3:
                 if (givenSnack.SnackLevel == Snack.SnackLevels.level3)
                 {
-
+                    ResetFatigueLevel();
                 }
                 else
                 {
                     if (givenSnack.SnackLevel < Snack.SnackLevels.level3)
                     {
                         //give 25% effectiveness
+                        float temp = currentFatigueDelay - Time.time < 0 ? 0 : currentFatigueDelay - Time.time;
+                        temp = (temp + (currentFatigueRate * 0.25f)) + Time.time;
+                        currentFatigueDelay = temp;
                     }
                 }
                 break;
 
-            default:Debug.Log(currentFatigueLevel);
+            default:Debug.Log(this.gameObject.name + "'s fatigue level: " + currentFatigueLevel);
                 break;
         }
     }
@@ -102,20 +134,50 @@ public class Employee : MonoBehaviour
             //destroy gameobject
         }
     }
+
+    /// <summary>
+    /// Resets fatigue level and fatigue timer.
+    /// </summary>
+    private void ResetFatigueLevel()
+    {
+        currentFatigueLevel = 0;
+        currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
+        currentFatigueDelay = currentFatigueRate + Time.time;
+        fillColor.color = gameManager.fatigueLevelColors[0];
+    }
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
+        //UI setup
+        fatigueSlider = fatigueUI.transform.GetChild(0).GetComponent<Slider>();
+        fatigueText = fatigueUI.transform.GetChild(1).GetComponent<Text>();
+        fillColor = fatigueSlider.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>();
+        fillColor.color = gameManager.fatigueLevelColors[currentFatigueLevel];
+
         //initialize fatigue timer
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
+        fatigueSlider.maxValue = currentFatigueRate;
+
+        car = this.gameObject.transform.parent.GetComponent<CarManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        fatigueSlider.value = currentFatigueRate - (currentFatigueDelay - Time.time);
+        fatigueText.text = string.Format("Fatigue Level: {0}", currentFatigueLevel);
+
+        //increase only when below max fatigue level
+        if (currentFatigueLevel < maxFatigueLevel)
+        {
+            IncreaseFatigueLevel();
+        }
+        CheckFatigueLevel();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

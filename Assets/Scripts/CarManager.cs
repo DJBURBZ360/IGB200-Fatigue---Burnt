@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CarManager : Employee
+public class CarManager : MonoBehaviour
 {
     #region Variables
     [SerializeField]
@@ -24,22 +24,19 @@ public class CarManager : Employee
     private float arrivalTime = 1f;
     private float currentArrivalTimeDelay;
 
-    bool isDeparting = false,
-         isArriving = true;
+    private bool isDeparting = false,
+                 isArriving = true,
+                 isParked = true;
 
-    public Slider sliderTimer;
-    public Text textTimer;
+    public GameObject timerUI;
+    private Slider sliderTimer;
+    private Text textTimer;
     #endregion
 
-    #region Accessors
-    public float DepartureTime
+    #region Accessors    
+    public bool IsParked
     {
-        get { return departureTime; }
-    }
-
-    public float ArrivalTime
-    {
-        get { return arrivalTime; }
+        get { return isParked; }
     }
     #endregion
 
@@ -101,7 +98,7 @@ public class CarManager : Employee
                 sliderTimer.maxValue = departureTime;
             }
 
-            //slider fills down
+            //slider drains down
             sliderTimer.value = currentDepartureDelay - Time.time;
             textTimer.text = string.Format("Departing in {0:0.00}s", currentDepartureDelay - Time.time);
         }
@@ -127,6 +124,9 @@ public class CarManager : Employee
         sprite = this.gameObject;
         StartCoroutine(ManageCar());
 
+        sliderTimer = timerUI.transform.GetChild(0).GetComponent<Slider>();
+        textTimer = timerUI.transform.GetChild(1).GetComponent<Text>();
+
         //Instanciate UI then parent it to "UI" gameobject
     }
 
@@ -147,6 +147,15 @@ public class CarManager : Employee
         if (isArriving)
         {
             Arrive();
+        }
+
+        if (interpolate <= 0)
+        {
+            isParked = true;
+        }
+        else
+        {
+            isParked = false;
         }
     }
 }

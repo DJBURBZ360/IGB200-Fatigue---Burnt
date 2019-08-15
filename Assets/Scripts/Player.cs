@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
                  isMoving = false;
 
     private Vector2[] travelPoints = new Vector2 [2];
+    private Employee currentTarget;
     #endregion
 
     #region Accessors
@@ -34,42 +35,74 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Methods
+    /// <summary>
+    /// Moves the player only when they have a snack grabbed.
+    /// </summary>
     private void GoToPointer()
     {
         if (hasSnack)
         {
-            if (Input.GetMouseButtonDown(0))
+            //Move only when the clicked object is an employee and their car is parked.
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D rayHit = Physics2D.Raycast(mousePos, mousePos);
+
+            if (rayHit.transform != null)
             {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                travelPoints[1] = mousePos;
-                isMoving = true;
-                Debug.Log("Logged!");
+                if (rayHit.transform.tag == "Employee" &&
+                    rayHit.transform.GetComponent<Employee>().Car.IsParked &&
+                    Input.GetMouseButtonDown(0))
+                {
+                    currentTarget = rayHit.transform.GetComponent<Employee>();
+                    travelPoints[1] = rayHit.transform.position;
+                    isMoving = true;
+                }
             }
         }
     }
 
     private void MovePlayer()
-    {
-        if (isMoving &&
-            hasSnack)
+    {        
+        if (isMoving)
         {
-            interpolation += moveSpeed * Time.deltaTime;
-            if (interpolation > 1)
+            if (hasSnack)
             {
-                interpolation = 1;
+                interpolation += moveSpeed * Time.deltaTime;
+            }
+            else
+            {
+                interpolation -= moveSpeed * Time.deltaTime;
             }
         }
-        else if (isMoving &&
-                 !hasSnack)
+
+        if (interpolation > 1)
         {
-            interpolation -= moveSpeed * Time.deltaTime;
-            if (interpolation < 0)
-            {
-                interpolation = 0;
-                isMoving = false;
-            }
+            interpolation = 1;
         }
+        else if (interpolation < 0)
+        {
+            interpolation = 0;
+        }
+
+        if (interpolation == 0)
+        {
+            isMoving = false;
+            currentTarget = null;
+        }
+
         transform.position = Vector2.Lerp(travelPoints[0], travelPoints[1], interpolation);
+    }
+
+    /// <summary>
+    /// Move back to position when delivering the snack is unsuccessful.
+    /// </summary>
+    private void CheckForEmployee()
+    {
+        if (currentTarget != null &&
+            !currentTarget.Car.IsParked)
+        {
+            isMoving = false;
+            interpolation -= moveSpeed * Time.deltaTime;
+        }
     }
     #endregion
 
@@ -85,5 +118,6 @@ public class Player : MonoBehaviour
     {
         GoToPointer();
         MovePlayer();
+        CheckForEmployee();
     }
 }

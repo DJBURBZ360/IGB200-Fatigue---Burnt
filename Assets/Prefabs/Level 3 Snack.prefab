@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e5c5243798c3a4d91c77833d760f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snackLevel: 0
+  snackLevel: 2
 --- !u!61 &-6119063024950945896
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -37,13 +37,19 @@ public class Snack : MonoBehaviour
             else
             {
                 //Destroy game object when not dragged on character
+                numInstance--;
                 Destroy(this.gameObject);
             }
         }
-        else if (Input.GetMouseButtonDown(1))
+    }
+
+    private void DropSnack()
+    {
+        if (Input.GetMouseButtonDown(1))
         {
-            Destroy(this.gameObject);
             Player.instance.HasSnack = false;
+            numInstance--;
+            Destroy(this.gameObject);
         }
     }
     #endregion
@@ -58,6 +64,10 @@ public class Snack : MonoBehaviour
         if (!Player.instance.HasSnack)
         {
             GrabSnack();
+        }
+        else
+        {
+            DropSnack();
         }
     }
 
