@@ -14,7 +14,9 @@ public class CarManager : MonoBehaviour
     private float interpolateSpeed = 1;
 
     private GameObject sprite;
-    public GameObject[] points = new GameObject[2];
+    private Vector2 originalPos, 
+                    originalScale;
+    public GameObject exitPos;
 
     [SerializeField]
     private float departureTime = 1f;
@@ -28,7 +30,7 @@ public class CarManager : MonoBehaviour
                  isArriving = true,
                  isParked = true;
 
-    public GameObject timerUI;
+    private GameObject timerUI;
     private Slider sliderTimer;
     private Text textTimer;
     #endregion
@@ -37,6 +39,12 @@ public class CarManager : MonoBehaviour
     public bool IsParked
     {
         get { return isParked; }
+    }
+
+    public GameObject TimerUI
+    {
+        get { return timerUI; }
+        set { timerUI = value; }
     }
     #endregion
 
@@ -127,15 +135,25 @@ public class CarManager : MonoBehaviour
         sliderTimer = timerUI.transform.GetChild(0).GetComponent<Slider>();
         textTimer = timerUI.transform.GetChild(1).GetComponent<Text>();
 
-        //Instanciate UI then parent it to "UI" gameobject
+        originalPos = this.gameObject.transform.position;
+        originalScale = this.gameObject.transform.localScale;
+
+        if (exitPos == null)
+        {
+            print(this.gameObject.name +
+                  "\nPoints going from and to are not assigned, please assign a game object in the exitPos variable.");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Imitate perspective movement
-        sprite.transform.position = Vector2.Lerp(points[0].transform.position, points[1].transform.position, interpolate);
-        sprite.transform.localScale = Vector2.Lerp(points[0].transform.localScale, points[1].transform.localScale, interpolate);
+        if (exitPos != null)
+        {
+            //Imitate perspective movement
+            sprite.transform.position = Vector2.Lerp(originalPos, exitPos.transform.position, interpolate);
+            sprite.transform.localScale = Vector2.Lerp(originalScale, exitPos.transform.localScale, interpolate);
+        }
 
         ManageTimer();
 

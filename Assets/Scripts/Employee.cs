@@ -17,7 +17,7 @@ public class Employee : MonoBehaviour
     private float currentFatigueRate = 0,
                   currentFatigueDelay = 0;
 
-    public GameObject fatigueUI;
+    private GameObject fatigueUI;
     private Slider fatigueSlider;
     private Text fatigueText;
     private Image fillColor;
@@ -30,6 +30,12 @@ public class Employee : MonoBehaviour
     public CarManager Car
     {
         get { return car; }
+    }
+
+    public GameObject FatigueUI
+    {
+        get { return fatigueUI; }
+        set { fatigueUI = value; }
     }
     #endregion
 
