@@ -3,7 +3,7 @@
 /// <summary>
 /// Assigns the Respective UI to the Employee prefab, then parent the given UI prefab to the UI tree.
 /// </summary>
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class UI_Initializer : MonoBehaviour
 {
     [SerializeField] private GameObject timerUI;
@@ -15,32 +15,38 @@ public class UI_Initializer : MonoBehaviour
     [SerializeField] private Vector2 UIoffset;
     [SerializeField] private Vector2 UIspacing;
 
-    void Awake()
+    //void Awake()
+    //{
+    //    if (timerUI != null && gameObject.GetComponent<CarManager>().TimerUI == null)
+    //        instanciatedTimer = Instantiate(timerUI, Vector2.zero, Quaternion.identity, GameObject.FindWithTag("UI").transform);
+
+    //    if (fatigueUI != null && transform.GetChild(0).GetComponent<Employee>().FatigueUI == null)
+    //        instanciatedFatigue = Instantiate(fatigueUI, Vector2.zero, Quaternion.identity, GameObject.FindWithTag("UI").transform);
+    //}
+
+    private void Awake()
     {
-        //if (timerUI != null && gameObject.GetComponent<CarManager>().TimerUI == null)
-        //    instanciatedTimer = Instantiate(timerUI, Vector2.zero, Quaternion.identity, GameObject.FindWithTag("UI").transform);
+        if (Application.isPlaying)
+        {
+            if (timerUI != null)
+                gameObject.GetComponent<CarManager>().TimerUI = timerUI;
 
-        //if (fatigueUI != null && transform.GetChild(0).GetComponent<Employee>().FatigueUI == null)
-        //    instanciatedFatigue = Instantiate(fatigueUI, Vector2.zero, Quaternion.identity, GameObject.FindWithTag("UI").transform);
-    }
-
-    private void Start()
-    {
-        if (timerUI != null)
-            gameObject.GetComponent<CarManager>().TimerUI = timerUI;
-
-        if (fatigueUI != null)
-            transform.GetChild(0).GetComponent<Employee>().FatigueUI = fatigueUI;
+            if (fatigueUI != null)
+                transform.GetChild(0).GetComponent<Employee>().FatigueUI = fatigueUI;
+        }
     }
 
     private void Update()
     {
-        Vector2 currentScreenPos = this.gameObject.transform.position;
+        if (!Application.isPlaying)
+        {
+            Vector2 currentScreenPos = this.gameObject.transform.position;
 
-        if (timerUI != null)
-            timerUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset);
+            if (timerUI != null)
+                timerUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset);
 
-        if (fatigueUI != null)
-            fatigueUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset + UIspacing);
+            if (fatigueUI != null)
+                fatigueUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset + UIspacing);
+        }
     }
 }
