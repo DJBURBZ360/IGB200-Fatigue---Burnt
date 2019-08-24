@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Employee
-  - GameManager
   - UI
+  - Managers
   layers:
   - Default
   - TransparentFX

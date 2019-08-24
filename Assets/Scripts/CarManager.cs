@@ -6,24 +6,22 @@ using UnityEngine.UI;
 public class CarManager : MonoBehaviour
 {
     #region Variables
-    [SerializeField]
-    [Range(0, 1)]
     private float interpolate = 0;
-
-    [SerializeField]
-    private float interpolateSpeed = 1;
+    [SerializeField] private float interpolationSpeed = 1;
 
     private GameObject sprite;
     private Vector2 originalPos, 
                     originalScale;
     public GameObject exitPos;
 
-    [SerializeField]
-    private float departureTime = 1f;
+    [Header("Generate Random Departure Time Between (in seconds)")]
+    [SerializeField] private float[] departureTimeRange = new float[2];
+    private float departureTime = 0f;
     private float currentDepartureDelay;
 
-    [SerializeField]
-    private float arrivalTime = 1f;
+    [Header("Generate Random Arrival Time Between (in seconds)")]
+    [SerializeField] private float[] arrivalTimeRange = new float[2];
+    private float arrivalTime = 0f;
     private float currentArrivalTimeDelay;
 
     private bool isDeparting = false,
@@ -53,10 +51,12 @@ public class CarManager : MonoBehaviour
     {
         while (true)
         {
+            departureTime = Random.Range(departureTimeRange[0], departureTimeRange[1]);
             yield return new WaitForSeconds(departureTime);
             isDeparting = true;
             isArriving = false;
 
+            arrivalTime = Random.Range(arrivalTimeRange[0], arrivalTimeRange[1]);
             yield return new WaitForSeconds(arrivalTime);
             isArriving = true;
             isDeparting = false;
@@ -72,7 +72,7 @@ public class CarManager : MonoBehaviour
     {
         if (interpolate < 1)
         {
-            interpolate += interpolateSpeed * Time.deltaTime;
+            interpolate += interpolationSpeed * Time.deltaTime;
         }
         else if (interpolate > 1)
         {
@@ -87,7 +87,7 @@ public class CarManager : MonoBehaviour
     {
         if (interpolate > 0)
         {
-            interpolate -= interpolateSpeed * Time.deltaTime;
+            interpolate -= interpolationSpeed * Time.deltaTime;
         }
         else if (interpolate < 0)
         {
@@ -113,7 +113,7 @@ public class CarManager : MonoBehaviour
         else if (!isArriving &&
                  isDeparting)
         {
-            if (currentArrivalTimeDelay <Time.time)
+            if (currentArrivalTimeDelay < Time.time)
             {
                 currentArrivalTimeDelay = arrivalTime + Time.time;
                 sliderTimer.maxValue = arrivalTime;

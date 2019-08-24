@@ -7,15 +7,16 @@ public class Employee : MonoBehaviour
 {
     #region Variables
     [SerializeField]
-    [Header("Generate Random Fatigue Rate Between")]
+    [Header("Generate Random Fatigue Time Between (in seconds)")]
     private float[] randomNumRange = new float[2];
 
-    [SerializeField] private int currentFatigueLevel = 0,
-                                 maxFatigueLevel = 0;
+    private int currentFatigueLevel = 0;
+    [SerializeField] private int maxFatigueLevel = 0;
 
-    [SerializeField]
     private float currentFatigueRate = 0,
                   currentFatigueDelay = 0;
+
+    private bool isChecking = true;
 
     private GameObject fatigueUI;
     private Slider fatigueSlider;
@@ -151,12 +152,35 @@ public class Employee : MonoBehaviour
         currentFatigueDelay = currentFatigueRate + Time.time;
         fillColor.color = gameManager.fatigueLevelColors[0];
     }
+
+    /// <summary>
+    /// Checks the current status upon departure
+    /// </summary>
+    private void CheckStatus()
+    {
+        //if departed at fatigue lvl 3
+        //then add fatigued employee count to game manager
+
+        if (car.IsParked)
+        {
+            isChecking = true;
+        }
+        else
+        {
+            if (isChecking)
+            {
+                if (currentFatigueLevel > 2)
+                    gameManager.NumFatiguedDrivers++;
+            }
+            isChecking = false;
+        }
+    }
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gameManager = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
 
         //UI setup
         fatigueSlider = fatigueUI.transform.GetChild(0).GetComponent<Slider>();
@@ -184,6 +208,7 @@ public class Employee : MonoBehaviour
             IncreaseFatigueLevel();
         }
         CheckFatigueLevel();
+        CheckStatus();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
