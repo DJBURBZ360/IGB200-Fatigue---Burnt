@@ -7,6 +7,7 @@ public class Snack : MonoBehaviour
 
     [SerializeField] private SnackLevels snackLevel;
     private bool isOnPlayer = false;
+    private bool isDragged = false;
     public static int numInstance = 0;
     #endregion
 
@@ -15,6 +16,11 @@ public class Snack : MonoBehaviour
     {
         get { return snackLevel; }
     }
+
+    public bool IsDragged
+    {
+        get { return isDragged; }
+    }
     #endregion
 
     #region Methods
@@ -22,6 +28,7 @@ public class Snack : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            isDragged = true;
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0;
             transform.position = mousePos;
@@ -30,6 +37,7 @@ public class Snack : MonoBehaviour
         {
             if (isOnPlayer)
             {
+                isDragged = false;
                 this.transform.parent = Player.instance.transform;
                 transform.position = Player.instance.transform.position + Player.instance.SnackOffset;
                 Player.instance.HasSnack = true;

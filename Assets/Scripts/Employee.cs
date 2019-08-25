@@ -246,10 +246,13 @@ public class Employee : MonoBehaviour
         //instanciate snack when clicked on snack icon from UI
         if (collision.GetComponent<Snack>() != null)
         {
-            CheckForSnack(collision);
-            Player.instance.HasSnack = false;
-            Snack.numInstance--;
-            Destroy(collision.gameObject);
+            if (!collision.GetComponent<Snack>().IsDragged)
+            {
+                CheckForSnack(collision);
+                Player.instance.HasSnack = false;
+                Snack.numInstance--;
+                Destroy(collision.gameObject);
+            }
         }
     }
 }
