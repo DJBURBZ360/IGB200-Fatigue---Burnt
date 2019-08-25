@@ -25,6 +25,9 @@ public class Employee : MonoBehaviour
 
     private GameManager gameManager;
     private CarManager car;
+
+    [SerializeField] private Sprite[] driverStates = new Sprite [4];
+    private SpriteRenderer renderer;
     #endregion
 
     #region Accessors
@@ -175,12 +178,41 @@ public class Employee : MonoBehaviour
             isChecking = false;
         }
     }
+
+
+    /// <summary>
+    /// Swaps out into a new sprite image that corresponds to the current fatigue level.
+    /// </summary>
+    private void ChangeState()
+    {
+        if (currentFatigueLevel == 0 &&
+            driverStates[0] != null)
+            renderer.sprite = driverStates[0];
+
+        else if (currentFatigueLevel == 1 &&
+                 driverStates[1] != null)
+            renderer.sprite = driverStates[1];
+
+        else if (currentFatigueLevel == 2 &&
+                 driverStates[2] != null)
+            renderer.sprite = driverStates[2];
+
+        else if (currentFatigueLevel == 3 &&
+                 driverStates[3] != null)
+            renderer.sprite = driverStates[3];
+
+        else if (currentFatigueLevel == 4 &&
+                 driverStates[4] != null)
+            renderer.sprite = driverStates[4];
+    }
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("Managers").GetComponent<GameManager>();
+        renderer = this.gameObject.GetComponent<SpriteRenderer>();
+        car = this.gameObject.transform.parent.GetComponent<CarManager>();
 
         //UI setup
         fatigueSlider = fatigueUI.transform.GetChild(0).GetComponent<Slider>();
@@ -192,8 +224,6 @@ public class Employee : MonoBehaviour
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
         fatigueSlider.maxValue = currentFatigueRate;
-
-        car = this.gameObject.transform.parent.GetComponent<CarManager>();
     }
 
     // Update is called once per frame
@@ -209,6 +239,7 @@ public class Employee : MonoBehaviour
         }
         CheckFatigueLevel();
         CheckStatus();
+        ChangeState();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
