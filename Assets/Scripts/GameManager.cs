@@ -50,7 +50,9 @@ public class GameManager : MonoBehaviour
     {
         if (employees.Length <= 0)
         {
-            isPlaying = false;
+            //pause the game when it's done
+            //no current victory event yet
+            Time.timeScale = 0;
         }
     }
     #endregion
