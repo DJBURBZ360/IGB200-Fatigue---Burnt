@@ -22,6 +22,12 @@ public class GameManager : MonoBehaviour
         get { return numFatiguedDrivers; }
         set { numFatiguedDrivers = value; }
     }
+
+    public bool IsPlaying
+    {
+        get { return isPlaying; }
+        set { isPlaying = value; }
+    }
     #endregion
 
     #region Methods

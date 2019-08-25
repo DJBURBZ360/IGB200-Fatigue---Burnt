@@ -565,7 +565,7 @@ MonoBehaviour:
   - {r: 0.9245283, g: 0.19624424, b: 0.26259315, a: 1}
   isPlaying: 1
   numFatiguedDrivers: 0
-  numFatiguedDriversThreshold: 1
+  numFatiguedDriversThreshold: 3
 --- !u!4 &181363386
 Transform:
   m_ObjectHideFlags: 0
@@ -1435,7 +1435,7 @@ GameObject:
   - component: {fileID: 468602329}
   - component: {fileID: 468602328}
   m_Layer: 0
-  m_Name: BACKGROUND
+  m_Name: img_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

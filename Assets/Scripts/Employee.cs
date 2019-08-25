@@ -171,8 +171,11 @@ public class Employee : MonoBehaviour
         {
             if (isChecking)
             {
-                if (currentFatigueLevel > 2)
+                if (currentFatigueLevel == 2)
                     gameManager.NumFatiguedDrivers++;
+
+                else if (currentFatigueLevel >= 3)
+                    gameManager.IsPlaying = false;
             }
             isChecking = false;
         }
