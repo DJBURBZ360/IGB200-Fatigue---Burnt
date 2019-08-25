@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int numFatiguedDrivers = 0;
     [SerializeField] private int numFatiguedDriversThreshold = 1;
+    private GameObject[] employees;
 
     private UI_Manager uiManager;
     #endregion
@@ -44,12 +45,21 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+
+    private void CountEmployees()
+    {
+        if (employees.Length <= 0)
+        {
+            isPlaying = false;
+        }
+    }
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
         uiManager = this.gameObject.GetComponent<UI_Manager>();
+        employees = GameObject.FindGameObjectsWithTag("Employee");
     }
 
     // Update is called once per frame

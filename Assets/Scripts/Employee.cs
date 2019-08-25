@@ -122,7 +122,10 @@ public class Employee : MonoBehaviour
             case 3:
                 if (givenSnack.SnackLevel == Snack.SnackLevels.level3)
                 {
-                    ResetFatigueLevel();
+                    //Employee is sent home
+                    Destroy(car.TimerUI);
+                    Destroy(fatigueUI);
+                    Destroy(car.transform.gameObject);
                 }
                 else
                 {
@@ -138,15 +141,6 @@ public class Employee : MonoBehaviour
 
             default:Debug.Log(this.gameObject.name + "'s fatigue level: " + currentFatigueLevel);
                 break;
-        }
-    }
-
-    private void CheckFatigueLevel()
-    {
-        if (currentFatigueLevel >= 4)
-        {
-            //fire employee
-            //destroy gameobject
         }
     }
 
@@ -242,7 +236,6 @@ public class Employee : MonoBehaviour
         {
             IncreaseFatigueLevel();
         }
-        CheckFatigueLevel();
         CheckStatus();
         ChangeState();
     }

@@ -134,6 +134,7 @@ public class CarManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        employee = transform.GetChild(0).transform.GetComponent<Employee>();
         sprite = this.gameObject;
         StartCoroutine(ManageCar());
 
