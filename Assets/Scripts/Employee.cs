@@ -41,6 +41,11 @@ public class Employee : MonoBehaviour
         get { return fatigueUI; }
         set { fatigueUI = value; }
     }
+
+    public int CurrentFatigueLevel
+    {
+        get { return currentFatigueLevel; }
+    }
     #endregion
 
     #region Methods

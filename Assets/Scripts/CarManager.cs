@@ -31,6 +31,7 @@ public class CarManager : MonoBehaviour
     private GameObject timerUI;
     private Slider sliderTimer;
     private Text textTimer;
+    private Employee employee;
     #endregion
 
     #region Accessors    
@@ -51,7 +52,11 @@ public class CarManager : MonoBehaviour
     {
         while (true)
         {
-            departureTime = Random.Range(departureTimeRange[0], departureTimeRange[1]);
+            if (employee.CurrentFatigueLevel < 3)
+                departureTime = Random.Range(departureTimeRange[0], departureTimeRange[1]);
+            else
+                departureTime = Random.Range(5, 10 + 1);
+
             yield return new WaitForSeconds(departureTime);
             isDeparting = true;
             isArriving = false;
