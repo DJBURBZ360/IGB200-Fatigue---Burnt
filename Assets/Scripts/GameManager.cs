@@ -31,6 +31,13 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Methods
+    private IEnumerator TempTimer()
+    {
+        yield return new WaitForSeconds(30);
+        uiManager.ShowWinUI();
+        Time.timeScale = 0;
+    }
+
     private void CheckGameState()
     {
         //if passed threshold, do fail event
@@ -68,6 +75,8 @@ public class GameManager : MonoBehaviour
     {
         uiManager = this.gameObject.GetComponent<UI_Manager>();
         employees = GameObject.FindGameObjectsWithTag("Employee");
+
+        StartCoroutine(TempTimer());
     }
 
     // Update is called once per frame

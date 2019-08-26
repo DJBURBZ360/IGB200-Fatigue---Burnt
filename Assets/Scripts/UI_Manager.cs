@@ -11,9 +11,17 @@ public class UI_Manager : MonoBehaviour
     public GameObject failUI_Prefab;
     private GameObject failUI_Instance;
 
+    public GameObject winUI_Prefab;
+    private GameObject winUI_Instance;
+
     public void ShowFailUI()
     {
         failUI_Instance = Instantiate(failUI_Prefab, GameObject.FindWithTag("UI").transform);
+    }
+
+    public void ShowWinUI()
+    {
+        winUI_Instance = Instantiate(winUI_Prefab, GameObject.FindWithTag("UI").transform);
     }
 
     public void HideFailUI()
