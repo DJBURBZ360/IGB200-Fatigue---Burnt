@@ -563,9 +563,14 @@ MonoBehaviour:
   - {r: 1, g: 0.9215687, b: 0, a: 1}
   - {r: 1, g: 0.40695798, b: 0, a: 1}
   - {r: 0.9245283, g: 0.19624424, b: 0.26259315, a: 1}
-  isPlaying: 1
+  numDrivers: 100
   numFatiguedDrivers: 0
   numFatiguedDriversThreshold: 3
+  fatiguedChances:
+  - 0
+  - 20
+  - 50
+  - 100
 --- !u!4 &181363386
 Transform:
   m_ObjectHideFlags: 0
@@ -4018,12 +4023,12 @@ PrefabInstance:
     - target: {fileID: 5456790243767682736, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: departureTimeRange.Array.data[0]
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5456790243767682736, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: departureTimeRange.Array.data[1]
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5456790243767682736, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
@@ -4050,12 +4055,12 @@ PrefabInstance:
     - target: {fileID: 5456790244276226410, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: randomNumRange.Array.data[0]
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5456790244276226410, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: randomNumRange.Array.data[1]
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5456790244276226410, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
@@ -5064,12 +5069,12 @@ PrefabInstance:
     - target: {fileID: 5456790243767682736, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: departureTimeRange.Array.data[0]
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5456790243767682736, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: departureTimeRange.Array.data[1]
-      value: 20
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5456790243767682736, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
@@ -5101,12 +5106,12 @@ PrefabInstance:
     - target: {fileID: 5456790244276226410, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: randomNumRange.Array.data[0]
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5456790244276226410, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: randomNumRange.Array.data[1]
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5456790244276226410, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}

@@ -147,7 +147,7 @@ public class Employee : MonoBehaviour
     /// <summary>
     /// Resets fatigue level and fatigue timer.
     /// </summary>
-    private void ResetFatigueLevel()
+    public void ResetFatigueLevel()
     {
         currentFatigueLevel = 0;
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
@@ -156,10 +156,11 @@ public class Employee : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks the current status upon departure
+    /// Do fail event when reached fatigue level 4.
     /// </summary>
     private void CheckStatus()
     {
+        /*
         //if departed at fatigue lvl 3
         //then add fatigued employee count to game manager
 
@@ -174,13 +175,19 @@ public class Employee : MonoBehaviour
                 if (currentFatigueLevel == 2)
                     gameManager.NumFatiguedDrivers++;
 
-                else if (currentFatigueLevel >= 3)
+                if (currentFatigueLevel >= 3)
                     gameManager.IsPlaying = false;
             }
             isChecking = false;
         }
-    }
+        */
 
+        //if reached fatigue level 4, do fail event
+        if (currentFatigueLevel >= 4)
+        {
+            gameManager.IsPlaying = false;
+        }
+    }
 
     /// <summary>
     /// Swaps out into a new sprite image that corresponds to the current fatigue level.

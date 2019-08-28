@@ -32,6 +32,7 @@ public class CarManager : MonoBehaviour
     private Slider sliderTimer;
     private Text textTimer;
     private Employee employee;
+    private GameManager gameManager;
     #endregion
 
     #region Accessors    
@@ -52,17 +53,25 @@ public class CarManager : MonoBehaviour
     {
         while (true)
         {
+            //Generate between numbers 5 & 10 if fatigue level is 3
             if (employee.CurrentFatigueLevel < 3)
                 departureTime = Random.Range(departureTimeRange[0], departureTimeRange[1]);
             else
                 departureTime = Random.Range(5, 10 + 1);
 
+            //Depart and change employee
             yield return new WaitForSeconds(departureTime);
             isDeparting = true;
             isArriving = false;
+            gameManager.DoRNG(employee.CurrentFatigueLevel);
+            gameManager.NumDrivers--;
+            employee.FatigueUI.SetActive(false);
 
+            //Arrive
             arrivalTime = Random.Range(arrivalTimeRange[0], arrivalTimeRange[1]);
             yield return new WaitForSeconds(arrivalTime);
+            employee.FatigueUI.SetActive(true);
+            employee.ResetFatigueLevel();
             isArriving = true;
             isDeparting = false;
         }
@@ -135,6 +144,7 @@ public class CarManager : MonoBehaviour
     void Start()
     {
         employee = transform.GetChild(0).transform.GetComponent<Employee>();
+        gameManager = GameObject.FindWithTag("Managers").GetComponent<GameManager>();
         sprite = this.gameObject;
         StartCoroutine(ManageCar());
 

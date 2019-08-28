@@ -215,7 +215,7 @@ MonoBehaviour:
   randomNumRange:
   - 3
   - 5
-  maxFatigueLevel: 3
+  maxFatigueLevel: 4
   driverStates:
   - {fileID: 0}
   - {fileID: 0}
