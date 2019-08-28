@@ -216,11 +216,20 @@ MonoBehaviour:
   - 3
   - 5
   maxFatigueLevel: 4
+  defaultDriverState: {fileID: 21300000, guid: 017e96049581f14499c3aa06557b4739, type: 3}
   driverStates:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - spritesArray:
+    - {fileID: 21300000, guid: ce439f73e5c32ea40b8182d52b083980, type: 3}
+    - {fileID: 21300000, guid: cbbd3907f37606a46b5b6cb25e21973a, type: 3}
+    - {fileID: 21300000, guid: ae0adbf5d8d5fd0499f03b0be0f340bd, type: 3}
+  - spritesArray:
+    - {fileID: 21300000, guid: 84243ed5e3d9dbf4da39caab35249e42, type: 3}
+    - {fileID: 21300000, guid: e717020f5cb8876478ac0c8850348ff5, type: 3}
+    - {fileID: 21300000, guid: a6e4f87c9be28d047a3cf8c0b00626cc, type: 3}
+  - spritesArray:
+    - {fileID: 21300000, guid: fc98052dc851f414a9273ff84f01a614, type: 3}
+    - {fileID: 21300000, guid: 08ad19410a4d25047870d7109e4d8818, type: 3}
+    - {fileID: 21300000, guid: a13b49c84a3e5454182e83ccb26a4ee1, type: 3}
 --- !u!61 &5456790244276226412
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Employee : MonoBehaviour
 {
+    public enum FatigueTypes { Dizziness, Headache, Sleepiness };
+
     #region Variables
     [SerializeField]
     [Header("Generate Random Fatigue Time Between (in seconds)")]
@@ -15,6 +17,7 @@ public class Employee : MonoBehaviour
 
     private float currentFatigueRate = 0,
                   currentFatigueDelay = 0;
+    private FatigueTypes currentFatigueType;
 
     private bool isChecking = true;
 
@@ -26,8 +29,12 @@ public class Employee : MonoBehaviour
     private GameManager gameManager;
     private CarManager car;
 
-    [SerializeField] private Sprite[] driverStates = new Sprite [4];
+    //[SerializeField] private Sprite[] driverStates = new Sprite [4];
+    [SerializeField] private int[][] test;
     private SpriteRenderer renderer;
+    [SerializeField] Sprite defaultDriverState;
+    [SerializeField] Sprites2DArray[] driverStates;//row = fatigue type
+                                                   //col = fatigue stage
     #endregion
 
     #region Accessors
@@ -149,10 +156,23 @@ public class Employee : MonoBehaviour
     /// </summary>
     public void ResetFatigueLevel()
     {
+        currentFatigueType = GenerateRandomFatigue();
         currentFatigueLevel = 0;
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
         fillColor.color = gameManager.fatigueLevelColors[0];
+    }
+
+    private FatigueTypes GenerateRandomFatigue()
+    {
+        int num = Random.Range(0, 3);
+        switch(num)
+        {
+            case 0: return FatigueTypes.Dizziness;
+            case 1: return FatigueTypes.Headache;
+            case 2: return FatigueTypes.Sleepiness;
+            default: return FatigueTypes.Sleepiness;
+        }
     }
 
     /// <summary>
@@ -194,25 +214,18 @@ public class Employee : MonoBehaviour
     /// </summary>
     private void ChangeState()
     {
+        int row = (int)currentFatigueType;
+
         if (currentFatigueLevel == 0 &&
-            driverStates[0] != null)
-            renderer.sprite = driverStates[0];
+            defaultDriverState != null)
+            renderer.sprite = defaultDriverState;
 
-        else if (currentFatigueLevel == 1 &&
-                 driverStates[1] != null)
-            renderer.sprite = driverStates[1];
+        else if (currentFatigueLevel > 0 &&
+                 driverStates[row].spritesArray[currentFatigueLevel - 1] != null)
+            renderer.sprite = driverStates[row].spritesArray[currentFatigueLevel - 1];
 
-        else if (currentFatigueLevel == 2 &&
-                 driverStates[2] != null)
-            renderer.sprite = driverStates[2];
-
-        else if (currentFatigueLevel == 3 &&
-                 driverStates[3] != null)
-            renderer.sprite = driverStates[3];
-
-        else if (currentFatigueLevel == 4 &&
-                 driverStates[4] != null)
-            renderer.sprite = driverStates[4];
+        else
+            print("No sprite assigned to " + driverStates[row].spritesArray[currentFatigueLevel - 1]);
     }
     #endregion
 
@@ -233,6 +246,8 @@ public class Employee : MonoBehaviour
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
         fatigueSlider.maxValue = currentFatigueRate;
+
+        currentFatigueType = GenerateRandomFatigue();
     }
 
     // Update is called once per frame
