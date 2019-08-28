@@ -53,7 +53,8 @@ public class Snack : MonoBehaviour
 
     private void DropSnack()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) ||
+            Input.GetButton("Drop Item"))
         {
             Player.instance.HasSnack = false;
             numInstance--;

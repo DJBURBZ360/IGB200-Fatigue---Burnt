@@ -59,21 +59,27 @@ public class CarManager : MonoBehaviour
             else
                 departureTime = Random.Range(5, 10 + 1);
 
-            //Depart and change employee
-            yield return new WaitForSeconds(departureTime);
-            isDeparting = true;
-            isArriving = false;
-            gameManager.DoRNG(employee.CurrentFatigueLevel);
-            gameManager.NumDrivers--;
-            employee.FatigueUI.SetActive(false);
 
-            //Arrive
-            arrivalTime = Random.Range(arrivalTimeRange[0], arrivalTimeRange[1]);
-            yield return new WaitForSeconds(arrivalTime);
-            employee.FatigueUI.SetActive(true);
-            employee.ResetFatigueLevel();
-            isArriving = true;
-            isDeparting = false;
+            if (!isDeparting && isArriving)
+            {
+                //Depart and change employee
+                yield return new WaitForSeconds(departureTime);
+                isDeparting = true;
+                isArriving = false;
+                gameManager.DoRNG(employee.CurrentFatigueLevel);
+                gameManager.NumDrivers--;
+                employee.FatigueUI.SetActive(false);
+            }
+            else
+            {
+                //Arrive
+                arrivalTime = Random.Range(arrivalTimeRange[0], arrivalTimeRange[1]);
+                yield return new WaitForSeconds(arrivalTime);
+                employee.FatigueUI.SetActive(true);
+                employee.ResetFatigueLevel();
+                isArriving = true;
+                isDeparting = false;
+            }
         }
     }
     #endregion
@@ -138,6 +144,27 @@ public class CarManager : MonoBehaviour
             textTimer.text = string.Format("Arriving in {0:0.00}s", currentArrivalTimeDelay - Time.time);
         }
     }
+
+    public void ChangeDriver()
+    {
+        StopCoroutine(ManageCar());
+
+        //dispatch car
+        isDeparting = true;
+        isArriving = false;
+
+        //reset employee
+        employee.ResetFatigueLevel();
+        gameManager.DoRNG(employee.CurrentFatigueLevel);
+        gameManager.NumDrivers--;
+        employee.FatigueUI.SetActive(false);
+
+        //reset timers
+        arrivalTime = Random.Range(arrivalTimeRange[0], arrivalTimeRange[1]);
+        departureTime = 0;
+
+        StartCoroutine(ManageCar());
+    }
     #endregion
 
     // Start is called before the first frame update
@@ -173,15 +200,8 @@ public class CarManager : MonoBehaviour
 
         ManageTimer();
 
-        if (isDeparting)
-        {
-            Depart();
-        }
-
-        if (isArriving)
-        {
-            Arrive();
-        }
+        if (isDeparting) Depart();
+        if (isArriving) Arrive();
 
         if (interpolate <= 0)
         {

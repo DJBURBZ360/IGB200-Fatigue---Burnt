@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Methods
+    //Legacy movement
     /*
     /// <summary>
     /// Moves the player only when they have a snack grabbed.

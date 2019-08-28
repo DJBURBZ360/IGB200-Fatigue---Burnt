@@ -17,7 +17,7 @@ public class Employee : MonoBehaviour
 
     private float currentFatigueRate = 0,
                   currentFatigueDelay = 0;
-    private FatigueTypes currentFatigueType;
+    [SerializeField] private FatigueTypes currentFatigueType;
 
     private bool isChecking = true;
 
@@ -114,10 +114,7 @@ public class Employee : MonoBehaviour
                 {
                     if (givenSnack.SnackLevel < Snack.SnackLevels.level2)
                     {
-                        //give 25% effectiveness
-                        float temp = currentFatigueDelay - Time.time < 0 ? 0 : currentFatigueDelay - Time.time;
-                        temp = (temp + (currentFatigueRate * 0.25f)) + Time.time;
-                        currentFatigueDelay = temp;
+                        DecreaseFatigueGauge();
                     }
                     else if (givenSnack.SnackLevel > Snack.SnackLevels.level2)
                     {
@@ -130,18 +127,14 @@ public class Employee : MonoBehaviour
                 if (givenSnack.SnackLevel == Snack.SnackLevels.level3)
                 {
                     //Employee is sent home
-                    Destroy(car.TimerUI);
-                    Destroy(fatigueUI);
-                    Destroy(car.transform.gameObject);
+                    ResetFatigueLevel();
+                    car.ChangeDriver();
                 }
                 else
                 {
                     if (givenSnack.SnackLevel < Snack.SnackLevels.level3)
                     {
-                        //give 25% effectiveness
-                        float temp = currentFatigueDelay - Time.time < 0 ? 0 : currentFatigueDelay - Time.time;
-                        temp = (temp + (currentFatigueRate * 0.25f)) + Time.time;
-                        currentFatigueDelay = temp;
+                        DecreaseFatigueGauge();
                     }
                 }
                 break;
@@ -156,23 +149,28 @@ public class Employee : MonoBehaviour
     /// </summary>
     public void ResetFatigueLevel()
     {
-        currentFatigueType = GenerateRandomFatigue();
+        GenerateRandomFatigue();
         currentFatigueLevel = 0;
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
         fillColor.color = gameManager.fatigueLevelColors[0];
     }
 
-    private FatigueTypes GenerateRandomFatigue()
+    /// <summary>
+    /// -25% from the current gauge.
+    /// </summary>
+    private void DecreaseFatigueGauge()
     {
-        int num = Random.Range(0, 3);
-        switch(num)
-        {
-            case 0: return FatigueTypes.Dizziness;
-            case 1: return FatigueTypes.Headache;
-            case 2: return FatigueTypes.Sleepiness;
-            default: return FatigueTypes.Sleepiness;
-        }
+        
+        float temp = currentFatigueDelay - Time.time < 0 ? 0 : currentFatigueDelay - Time.time;
+        temp = (temp + (currentFatigueRate * 0.25f)) + Time.time;
+        currentFatigueDelay = temp;
+    }
+
+    private void GenerateRandomFatigue()
+    {
+        int num = Random.Range(0, gameManager.AvailableFatigueTypes.Length);
+        currentFatigueType = gameManager.AvailableFatigueTypes[num];
     }
 
     /// <summary>
@@ -180,32 +178,24 @@ public class Employee : MonoBehaviour
     /// </summary>
     private void CheckStatus()
     {
-        /*
-        //if departed at fatigue lvl 3
-        //then add fatigued employee count to game manager
-
+        //quick switch to prevent unecesarry events
         if (car.IsParked)
         {
             isChecking = true;
+
+            if (currentFatigueLevel >= 4)
+                gameManager.IsPlaying = false;
         }
         else
         {
+            //naive delayed checking
             if (isChecking)
             {
-                if (currentFatigueLevel == 2)
-                    gameManager.NumFatiguedDrivers++;
-
-                if (currentFatigueLevel >= 3)
+                //if reached fatigue level 4, do fail event
+                if (currentFatigueLevel >= 4)
                     gameManager.IsPlaying = false;
             }
             isChecking = false;
-        }
-        */
-
-        //if reached fatigue level 4, do fail event
-        if (currentFatigueLevel >= 4)
-        {
-            gameManager.IsPlaying = false;
         }
     }
 
@@ -220,12 +210,20 @@ public class Employee : MonoBehaviour
             defaultDriverState != null)
             renderer.sprite = defaultDriverState;
 
-        else if (currentFatigueLevel > 0 &&
+        else if (currentFatigueLevel > 0 && 
+                 currentFatigueLevel < maxFatigueLevel &&
                  driverStates[row].spritesArray[currentFatigueLevel - 1] != null)
             renderer.sprite = driverStates[row].spritesArray[currentFatigueLevel - 1];
+    }
 
+    private void UpdateTimerUI()
+    {
+        fatigueSlider.value = currentFatigueRate - (currentFatigueDelay - Time.time);
+
+        if (currentFatigueLevel < maxFatigueLevel)
+            fatigueText.text = string.Format("Fatigue Level: {0}", currentFatigueLevel);
         else
-            print("No sprite assigned to " + driverStates[row].spritesArray[currentFatigueLevel - 1]);
+            fatigueText.text = "Totally Fatigued!!!";
     }
     #endregion
 
@@ -247,14 +245,13 @@ public class Employee : MonoBehaviour
         currentFatigueDelay = currentFatigueRate + Time.time;
         fatigueSlider.maxValue = currentFatigueRate;
 
-        currentFatigueType = GenerateRandomFatigue();
+        GenerateRandomFatigue();
     }
 
     // Update is called once per frame
     void Update()
     {
-        fatigueSlider.value = currentFatigueRate - (currentFatigueDelay - Time.time);
-        fatigueText.text = string.Format("Fatigue Level: {0}", currentFatigueLevel);
+        UpdateTimerUI();
 
         //increase only when below max fatigue level
         if (currentFatigueLevel < maxFatigueLevel)

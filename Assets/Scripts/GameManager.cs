@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int numFatiguedDrivers = 0;
     [SerializeField] private int numFatiguedDriversThreshold = 1;
     [SerializeField] private float[] fatiguedChances = new float[4]; //0 = lvl0, 1 = lvl1...
+    [SerializeField] private Employee.FatigueTypes[] availableFatigueTypes;
     private GameObject[] employees;
-
     private UI_Manager uiManager;
     #endregion
 
@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
     {
         get { return isPlaying; }
         set { isPlaying = value; }
+    }
+
+    public Employee.FatigueTypes[] AvailableFatigueTypes
+    {
+        get { return availableFatigueTypes; }
     }
     #endregion
 
@@ -110,10 +115,6 @@ public class GameManager : MonoBehaviour
         else if (fatigueLevel == 3)
         {
             numFatiguedDrivers++;
-        }
-        else
-        {
-
         }
     }
     #endregion
