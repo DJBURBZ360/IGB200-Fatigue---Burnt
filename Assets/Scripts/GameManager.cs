@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     #region Methods
     private IEnumerator TempTimer()
     {
-        yield return new WaitForSeconds(30);
+        yield return new WaitForSeconds(300);
         uiManager.ShowWinUI();
         Time.timeScale = 0;
     }
@@ -68,6 +68,12 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
         }
     }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.Save();
+        
+    }
     #endregion
 
     // Start is called before the first frame update
@@ -76,7 +82,7 @@ public class GameManager : MonoBehaviour
         uiManager = this.gameObject.GetComponent<UI_Manager>();
         employees = GameObject.FindGameObjectsWithTag("Employee");
 
-        StartCoroutine(TempTimer());
+        //StartCoroutine(TempTimer());
     }
 
     // Update is called once per frame

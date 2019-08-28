@@ -81,17 +81,13 @@ public class Snack : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Don't let the player grab a snack while their character is moving
-        if (!Player.instance.IsMoving)
+        if (collision.tag == "Player")
         {
-            if (collision.tag == "Player")
-            {
-                isOnPlayer = true;
-            }
-            else
-            {
-                isOnPlayer = false;
-            }
+            isOnPlayer = true;
+        }
+        else
+        {
+            isOnPlayer = false;
         }
     }
 }
