@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
     #region Variables
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
 
     private Vector2[] travelPoints = new Vector2 [2];
     private Employee currentTarget;
+    private Animator animator;
     #endregion
 
     #region Accessors
@@ -115,19 +117,31 @@ public class Player : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0) //left
         {
             transform.position -= gameObject.transform.right * moveSpeed * Time.deltaTime;
+            //play move left animation
         }
         else if (Input.GetAxis("Horizontal") > 0) //right
         {
             transform.position += gameObject.transform.right * moveSpeed * Time.deltaTime;
+            //play move right animation
         }
 
         if (Input.GetAxis("Vertical") < 0) //down
         {
             transform.position -= gameObject.transform.up * moveSpeed * Time.deltaTime;
+            //play move down animation
         }
         else if (Input.GetAxis("Vertical") > 0) //up
         {
             transform.position += gameObject.transform.up * moveSpeed * Time.deltaTime;
+            //play move up animation
+        }
+
+
+        //idle
+        if (Input.GetAxis("Horizontal") == 0 ||
+            Input.GetAxis("Vertical") == 0)
+        {
+            //play idle animation
         }
     }
     
@@ -163,6 +177,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         instance = this.gameObject.GetComponent<Player>();
+        animator = this.gameObject.GetComponent<Animator>();
         travelPoints[0] = transform.position;
     }
 
