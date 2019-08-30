@@ -28,16 +28,4 @@ public class UI_Manager : MonoBehaviour
     {
         Destroy(failUI_Instance);
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
