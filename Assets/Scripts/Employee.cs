@@ -20,6 +20,7 @@ public class Employee : MonoBehaviour
     [SerializeField] private FatigueTypes currentFatigueType;
 
     private bool isChecking = true;
+    private bool isSentHome = false;
 
     private GameObject fatigueUI;
     private Slider fatigueSlider;
@@ -75,7 +76,6 @@ public class Employee : MonoBehaviour
             
             //reset slider fill then change color
             fatigueSlider.value = 0;
-            fatigueSlider.maxValue = currentFatigueRate;
             fillColor.color = gameManager.fatigueLevelColors[currentFatigueLevel];
         }
     }
@@ -127,7 +127,7 @@ public class Employee : MonoBehaviour
                 if (givenSnack.SnackLevel == Snack.SnackLevels.level3)
                 {
                     //Employee is sent home
-                    ResetFatigueLevel();
+                    isSentHome = true;
                     car.ChangeDriver();
                 }
                 else
@@ -161,8 +161,7 @@ public class Employee : MonoBehaviour
     /// </summary>
     private void DecreaseFatigueGauge()
     {
-        
-        float temp = currentFatigueDelay - Time.time < 0 ? 0 : currentFatigueDelay - Time.time;
+        float temp = currentFatigueDelay - Time.time <= 0 ? 0 : currentFatigueDelay - Time.time;
         temp = (temp + (currentFatigueRate * 0.25f)) + Time.time;
         currentFatigueDelay = temp;
     }
@@ -182,7 +181,6 @@ public class Employee : MonoBehaviour
         if (car.IsParked)
         {
             isChecking = true;
-
             if (currentFatigueLevel >= 4)
                 gameManager.IsPlaying = false;
         }
@@ -193,14 +191,17 @@ public class Employee : MonoBehaviour
             {
                 //do speed boost
                 //resets timer only
-                if (currentFatigueLevel == 0)
+                if (currentFatigueLevel <= 0 &&
+                    !isSentHome)
                     Player.instance.ApplySpeedBoost();
 
                 //if reached fatigue level 4, do fail event
                 if (currentFatigueLevel >= 3)
                     gameManager.IsPlaying = false;
+
+                isChecking = false;
+                isSentHome = false;
             }
-            isChecking = false;
         }
     }
 
@@ -223,7 +224,7 @@ public class Employee : MonoBehaviour
 
     private void UpdateTimerUI()
     {
-        fatigueSlider.value = currentFatigueRate - (currentFatigueDelay - Time.time);
+        fatigueSlider.value = Percentage.GetPercentage(currentFatigueDelay - Time.time, currentFatigueRate, fatigueSlider.value);
 
         if (currentFatigueLevel < maxFatigueLevel)
             fatigueText.text = string.Format("Fatigue Level: {0}", currentFatigueLevel);
@@ -248,7 +249,6 @@ public class Employee : MonoBehaviour
         //initialize fatigue timer
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
-        fatigueSlider.maxValue = currentFatigueRate;
 
         GenerateRandomFatigue();
     }
@@ -256,15 +256,13 @@ public class Employee : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateTimerUI();
-
         //increase only when below max fatigue level
         if (currentFatigueLevel < maxFatigueLevel)
-        {
             IncreaseFatigueLevel();
-        }
+
         CheckStatus();
         ChangeState();
+        UpdateTimerUI();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

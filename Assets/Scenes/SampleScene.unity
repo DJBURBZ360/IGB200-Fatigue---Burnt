@@ -1298,6 +1298,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6735810376645851644, guid: 3797aa8d3bbf6a74ea0fa2a9f13c0d99,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3797aa8d3bbf6a74ea0fa2a9f13c0d99, type: 3}
 --- !u!1 &414536767
@@ -2451,6 +2456,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802163788713506228, guid: 6838452d0176e734d9e0c3ce785ccf0c,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802163788713506228, guid: 6838452d0176e734d9e0c3ce785ccf0c,
+        type: 3}
+      propertyPath: m_Value
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6838452d0176e734d9e0c3ce785ccf0c, type: 3}
@@ -4029,12 +4044,12 @@ PrefabInstance:
     - target: {fileID: 5456790243767682736, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: departureTimeRange.Array.data[0]
-      value: 30
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5456790243767682736, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: departureTimeRange.Array.data[1]
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5456790243767682736, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
@@ -4183,12 +4198,12 @@ PrefabInstance:
     - target: {fileID: 5456790244276226412, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 7.1
+      value: 6.98
       objectReference: {fileID: 0}
     - target: {fileID: 5456790244276226412, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 6.75
+      value: 6.81
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e1a8e577d487d24d8fb2c858151d870, type: 3}

@@ -26,7 +26,9 @@ public class CarManager : MonoBehaviour
 
     private bool isDeparting = false,
                  isArriving = true,
-                 isParked = true;
+                 isParked = true,
+                 hasTimeStamped = false,
+                 isTimerPaused = false;
 
     private GameObject timerUI;
     private Slider sliderTimer;
@@ -45,42 +47,6 @@ public class CarManager : MonoBehaviour
     {
         get { return timerUI; }
         set { timerUI = value; }
-    }
-    #endregion
-
-    #region IEnumerators
-    private IEnumerator ManageCar()
-    {
-        while (true)
-        {
-            //Generate between numbers 5 & 10 if fatigue level is 3
-            if (employee.CurrentFatigueLevel < 3)
-                departureTime = Random.Range(departureTimeRange[0], departureTimeRange[1]);
-            else
-                departureTime = Random.Range(5, 10 + 1);
-
-
-            if (!isDeparting && isArriving)
-            {
-                //Depart and change employee
-                yield return new WaitForSeconds(departureTime);
-                isDeparting = true;
-                isArriving = false;
-                gameManager.DoRNG(employee.CurrentFatigueLevel);
-                gameManager.NumDrivers--;
-                employee.FatigueUI.SetActive(false);
-            }
-            else
-            {
-                //Arrive
-                arrivalTime = Random.Range(arrivalTimeRange[0], arrivalTimeRange[1]);
-                yield return new WaitForSeconds(arrivalTime);
-                employee.FatigueUI.SetActive(true);
-                employee.ResetFatigueLevel();
-                isArriving = true;
-                isDeparting = false;
-            }
-        }
     }
     #endregion
 
@@ -115,65 +81,124 @@ public class CarManager : MonoBehaviour
         }
     }
 
-    private void ManageTimer()
+    private void GenerateDepartureTime()
     {
-        if (!isDeparting &&
-            isArriving)
+        if (!hasTimeStamped)
         {
-            if (currentDepartureDelay < Time.time)
-            {
-                currentDepartureDelay = departureTime + Time.time;
-                sliderTimer.maxValue = departureTime;
-            }
+            //Generate between numbers 5 & 10 if fatigue level is 3
+            if (employee.CurrentFatigueLevel < 3)
+                departureTime = Random.Range(departureTimeRange[0], departureTimeRange[1]);
+            else
+                departureTime = Random.Range(5, 10 + 1);
 
-            //slider drains down
-            sliderTimer.value = currentDepartureDelay - Time.time;
-            textTimer.text = string.Format("Departing in {0:0.00}s", currentDepartureDelay - Time.time);
+            currentDepartureDelay = departureTime + Time.time;
+
+            employee.FatigueUI.SetActive(true);
+            employee.ResetFatigueLevel();
+            
+            hasTimeStamped = true;
         }
-        else if (!isArriving &&
-                 isDeparting)
+    }
+
+    private void GenerateArrivalTime()
+    {
+        if (!hasTimeStamped)
+        {
+            arrivalTime = Random.Range(arrivalTimeRange[0], arrivalTimeRange[1]);
+            currentArrivalTimeDelay = arrivalTime + Time.time;
+
+            gameManager.DoRNG(employee.CurrentFatigueLevel);
+            gameManager.NumDrivers--;
+            employee.FatigueUI.SetActive(false);
+
+            hasTimeStamped = true;
+        }
+    }
+
+    private void CheckCurrentState()
+    {
+        if (interpolate >= 1)
         {
             if (currentArrivalTimeDelay < Time.time)
             {
-                currentArrivalTimeDelay = arrivalTime + Time.time;
-                sliderTimer.maxValue = arrivalTime;
+                {
+                    isDeparting = false;
+                    isArriving = true;
+                    hasTimeStamped = false;
+                }
             }
-            
-            //slider fills up
-            sliderTimer.value = arrivalTime - (currentArrivalTimeDelay - Time.time);
+            else
+            {
+                hasTimeStamped = true;
+            }
+        }
+        else if (interpolate <= 0)
+        {
+            if (currentDepartureDelay < Time.time)
+            {
+                isDeparting = true;
+                isArriving = false;
+                hasTimeStamped = false;
+            }
+            else
+            {
+                hasTimeStamped = true;
+            }
+        }
+    }
+
+    private void ManageTimer()
+    {
+        //ready up for departure
+        if (!isDeparting &&
+            isArriving)
+        {
+             GenerateDepartureTime();
+            sliderTimer.value = 100 - Percentage.GetPercentage(currentDepartureDelay - Time.time, departureTime, sliderTimer.value);
+            textTimer.text = string.Format("Departing in {0:0.00}s", currentDepartureDelay - Time.time);
+        }
+
+        //ready up for arrival
+        else if (!isArriving &&
+                 isDeparting)
+        {
+            GenerateArrivalTime();
+            sliderTimer.value = Percentage.GetPercentage(currentArrivalTimeDelay - Time.time, arrivalTime, sliderTimer.value);
             textTimer.text = string.Format("Arriving in {0:0.00}s", currentArrivalTimeDelay - Time.time);
         }
     }
 
     public void ChangeDriver()
     {
-        StopCoroutine(ManageCar());
+        isTimerPaused = true;
 
         //dispatch car
         isDeparting = true;
         isArriving = false;
 
         //reset employee
-        employee.ResetFatigueLevel();
         gameManager.DoRNG(employee.CurrentFatigueLevel);
+        employee.ResetFatigueLevel();
         gameManager.NumDrivers--;
         employee.FatigueUI.SetActive(false);
 
         //reset timers
-        arrivalTime = Random.Range(arrivalTimeRange[0], arrivalTimeRange[1]);
         departureTime = 0;
+        currentArrivalTimeDelay = 0;
 
-        StartCoroutine(ManageCar());
+        hasTimeStamped = false;
+        isTimerPaused = false;
     }
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
+        departureTime = Random.Range(departureTimeRange[0], departureTimeRange[1]);
+
         employee = transform.GetChild(0).transform.GetComponent<Employee>();
         gameManager = GameObject.FindWithTag("Managers").GetComponent<GameManager>();
         sprite = this.gameObject;
-        StartCoroutine(ManageCar());
 
         sliderTimer = timerUI.transform.GetChild(0).GetComponent<Slider>();
         textTimer = timerUI.transform.GetChild(1).GetComponent<Text>();
@@ -198,8 +223,7 @@ public class CarManager : MonoBehaviour
             sprite.transform.localScale = Vector2.Lerp(originalScale, exitPos.transform.localScale, interpolate);
         }
 
-        ManageTimer();
-
+        if (!isTimerPaused) ManageTimer();
         if (isDeparting) Depart();
         if (isArriving) Arrive();
 
@@ -211,5 +235,7 @@ public class CarManager : MonoBehaviour
         {
             isParked = false;
         }
+
+        CheckCurrentState();
     }
 }

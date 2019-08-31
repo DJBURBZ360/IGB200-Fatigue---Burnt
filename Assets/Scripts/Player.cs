@@ -153,15 +153,6 @@ public class Player : MonoBehaviour
         if (hasSpeedBoost) UpdateSpeedBoostUI();
         if (enableMovement) Move();
         LimitMovement();
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ApplySpeedBoost();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetSpeedBoost();
-        }
+        CheckSpeedBoostState();
     }
 }
