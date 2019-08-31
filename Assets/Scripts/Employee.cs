@@ -191,8 +191,13 @@ public class Employee : MonoBehaviour
             //naive delayed checking
             if (isChecking)
             {
+                //do speed boost
+                //resets timer only
+                if (currentFatigueLevel == 0)
+                    Player.instance.ApplySpeedBoost();
+
                 //if reached fatigue level 4, do fail event
-                if (currentFatigueLevel >= 4)
+                if (currentFatigueLevel >= 3)
                     gameManager.IsPlaying = false;
             }
             isChecking = false;

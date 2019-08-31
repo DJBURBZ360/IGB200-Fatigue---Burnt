@@ -1,22 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
     #region Variables
     [SerializeField] private Vector3 snackOffset;
-    [SerializeField] private float moveSpeed = 50f;
+    [SerializeField] private float normalSpeed = 20f;
+    [SerializeField] private int speedBoostTime = 5;
+    [SerializeField] private float speedBoostSpeed = 50f;
     [SerializeField] private Vector2[] boundaries =  new Vector2[2]; //0 - min, 1 - max
     private float interpolation = 0;
+    private float moveSpeed = 0;
+    private float currentBoostTime = 0;
     public static Player instance;
     private bool hasSnack = false;
+    private bool hasSpeedBoost = false;
     private bool enableMovement = true;
 
     private Vector2[] travelPoints = new Vector2 [2];
     private Employee currentTarget;
     private Animator animator;
+    private GameObject speedBoostUI;
+    private Text speedBoostTimeText;
     #endregion
 
     #region Accessors
@@ -98,6 +106,34 @@ public class Player : MonoBehaviour
                                              boundaries[1].y);
         }
     }
+
+    private void UpdateSpeedBoostUI()
+    {
+        speedBoostTimeText.text = string.Format("{0:0.00}s", currentBoostTime - Time.time);
+    }
+
+    private void CheckSpeedBoostState()
+    {
+        if (currentBoostTime < Time.time)
+        {
+            ResetSpeedBoost();
+        }
+    }
+
+    public void ApplySpeedBoost()
+    {
+        moveSpeed = speedBoostSpeed;
+        hasSpeedBoost = true;
+        speedBoostUI.SetActive(true);
+        currentBoostTime = speedBoostTime + Time.time;
+    }
+
+    public void ResetSpeedBoost()
+    {
+        moveSpeed = normalSpeed;
+        hasSpeedBoost = false;
+        speedBoostUI.SetActive(false);
+    }
     #endregion
 
     // Start is called before the first frame update
@@ -106,12 +142,26 @@ public class Player : MonoBehaviour
         instance = this.gameObject.GetComponent<Player>();
         animator = this.gameObject.GetComponent<Animator>();
         travelPoints[0] = transform.position;
+        moveSpeed = normalSpeed;
+        speedBoostUI = gameObject.transform.GetChild(0).gameObject;
+        speedBoostTimeText = speedBoostUI.transform.GetChild(1).GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (hasSpeedBoost) UpdateSpeedBoostUI();
         if (enableMovement) Move();
         LimitMovement();
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ApplySpeedBoost();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetSpeedBoost();
+        }
     }
 }
