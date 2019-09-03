@@ -273,6 +273,8 @@ public class Employee : MonoBehaviour
         {
             if (!collision.GetComponent<Snack>().IsDragged)
             {
+                print("Logged");
+
                 CheckForSnack(collision);
                 Player.instance.HasSnack = false;
                 Snack.numInstance--;
