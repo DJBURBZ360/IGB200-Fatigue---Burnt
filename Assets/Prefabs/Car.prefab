@@ -189,7 +189,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 017e96049581f14499c3aa06557b4739, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -216,7 +216,6 @@ MonoBehaviour:
   - 3
   - 5
   maxFatigueLevel: 4
-  currentFatigueType: 0
   defaultDriverState: {fileID: 21300000, guid: 017e96049581f14499c3aa06557b4739, type: 3}
   driverStates:
   - spritesArray:
@@ -248,14 +247,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.98, y: 6.81}
+    oldSize: {x: 0.2, y: 0.2}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.98, y: 6.81}
+  m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
 --- !u!50 &5456790244276226413
 Rigidbody2D:
