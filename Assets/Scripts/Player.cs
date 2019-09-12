@@ -49,6 +49,11 @@ public class Player : MonoBehaviour
         get { return enableMovement; }
         set { enableMovement = value; }
     }
+
+    public bool HasSpeedBoost
+    {
+        get { return hasSpeedBoost; }
+    }
     #endregion
 
     #region Methods

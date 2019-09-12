@@ -7,6 +7,7 @@ public class Item : MonoBehaviour
 
     [SerializeField] private ItemLevels itemLevel;
     [SerializeField] private Employee.FatigueTypes forFatigueType;
+    [SerializeField] private GameObject itemSFX;
     private bool isOnPlayer = false;
     private bool isDragged = false;
     public static int numInstance = 0;
@@ -66,6 +67,11 @@ public class Item : MonoBehaviour
             numInstance--;
             Destroy(this.gameObject);
         }
+    }
+
+    public void PlaySound()
+    {
+        Instantiate(itemSFX, transform.position, Quaternion.identity);
     }
     #endregion
 

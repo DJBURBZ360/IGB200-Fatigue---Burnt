@@ -10,7 +10,7 @@ public class CarManager : MonoBehaviour
     [SerializeField] private float interpolationSpeed = 1;
 
     private GameObject sprite;
-    private Vector2 originalPos, 
+    private Vector2 originalPos,
                     originalScale;
     public GameObject exitPos;
 
@@ -41,6 +41,16 @@ public class CarManager : MonoBehaviour
     public bool IsParked
     {
         get { return isParked; }
+    }
+
+    public bool IsDeparting
+    {
+        get { return isDeparting; }
+    }
+
+    public bool IsArriving
+    {
+        get { return isArriving; }
     }
 
     public GameObject TimerUI

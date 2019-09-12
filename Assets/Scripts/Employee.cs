@@ -264,6 +264,7 @@ public class Employee : MonoBehaviour
                 CheckForItem(collision);
                 Player.instance.HasItem = false;
                 Item.numInstance--;
+                collision.GetComponent<Item>().PlaySound();
                 Destroy(collision.gameObject);
             }
         }
