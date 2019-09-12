@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2827703867951577423}
   - component: {fileID: 3203837341410010589}
   m_Layer: 0
-  m_Name: SFX_BrushOff
+  m_Name: SFX_Eat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 7cea404d11e429149bd184d0d9595cf4, type: 3}
-  - {fileID: 8300000, guid: 07e830b7a881e604ab299274563f1f95, type: 3}
-  - {fileID: 8300000, guid: 0debbee567b7fb741afc0d771d50a57d, type: 3}
-  - {fileID: 8300000, guid: 601cee918e49ce0428183ad3539e9d72, type: 3}
+  - {fileID: 8300000, guid: ee37ee340d0136b4fa3b2b15566e00bb, type: 3}
+  - {fileID: 8300000, guid: b6d76860a6de1674a8f51c294097570f, type: 3}
+  - {fileID: 8300000, guid: 4ad322e5fbbc70e44a6deddba6cbda70, type: 3}
+  - {fileID: 8300000, guid: ff2c92001985ba7419edbb15aca4a8ae, type: 3}
 --- !u!82 &3203837341410010589
 AudioSource:
   m_ObjectHideFlags: 0
@@ -58,7 +58,8 @@ AudioSource:
   m_GameObject: {fileID: 8655352799328647701}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5226431777090146680, guid: 145101e67858edb459f8cccf1b6dc214,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

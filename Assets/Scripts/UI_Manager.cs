@@ -14,6 +14,9 @@ public class UI_Manager : MonoBehaviour
     public GameObject winUI_Prefab;
     private GameObject winUI_Instance;
 
+    public GameObject pauseMenu_Prefab;
+    private GameObject pauseMenu_Instance;
+
     public void ShowFailUI()
     {
         failUI_Instance = Instantiate(failUI_Prefab, GameObject.FindWithTag("UI").transform);
@@ -27,5 +30,15 @@ public class UI_Manager : MonoBehaviour
     public void HideFailUI()
     {
         Destroy(failUI_Instance);
+    }
+
+    public void ShowPauseMenu()
+    {
+        pauseMenu_Instance = Instantiate(pauseMenu_Prefab, GameObject.FindWithTag("UI").transform);
+    }
+
+    public void HidePauseMenu()
+    {
+        Destroy(pauseMenu_Instance);
     }
 }

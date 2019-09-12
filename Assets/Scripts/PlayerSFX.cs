@@ -30,13 +30,16 @@ public class PlayerSFX : MonoBehaviour
 
         if (audioClips.Length > 0)
         {
-            if (Input.GetButton("Horizontal") ||
-                Input.GetButton("Vertical"))
+            if (Player.instance.EnableMovement)
             {
-                if (currentWalkInterval < Time.time)
+                if (Input.GetButton("Horizontal") ||
+                    Input.GetButton("Vertical"))
                 {
-                    currentWalkInterval = currentWalkRate + Time.time;
-                    source.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
+                    if (currentWalkInterval < Time.time)
+                    {
+                        currentWalkInterval = currentWalkRate + Time.time;
+                        source.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
+                    }
                 }
             }
         }

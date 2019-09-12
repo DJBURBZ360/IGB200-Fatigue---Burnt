@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5536607891287036777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5536607891287036779}
+  - component: {fileID: 5536607891287036776}
+  - component: {fileID: 5536607891287036778}
+  - component: {fileID: -1527282216355183389}
+  m_Layer: 0
+  m_Name: Managers
+  m_TagString: Managers
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5536607891287036779
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536607891287036777}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5536607891287036776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536607891287036777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5e94798102ae55468255d560943f3fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fatigueLevelColors:
+  - {r: 0, g: 0.9607844, b: 0.054901965, a: 1}
+  - {r: 0.75026494, g: 0.9254902, b: 0.19607843, a: 1}
+  - {r: 1, g: 0.9215687, b: 0, a: 1}
+  - {r: 1, g: 0.40695798, b: 0, a: 1}
+  - {r: 0.9245283, g: 0.19624424, b: 0.26259315, a: 1}
+  numDrivers: 100
+  numFatiguedDrivers: 0
+  numFatiguedDriversThreshold: 3
+  fatiguedChances:
+  - 0
+  - 20
+  - 50
+  - 100
+  availableFatigueTypes: 01000000
+  tutorialUI: {fileID: 0}
+--- !u!114 &5536607891287036778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536607891287036777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d14b0f5ca7b6e47a0e9ea8674e1c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  failUI_Prefab: {fileID: 3754880305166953178, guid: ad48b496aea578342a7ee04a653911cc,
+    type: 3}
+  winUI_Prefab: {fileID: 3754880305166953178, guid: 51384c3f8d4176740942da22212b1bc3,
+    type: 3}
+  pauseMenu_Prefab: {fileID: 3754880305166953178, guid: 18ebc3b40426bcd46ac83431de2a02a4,
+    type: 3}
+--- !u!114 &-1527282216355183389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536607891287036777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a09acece1cd8b42abfa7ffafa9a824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

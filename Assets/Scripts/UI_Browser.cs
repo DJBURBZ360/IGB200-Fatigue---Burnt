@@ -47,9 +47,14 @@ public class UI_Browser : MonoBehaviour
         target.SetActive(true);
     }
 
-    public void InstanceGameObject(GameObject prefab)
+    public void InstanceGameObjectHere(GameObject prefab)
     {
         Instantiate(prefab, this.gameObject.transform);
+    }
+
+    public void InstanceGameObjectOutside(GameObject prefab)
+    {
+        Instantiate(prefab);
     }
 
     public void DestroyGameObject(GameObject target)
