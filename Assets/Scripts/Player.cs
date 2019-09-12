@@ -7,36 +7,41 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     #region Variables
+    public static Player instance;
+
     [SerializeField] private Vector3 snackOffset;
     [SerializeField] private float normalSpeed = 20f;
     [SerializeField] private int speedBoostTime = 5;
     [SerializeField] private float speedBoostSpeed = 50f;
     [SerializeField] private Vector2[] boundaries =  new Vector2[2]; //0 - min, 1 - max
+    [SerializeField] private GameObject speedBoostUI;
+    [SerializeField] private GameObject sendHomeUI;
+
     private float interpolation = 0;
     private float moveSpeed = 0;
     private float currentBoostTime = 0;
-    public static Player instance;
-    private bool hasSnack = false;
+    
+    private bool hasItem = false;
     private bool hasSpeedBoost = false;
     private bool enableMovement = true;
 
     private Vector2[] travelPoints = new Vector2 [2];
     private Employee currentTarget;
     private Animator animator;
-    private GameObject speedBoostUI;
     private Text speedBoostTimeText;
+
     #endregion
 
     #region Accessors
-    public Vector3 SnackOffset
+    public Vector3 ItemOffset
     {
         get { return snackOffset; }
     }
 
-    public bool HasSnack
+    public bool HasItem
     {
-        get { return hasSnack; }
-        set { hasSnack = value; }
+        get { return hasItem; }
+        set { hasItem = value; }
     }
 
     public bool EnableMovement
@@ -47,6 +52,15 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Methods
+    private void SendEmployeeHome()
+    {
+        if (Input.GetButtonDown("Interact") &&
+            currentTarget != null)
+        {
+            currentTarget.SendHome();
+        }
+    }
+
     private void Move()
     {
         if (Input.GetAxis("Horizontal") < 0) //left
@@ -143,8 +157,7 @@ public class Player : MonoBehaviour
         animator = this.gameObject.GetComponent<Animator>();
         travelPoints[0] = transform.position;
         moveSpeed = normalSpeed;
-        speedBoostUI = gameObject.transform.GetChild(0).gameObject;
-        speedBoostTimeText = speedBoostUI.transform.GetChild(1).GetComponent<Text>();
+        speedBoostTimeText = speedBoostUI.transform.GetChild(0).GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -154,5 +167,30 @@ public class Player : MonoBehaviour
         if (enableMovement) Move();
         LimitMovement();
         CheckSpeedBoostState();
+        SendEmployeeHome();
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (currentTarget == null &&
+            collision.gameObject.GetComponent<Employee>() != null)
+        {
+            Employee employee = collision.gameObject.GetComponent<Employee>();
+
+            if (employee.CurrentFatigueLevel > 2)
+            {
+                sendHomeUI.SetActive(true);
+                currentTarget = employee;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Employee>() != null)
+        {
+            sendHomeUI.SetActive(false);
+            currentTarget = null;
+        }
     }
 }

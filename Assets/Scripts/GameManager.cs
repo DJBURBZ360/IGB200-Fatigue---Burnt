@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
             //pause game   
             Time.timeScale = 0;
-            Snack.numInstance = 0;
+            Item.numInstance = 0;
         }
     }
 
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
             //pause game   
             Time.timeScale = 0;
-            Snack.numInstance = 0;
+            Item.numInstance = 0;
         }
     }
 

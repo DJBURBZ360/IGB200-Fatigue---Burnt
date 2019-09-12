@@ -1,7 +1,7 @@
 ﻿using UnityEngine.UI;
 using UnityEngine;
 
-public class SnackArea : MonoBehaviour
+public class ItemArea : MonoBehaviour
 {
     #region Variables
     private Image uiRenderer;

@@ -1,30 +1,36 @@
 ﻿using UnityEngine;
 
-public class Snack : MonoBehaviour
+public class Item : MonoBehaviour
 {
     #region Variables
-    public enum SnackLevels { level1, level2, level3 };
+    public enum ItemLevels { level1, level2, level3 };
 
-    [SerializeField] private SnackLevels snackLevel;
+    [SerializeField] private ItemLevels itemLevel;
+    [SerializeField] private Employee.FatigueTypes forFatigueType;
     private bool isOnPlayer = false;
     private bool isDragged = false;
     public static int numInstance = 0;
     #endregion
 
     #region Accessors
-    public SnackLevels SnackLevel
+    public ItemLevels ItemLevel
     {
-        get { return snackLevel; }
+        get { return itemLevel; }
     }
 
     public bool IsDragged
     {
         get { return isDragged; }
     }
+
+    public Employee.FatigueTypes ForFatigueType
+    {
+        get { return forFatigueType; }
+    }
     #endregion
 
     #region Methods
-    private void GrabSnack()
+    private void GrabItem()
     {
         if (Input.GetMouseButton(0))
         {
@@ -39,8 +45,8 @@ public class Snack : MonoBehaviour
             {
                 isDragged = false;
                 this.transform.parent = Player.instance.transform;
-                transform.position = Player.instance.transform.position + Player.instance.SnackOffset;
-                Player.instance.HasSnack = true;
+                transform.position = Player.instance.transform.position + Player.instance.ItemOffset;
+                Player.instance.HasItem = true;
             }
             else
             {
@@ -51,12 +57,12 @@ public class Snack : MonoBehaviour
         }
     }
 
-    private void DropSnack()
+    private void DropItem()
     {
         if (Input.GetMouseButtonDown(1) ||
             Input.GetButton("Drop Item"))
         {
-            Player.instance.HasSnack = false;
+            Player.instance.HasItem = false;
             numInstance--;
             Destroy(this.gameObject);
         }
@@ -70,13 +76,13 @@ public class Snack : MonoBehaviour
 
     private void Update()
     {
-        if (!Player.instance.HasSnack)
+        if (!Player.instance.HasItem)
         {
-            GrabSnack();
+            GrabItem();
         }
         else
         {
-            DropSnack();
+            DropItem();
         }
     }
 

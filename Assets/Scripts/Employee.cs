@@ -86,62 +86,50 @@ public class Employee : MonoBehaviour
         currentFatigueLevel = currentFatigueLevel < 0 ? 0 : --currentFatigueLevel;
     }
 
-    private void CheckForSnack(Collider2D collision)
+    /// <summary>
+    /// Used to check what snack was given upon collision
+    /// </summary>
+    private void CheckForItem(Collider2D collision)
     {
-        Snack givenSnack = collision.GetComponent<Snack>();
-        switch (currentFatigueLevel)
+        Item givenItem = collision.GetComponent<Item>();
+
+        //Only proceed to further checks when the item corresponds to the fatigue type
+        if (currentFatigueType == givenItem.ForFatigueType)
         {
-            case 1:
-                if (givenSnack.SnackLevel == Snack.SnackLevels.level1)
-                {
-                    ResetFatigueLevel();
-                }
-                else
-                {
-                    if (givenSnack.SnackLevel > Snack.SnackLevels.level1)
+            switch (currentFatigueLevel)
+            {
+                case 1:
+                    if (givenItem.ItemLevel == Item.ItemLevels.level1)
                     {
-                        //no effects given
+                        ResetFatigueLevel();
                     }
-                }
-                break;
+                    break;
 
-            case 2:
-                if (givenSnack.SnackLevel == Snack.SnackLevels.level2)
-                {
-                    ResetFatigueLevel();
-                }
-                else
-                {
-                    if (givenSnack.SnackLevel < Snack.SnackLevels.level2)
+                case 2:
+                    if (givenItem.ItemLevel == Item.ItemLevels.level2)
+                    {
+                        ResetFatigueLevel();
+                    }
+                    else if (givenItem.ItemLevel < Item.ItemLevels.level2)
                     {
                         DecreaseFatigueGauge();
                     }
-                    else if (givenSnack.SnackLevel > Snack.SnackLevels.level2)
-                    {
-                        //no effects given 
-                    }
-                }
-                break;
+                    break;
 
-            case 3:
-                if (givenSnack.SnackLevel == Snack.SnackLevels.level3)
-                {
-                    //Employee is sent home
-                    isSentHome = true;
-                    car.ChangeDriver();
-                }
-                else
-                {
-                    if (givenSnack.SnackLevel < Snack.SnackLevels.level3)
+                case 3:
+                    if (givenItem.ItemLevel < Item.ItemLevels.level3)
                     {
                         DecreaseFatigueGauge();
                     }
-                }
-                break;
-
-            default:Debug.Log(this.gameObject.name + "'s fatigue level: " + currentFatigueLevel);
-                break;
+                    break;
+            }
         }
+    }
+
+    public void SendHome()
+    {
+        isSentHome = true;
+        car.ChangeDriver();
     }
 
     /// <summary>
@@ -269,13 +257,13 @@ public class Employee : MonoBehaviour
     {
         //snacks will be prefabs with snack script attached to ID snack level
         //instanciate snack when clicked on snack icon from UI
-        if (collision.GetComponent<Snack>() != null)
+        if (collision.GetComponent<Item>() != null)
         {
-            if (!collision.GetComponent<Snack>().IsDragged)
+            if (!collision.GetComponent<Item>().IsDragged)
             {
-                CheckForSnack(collision);
-                Player.instance.HasSnack = false;
-                Snack.numInstance--;
+                CheckForItem(collision);
+                Player.instance.HasItem = false;
+                Item.numInstance--;
                 Destroy(collision.gameObject);
             }
         }
