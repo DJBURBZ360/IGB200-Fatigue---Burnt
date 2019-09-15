@@ -33,7 +33,7 @@ public class Employee : MonoBehaviour
     //[SerializeField] private Sprite[] driverStates = new Sprite [4];
     [SerializeField] private int[][] test;
     private SpriteRenderer renderer;
-    [SerializeField] Sprite defaultDriverState;
+    private Sprite defaultDriverState;
     [SerializeField] Sprites2DArray[] driverStates;//row = fatigue type
                                                    //col = fatigue stage
     #endregion
@@ -240,6 +240,7 @@ public class Employee : MonoBehaviour
         //initialize fatigue timer
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
+        defaultDriverState = renderer.sprite;
 
         GenerateRandomFatigue();
     }

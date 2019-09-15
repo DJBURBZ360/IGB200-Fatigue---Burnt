@@ -35,6 +35,11 @@ public class GameManager : MonoBehaviour
         set { numDrivers = value; }
     }
 
+    public int NumFatiguedDriversThreshold
+    {
+        get { return numFatiguedDriversThreshold; }
+    }
+
     public bool IsPlaying
     {
         get { return isPlaying; }
@@ -51,7 +56,7 @@ public class GameManager : MonoBehaviour
     private void CheckGameState()
     {
         //if passed threshold, do fail event
-        if (numFatiguedDrivers > numFatiguedDriversThreshold)
+        if (numFatiguedDrivers >= numFatiguedDriversThreshold)
         {
             isPlaying = false;
         }

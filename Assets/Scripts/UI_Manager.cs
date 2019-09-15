@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class UI_Manager : MonoBehaviour
 {
+    #region Variables
     public GameObject failUI_Prefab;
     private GameObject failUI_Instance;
 
@@ -17,6 +18,17 @@ public class UI_Manager : MonoBehaviour
     public GameObject pauseMenu_Prefab;
     private GameObject pauseMenu_Instance;
 
+    public GameObject deliveryUI;
+    private Slider numDeliveriesSlider;
+    private Text numDeliveriesText;
+
+    public Slider numDriversFatiguedUI;
+
+    private GameManager gameManager;
+    private float originalNumDrivers = 0;
+    #endregion
+
+    #region Public Methods
     public void ShowFailUI()
     {
         failUI_Instance = Instantiate(failUI_Prefab, GameObject.FindWithTag("UI").transform);
@@ -40,5 +52,34 @@ public class UI_Manager : MonoBehaviour
     public void HidePauseMenu()
     {
         Destroy(pauseMenu_Instance);
+    }
+    #endregion
+
+    #region Private Methods
+    private void UpdateDeliveryUI()
+    {
+        numDeliveriesSlider.value = 100 - ((gameManager.NumDrivers / originalNumDrivers) * 100);
+    }
+
+    private void UpdateFatiguedDriversUI()
+    {
+        numDriversFatiguedUI.value = 100 - ((gameManager.NumFatiguedDrivers / gameManager.NumFatiguedDriversThreshold) * 100);
+        numDeliveriesText.text = string.Format("{0} / {1}", gameManager.NumFatiguedDrivers, gameManager.NumFatiguedDriversThreshold);
+    }
+    #endregion
+
+    private void Start()
+    {
+        gameManager = this.gameObject.GetComponent<GameManager>();
+        originalNumDrivers = gameManager.NumDrivers;
+
+        numDeliveriesSlider = deliveryUI.transform.GetChild(0).GetComponent<Slider>();
+        numDeliveriesText = deliveryUI.transform.GetChild(1).GetComponent<Text>();
+    }
+
+    private void Update()
+    {
+        UpdateDeliveryUI();
+        UpdateFatiguedDriversUI();
     }
 }
