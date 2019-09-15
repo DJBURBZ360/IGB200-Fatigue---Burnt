@@ -214,7 +214,10 @@ public class Employee : MonoBehaviour
     {
         fatigueSlider.value = Percentage.GetPercentage(currentFatigueDelay - Time.time, currentFatigueRate, fatigueSlider.value);
 
-        if (currentFatigueLevel < maxFatigueLevel)
+        if (currentFatigueLevel < 1)
+            fatigueText.text = "Normal";
+        else if (currentFatigueLevel < maxFatigueLevel &&
+                 currentFatigueLevel > 0)
             fatigueText.text = string.Format("Fatigue Level: {0}", currentFatigueLevel);
         else
             fatigueText.text = "Totally Fatigued!!!";

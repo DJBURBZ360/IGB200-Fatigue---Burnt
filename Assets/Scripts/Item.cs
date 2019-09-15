@@ -71,6 +71,13 @@ public class Item : MonoBehaviour
         }
     }
 
+    public void ForceDropItem()
+    {
+        Player.instance.HasItem = false;
+        numInstance--;
+        Destroy(this.gameObject);
+    }
+
     public void PlaySound()
     {
         Instantiate(itemSFX, transform.position, Quaternion.identity);
@@ -86,7 +93,7 @@ public class Item : MonoBehaviour
     {
         if (!Player.instance.HasItem)
         {
-            GrabItem();
+            //GrabItem();
         }
         else
         {
