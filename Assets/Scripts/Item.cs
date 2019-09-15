@@ -46,7 +46,9 @@ public class Item : MonoBehaviour
             {
                 isDragged = false;
                 this.transform.parent = Player.instance.transform;
-                transform.position = Player.instance.transform.position + Player.instance.ItemOffset;
+                Vector3 newOffset = Player.instance.ItemOffset;
+                newOffset.x = Player.instance.transform.localScale.x < 0 ? newOffset.x * -1 : newOffset.x; //always place the item in front of the player.
+                transform.position = Player.instance.transform.position + newOffset;
                 Player.instance.HasItem = true;
             }
             else

@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2[] boundaries =  new Vector2[2]; //0 - min, 1 - max
     [SerializeField] private GameObject speedBoostUI;
     [SerializeField] private GameObject sendHomeUI;
+    [SerializeField] private GameObject worldSpaceCanvas;
 
     private float interpolation = 0;
     private float moveSpeed = 0;
@@ -29,7 +30,6 @@ public class Player : MonoBehaviour
     private Employee currentTarget;
     private Animator animator;
     private Text speedBoostTimeText;
-
     #endregion
 
     #region Accessors
@@ -66,36 +66,98 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void DoMoveAnimation()
+    {
+        if (enableMovement)
+        {
+            //left & right
+            if (Input.GetButtonDown("Horizontal"))
+            {
+                animator.SetBool("Move_Horizontal", true);
+            }
+            else if (Input.GetButtonUp("Horizontal"))
+            {
+                animator.SetBool("Move_Horizontal", false);
+            }
+
+            //up
+            if (Input.GetButtonDown("Vertical"))
+            {
+                if (Input.GetAxis("Vertical") > 0)
+                {
+                    animator.SetBool("Move_Up", true);
+                    animator.SetBool("Move_Down", false);
+                }
+                else
+                {
+                    animator.SetBool("Move_Down", true);
+                    animator.SetBool("Move_Up", false);
+                }
+            }
+            else if (Input.GetButtonUp("Vertical"))
+            {
+                animator.SetBool("Move_Up", false);
+                animator.SetBool("Move_Down", false);
+            }
+        }
+        else
+        {
+            animator.SetBool("Move_Horizontal", false);
+        }
+    }
+
+    /// <summary>
+    /// Flips the character facing the appropriate direction
+    /// </summary>
+    private void Flip()
+    {
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            if (Input.GetAxis("Horizontal") < 0) //left
+            {
+                if (transform.localScale.x > 0)
+                {
+                    transform.localScale *= new Vector2(-1, 1);
+
+                    if (worldSpaceCanvas != null)
+                    {
+                        worldSpaceCanvas.transform.localScale *= new Vector2(-1, 1);
+                    }
+                }
+            }
+            else //right
+            {
+                if (transform.localScale.x < 0)
+                {
+                    transform.localScale *= new Vector2(-1, 1);
+
+                    if (worldSpaceCanvas != null)
+                    {
+                        worldSpaceCanvas.transform.localScale *= new Vector2(-1, 1);
+                    }
+                }
+            }
+        }        
+    }
+
     private void Move()
     {
         if (Input.GetAxis("Horizontal") < 0) //left
         {
             transform.position -= gameObject.transform.right * moveSpeed * Time.deltaTime;
-            //play move left animation
         }
         else if (Input.GetAxis("Horizontal") > 0) //right
         {
             transform.position += gameObject.transform.right * moveSpeed * Time.deltaTime;
-            //play move right animation
         }
 
         if (Input.GetAxis("Vertical") < 0) //down
         {
             transform.position -= gameObject.transform.up * moveSpeed * Time.deltaTime;
-            //play move down animation
         }
         else if (Input.GetAxis("Vertical") > 0) //up
         {
             transform.position += gameObject.transform.up * moveSpeed * Time.deltaTime;
-            //play move up animation
-        }
-
-
-        //idle
-        if (Input.GetAxis("Horizontal") == 0 ||
-            Input.GetAxis("Vertical") == 0)
-        {
-            //play idle animation
         }
     }
     
@@ -168,8 +230,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hasSpeedBoost) UpdateSpeedBoostUI();
-        if (enableMovement) Move();
+        if (hasSpeedBoost)
+        {
+            UpdateSpeedBoostUI();
+            animator.speed = 2;
+        }
+        else
+        {
+            animator.speed = 1;
+        }
+
+        if (enableMovement)
+        {
+            Move();
+            Flip();
+        }
+
+        DoMoveAnimation();
         LimitMovement();
         CheckSpeedBoostState();
         SendEmployeeHome();

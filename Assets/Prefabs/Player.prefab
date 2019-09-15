@@ -102,7 +102,7 @@ RectTransform:
   m_GameObject: {fileID: 3441184838607420789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.002, y: 0.002, z: 1}
+  m_LocalScale: {x: 0.03, y: 0.03, z: 1}
   m_Children:
   - {fileID: 7123982902569220263}
   - {fileID: 4464276139139115963}
@@ -564,7 +564,7 @@ Transform:
   m_GameObject: {fileID: 7322084350805824607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.65, y: -4.05, z: 0}
-  m_LocalScale: {x: 7.96797, y: 8.435, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 6262832189082315318}
   m_Father: {fileID: 0}
@@ -607,12 +607,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 55f31c213e08d01499434d8e9c77972b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56de6b242fd131848a21a56833646074, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1.8080001, y: 3.813372}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -628,7 +628,7 @@ Animator:
   m_GameObject: {fileID: 7322084350805824607}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a9f8e0b8a42a404e906c7c58d467d3d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -654,8 +654,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.12, y: 0.12}
-    newSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1.8080001, y: 3.813372}
+    newSize: {x: 1.8080001, y: 3.813372}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -673,7 +673,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 7322084350805824607}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -682,7 +682,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &7322084350805824600
 MonoBehaviour:
@@ -699,12 +699,13 @@ MonoBehaviour:
   snackOffset: {x: 0.5, y: 0.3, z: 0}
   normalSpeed: 5
   speedBoostTime: 5
-  speedBoostSpeed: 20
+  speedBoostSpeed: 10
   boundaries:
   - {x: -7.8, y: -4.6}
   - {x: 8.4, y: -3.4}
   speedBoostUI: {fileID: 3022993140322074882}
   sendHomeUI: {fileID: 1898421232617254034}
+  worldSpaceCanvas: {fileID: 3441184838607420789}
 --- !u!114 &3879173176313198634
 MonoBehaviour:
   m_ObjectHideFlags: 0
