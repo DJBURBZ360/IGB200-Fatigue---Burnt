@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int numFatiguedDriversThreshold = 1;
     [SerializeField] private float[] fatiguedChances = new float[4]; //0 = lvl0, 1 = lvl1...
     [SerializeField] private Employee.FatigueTypes[] availableFatigueTypes;
+    [SerializeField] private GameObject tutorialUI;
+    [SerializeField] private GameObject SFX_Pause;
+    [SerializeField] private GameObject SFX_Unpause;
     private GameObject[] employees;
     private UI_Manager uiManager;
     #endregion
@@ -63,7 +66,7 @@ public class GameManager : MonoBehaviour
 
             //pause game   
             Time.timeScale = 0;
-            Snack.numInstance = 0;
+            Item.numInstance = 0;
         }
     }
 
@@ -76,7 +79,7 @@ public class GameManager : MonoBehaviour
 
             //pause game   
             Time.timeScale = 0;
-            Snack.numInstance = 0;
+            Item.numInstance = 0;
         }
     }
 
@@ -119,6 +122,25 @@ public class GameManager : MonoBehaviour
             numFatiguedDrivers++;
         }
     }
+
+    private void PauseGame()
+    {
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+                uiManager.ShowPauseMenu();
+                if (SFX_Pause != null) Instantiate(SFX_Pause);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                uiManager.HidePauseMenu();
+                if (SFX_Unpause != null) Instantiate(SFX_Unpause);
+            }
+        }
+    }
     #endregion
 
     // Start is called before the first frame update
@@ -134,9 +156,7 @@ public class GameManager : MonoBehaviour
         CheckGameState();
         CountEmployees();
 
-        if (!isPlaying)
-        {
-            DoFailEvent();
-        }
+        if (!tutorialUI.activeSelf) PauseGame();
+        if (!isPlaying) DoFailEvent();
     }
 }

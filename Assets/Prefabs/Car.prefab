@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5456790243767682737}
   - component: {fileID: 5456790243767682736}
   - component: {fileID: 195899187}
+  - component: {fileID: -7806232500375270827}
+  - component: {fileID: -1272273918292703672}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -97,11 +99,11 @@ MonoBehaviour:
   interpolationSpeed: 1
   exitPos: {fileID: 0}
   departureTimeRange:
-  - 0
-  - 0
+  - 10
+  - 30
   arrivalTimeRange:
-  - 0
-  - 0
+  - 5
+  - 10
 --- !u!114 &195899187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,8 +118,120 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerUI: {fileID: 0}
   fatigueUI: {fileID: 0}
-  UIoffset: {x: -7.15, y: -3}
+  UIoffset: {x: -7.15, y: -2.5}
   UIspacing: {x: 0, y: -0.5}
+--- !u!114 &-7806232500375270827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456790243767682735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcc313aa20066b41bc989ddb25df981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrivalSFX: {fileID: 8300000, guid: 3d14ff024933fcd4b8e7e6a1cbaa89fb, type: 3}
+  idleSFX: {fileID: 8300000, guid: 4bfb4646996f7e84daad54e559f5eb0a, type: 3}
+  departSFX: {fileID: 8300000, guid: 4ad967d0156818e42a73412e5df808a1, type: 3}
+--- !u!82 &-1272273918292703672
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5456790243767682735}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 2130218412149362222, guid: 145101e67858edb459f8cccf1b6dc214,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5456790244276226408
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,8 +327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomNumRange:
-  - 3
   - 5
+  - 10
   maxFatigueLevel: 4
   currentFatigueType: 0
   defaultDriverState: {fileID: 21300000, guid: 017e96049581f14499c3aa06557b4739, type: 3}
@@ -255,7 +369,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.98, y: 6.81}
+  m_Size: {x: 7.1, y: 6.75}
   m_EdgeRadius: 0
 --- !u!50 &5456790244276226413
 Rigidbody2D:

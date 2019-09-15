@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Continue
+  m_Text: Next Level
 --- !u!1 &3754880304614009288
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,8 +302,9 @@ GameObject:
   - component: {fileID: 3754880305270311167}
   - component: {fileID: 3754880305270311166}
   - component: {fileID: 3754880305270311165}
+  - component: {fileID: 3915722730624414825}
   m_Layer: 5
-  m_Name: btn_Restart
+  m_Name: btn_Nex tLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -422,6 +423,55 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &3915722730624414825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754880305270311163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4975689255602959788}
+          m_MethodName: InstanceGameObjectOutside
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7435746917755982654, guid: 143bc7a8e610afc4fbd6b33491990694,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4975689255602959788}
+          m_MethodName: InstanceGameObjectOutside
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7435746917755982654, guid: 58e5cff8c5be6e447847c78036f57528,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &3754880305411951260
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +558,7 @@ GameObject:
   - component: {fileID: 3754880305476305283}
   - component: {fileID: 3754880305476305282}
   - component: {fileID: 3754880305476305281}
+  - component: {fileID: 5761888739645836527}
   m_Layer: 5
   m_Name: btn_MainMenu
   m_TagString: Untagged
@@ -628,6 +679,55 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &5761888739645836527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754880305476305295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4975689255602959788}
+          m_MethodName: InstanceGameObjectOutside
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7435746917755982654, guid: 143bc7a8e610afc4fbd6b33491990694,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4975689255602959788}
+          m_MethodName: InstanceGameObjectOutside
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7435746917755982654, guid: 63bf5b45cbc45de488df80436f8089fb,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &3754880305537046021
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,6 +740,7 @@ GameObject:
   - component: {fileID: 3754880305537046073}
   - component: {fileID: 3754880305537046072}
   - component: {fileID: 3754880305537046023}
+  - component: {fileID: 7108766798747894675}
   m_Layer: 5
   m_Name: btn_Exit
   m_TagString: Untagged
@@ -760,6 +861,55 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &7108766798747894675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3754880305537046021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4975689255602959788}
+          m_MethodName: InstanceGameObjectOutside
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7435746917755982654, guid: 143bc7a8e610afc4fbd6b33491990694,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4975689255602959788}
+          m_MethodName: InstanceGameObjectOutside
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 7435746917755982654, guid: ae37dba12d42476428f600951300e4bc,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &3754880305837647125
 GameObject:
   m_ObjectHideFlags: 0

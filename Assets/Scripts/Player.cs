@@ -7,36 +7,41 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     #region Variables
+    public static Player instance;
+
     [SerializeField] private Vector3 snackOffset;
     [SerializeField] private float normalSpeed = 20f;
     [SerializeField] private int speedBoostTime = 5;
     [SerializeField] private float speedBoostSpeed = 50f;
     [SerializeField] private Vector2[] boundaries =  new Vector2[2]; //0 - min, 1 - max
+    [SerializeField] private GameObject speedBoostUI;
+    [SerializeField] private GameObject sendHomeUI;
+    [SerializeField] private GameObject worldSpaceCanvas;
+
     private float interpolation = 0;
     private float moveSpeed = 0;
     private float currentBoostTime = 0;
-    public static Player instance;
-    private bool hasSnack = false;
+    
+    private bool hasItem = false;
     private bool hasSpeedBoost = false;
     private bool enableMovement = true;
 
     private Vector2[] travelPoints = new Vector2 [2];
     private Employee currentTarget;
     private Animator animator;
-    private GameObject speedBoostUI;
     private Text speedBoostTimeText;
     #endregion
 
     #region Accessors
-    public Vector3 SnackOffset
+    public Vector3 ItemOffset
     {
         get { return snackOffset; }
     }
 
-    public bool HasSnack
+    public bool HasItem
     {
-        get { return hasSnack; }
-        set { hasSnack = value; }
+        get { return hasItem; }
+        set { hasItem = value; }
     }
 
     public bool EnableMovement
@@ -44,39 +49,115 @@ public class Player : MonoBehaviour
         get { return enableMovement; }
         set { enableMovement = value; }
     }
+
+    public bool HasSpeedBoost
+    {
+        get { return hasSpeedBoost; }
+    }
     #endregion
 
     #region Methods
+    private void SendEmployeeHome()
+    {
+        if (Input.GetButtonDown("Interact") &&
+            currentTarget != null)
+        {
+            currentTarget.SendHome();
+        }
+    }
+
+    private void DoMoveAnimation()
+    {
+        if (enableMovement)
+        {
+            //left & right
+            if (Input.GetButtonDown("Horizontal"))
+            {
+                animator.SetBool("Move_Horizontal", true);
+            }
+            else if (Input.GetButtonUp("Horizontal"))
+            {
+                animator.SetBool("Move_Horizontal", false);
+            }
+
+            //up
+            if (Input.GetButtonDown("Vertical"))
+            {
+                if (Input.GetAxis("Vertical") > 0)
+                {
+                    animator.SetBool("Move_Up", true);
+                    animator.SetBool("Move_Down", false);
+                }
+                else
+                {
+                    animator.SetBool("Move_Down", true);
+                    animator.SetBool("Move_Up", false);
+                }
+            }
+            else if (Input.GetButtonUp("Vertical"))
+            {
+                animator.SetBool("Move_Up", false);
+                animator.SetBool("Move_Down", false);
+            }
+        }
+        else
+        {
+            animator.SetBool("Move_Horizontal", false);
+        }
+    }
+
+    /// <summary>
+    /// Flips the character facing the appropriate direction
+    /// </summary>
+    private void Flip()
+    {
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            if (Input.GetAxis("Horizontal") < 0) //left
+            {
+                if (transform.localScale.x > 0)
+                {
+                    transform.localScale *= new Vector2(-1, 1);
+
+                    if (worldSpaceCanvas != null)
+                    {
+                        worldSpaceCanvas.transform.localScale *= new Vector2(-1, 1);
+                    }
+                }
+            }
+            else //right
+            {
+                if (transform.localScale.x < 0)
+                {
+                    transform.localScale *= new Vector2(-1, 1);
+
+                    if (worldSpaceCanvas != null)
+                    {
+                        worldSpaceCanvas.transform.localScale *= new Vector2(-1, 1);
+                    }
+                }
+            }
+        }        
+    }
+
     private void Move()
     {
         if (Input.GetAxis("Horizontal") < 0) //left
         {
             transform.position -= gameObject.transform.right * moveSpeed * Time.deltaTime;
-            //play move left animation
         }
         else if (Input.GetAxis("Horizontal") > 0) //right
         {
             transform.position += gameObject.transform.right * moveSpeed * Time.deltaTime;
-            //play move right animation
         }
 
         if (Input.GetAxis("Vertical") < 0) //down
         {
             transform.position -= gameObject.transform.up * moveSpeed * Time.deltaTime;
-            //play move down animation
         }
         else if (Input.GetAxis("Vertical") > 0) //up
         {
             transform.position += gameObject.transform.up * moveSpeed * Time.deltaTime;
-            //play move up animation
-        }
-
-
-        //idle
-        if (Input.GetAxis("Horizontal") == 0 ||
-            Input.GetAxis("Vertical") == 0)
-        {
-            //play idle animation
         }
     }
     
@@ -143,16 +224,55 @@ public class Player : MonoBehaviour
         animator = this.gameObject.GetComponent<Animator>();
         travelPoints[0] = transform.position;
         moveSpeed = normalSpeed;
-        speedBoostUI = gameObject.transform.GetChild(0).gameObject;
-        speedBoostTimeText = speedBoostUI.transform.GetChild(1).GetComponent<Text>();
+        speedBoostTimeText = speedBoostUI.transform.GetChild(0).GetComponent<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hasSpeedBoost) UpdateSpeedBoostUI();
-        if (enableMovement) Move();
+        if (hasSpeedBoost)
+        {
+            UpdateSpeedBoostUI();
+            animator.speed = 2;
+        }
+        else
+        {
+            animator.speed = 1;
+        }
+
+        if (enableMovement)
+        {
+            Move();
+            Flip();
+        }
+
+        DoMoveAnimation();
         LimitMovement();
         CheckSpeedBoostState();
+        SendEmployeeHome();
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (currentTarget == null &&
+            collision.gameObject.GetComponent<Employee>() != null)
+        {
+            Employee employee = collision.gameObject.GetComponent<Employee>();
+
+            if (employee.CurrentFatigueLevel > 2)
+            {
+                sendHomeUI.SetActive(true);
+                currentTarget = employee;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.GetComponent<Employee>() != null)
+        {
+            sendHomeUI.SetActive(false);
+            currentTarget = null;
+        }
     }
 }

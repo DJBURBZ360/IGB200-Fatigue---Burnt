@@ -24,6 +24,8 @@ public class TutorialManager : MonoBehaviour
         pageTwo.SetActive(false);
         Time.timeScale = 1f;
         tutComplete = true;
+
+        gameObject.SetActive(false);
     }
 
     public void FinishedTutorial()
@@ -31,6 +33,8 @@ public class TutorialManager : MonoBehaviour
         pageThree.SetActive(false);
         Time.timeScale = 1f;
         tutComplete = true;
+
+        gameObject.SetActive(false);
     }
 
     public void SecondPage()
@@ -44,6 +48,4 @@ public class TutorialManager : MonoBehaviour
         pageTwo.SetActive(false);
         pageThree.SetActive(true);
     }
-
-
 }
