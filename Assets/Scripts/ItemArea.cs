@@ -1,76 +1,78 @@
-﻿using UnityEngine.UI;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemArea : MonoBehaviour
 {
     #region Variables
-    private Image uiRenderer;
-    private SpriteRenderer renderer;
-    private bool isPlayerAway = false;
-    private Fader spriteFader = new Fader();
-    private Fader uiFader = new Fader();
-    [SerializeField] private float fadeRate = 3;
-    [SerializeField] private float maxOpacity = 0.5f;
-    [SerializeField] private GameObject snackUI;
-    [SerializeField] private GameObject snackListUI;
+    [SerializeField] private GameObject clipboard;
+    [SerializeField] private GameObject itemsUI;
+    [SerializeField] private Vector2 popUpPosition;
+    [SerializeField] private float interpolationSpeed;
+    
+    private float currentInterpolation = 0;
+    private bool isPlayerNear = false;
+    private Vector2 originalPosition;
+    private BoxCollider2D collider;
+    public Button[] items = new Button[6];
     #endregion
 
     #region Methods
-    /// <summary>
-    /// Fades out the snack UI, and fades in the snack area box when player is away.
-    /// </summary>
-    private void FadeObjects()
+    private void PopUpClipboard()
     {
-        if (isPlayerAway)
+        if (isPlayerNear)
         {
-            float opacity = renderer.color.a;
-            float opacity2 = uiRenderer.color.a;
-
-            spriteFader.DoFadeIn(ref opacity, fadeRate, maxOpacity);
-            uiFader.DoFadeOut(ref opacity2, fadeRate);
-
-            renderer.color = new Color(renderer.color.r,
-                                       renderer.color.g,
-                                       renderer.color.b,
-                                       opacity);
-
-            uiRenderer.color = new Color(uiRenderer.color.r,
-                                         uiRenderer.color.g,
-                                         uiRenderer.color.b,
-                                         opacity2);
+            if (currentInterpolation < 1)
+            {
+                currentInterpolation += interpolationSpeed * Time.deltaTime;
+            }
+            else if (currentInterpolation > 1)
+            {
+                currentInterpolation = 1;
+            }
         }
         else
         {
-            float opacity = renderer.color.a;
-            float opacity2 = uiRenderer.color.a;
-
-            spriteFader.DoFadeOut(ref opacity, fadeRate);
-            uiFader.DoFadeIn(ref opacity2, fadeRate);
-
-            renderer.color = new Color(renderer.color.r,
-                                       renderer.color.g,
-                                       renderer.color.b,
-                                       opacity);
-
-            uiRenderer.color = new Color(uiRenderer.color.r,
-                                         uiRenderer.color.g,
-                                         uiRenderer.color.b,
-                                         opacity2);
+            if (currentInterpolation > 0)
+            {
+                currentInterpolation -= interpolationSpeed * Time.deltaTime;
+            }
+            else if (currentInterpolation < 0)
+            {
+                currentInterpolation = 0;
+            }
         }
     }
 
     /// <summary>
-    /// Locks the player movement when accessing the snacks
+    /// Moves the clipboard and converts the new position into screen space for the canvas to move.
     /// </summary>
-    private void LockPlayerMovement()
+    private void MoveClipBoard()
     {
-        if (snackListUI.activeSelf)
+        Vector2 position = Vector2.Lerp(originalPosition, popUpPosition, currentInterpolation);
+        clipboard.transform.position = Camera.main.WorldToScreenPoint(position);
+    }
+
+    /// <summary>
+    /// Only allows item grabbing when the player is within the area, and the clipboard is fully retracted.
+    /// </summary>
+    private void ToggleItems()
+    {
+        if (isPlayerNear &&
+            currentInterpolation >= 1)
         {
-            Player.instance.EnableMovement = false;
+            foreach (Button item in items)
+            {
+                item.interactable = true;
+            }
         }
         else
         {
-            Player.instance.EnableMovement = true;
+            foreach (Button item in items)
+            {
+                item.interactable = false;
+            }
         }
     }
     #endregion
@@ -78,23 +80,24 @@ public class ItemArea : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        renderer = this.gameObject.GetComponent<SpriteRenderer>();
-        uiRenderer = snackUI.GetComponent<Image>();
+        originalPosition = Camera.main.ScreenToWorldPoint(clipboard.transform.position);
+        collider = this.gameObject.GetComponent<BoxCollider2D>();
+        items = itemsUI.transform.GetComponentsInChildren<Button>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        FadeObjects();
-        LockPlayerMovement();
+        MoveClipBoard();
+        PopUpClipboard();
+        ToggleItems();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            isPlayerAway = false;
-            snackUI.SetActive(true);
+            isPlayerNear = true;
         }
     }
 
@@ -102,8 +105,7 @@ public class ItemArea : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            isPlayerAway = true;
-            snackUI.SetActive(false);
+            isPlayerNear = false;
         }
     }
 }

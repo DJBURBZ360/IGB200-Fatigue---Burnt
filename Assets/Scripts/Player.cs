@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     private Employee currentTarget;
     private Animator animator;
     private Text speedBoostTimeText;
+    private GameObject currentItem;
     #endregion
 
     #region Accessors
@@ -53,6 +54,12 @@ public class Player : MonoBehaviour
     public bool HasSpeedBoost
     {
         get { return hasSpeedBoost; }
+    }
+
+    public GameObject CurrentItem
+    {
+        get { return currentItem; }
+        set { currentItem = value; }
     }
     #endregion
 
@@ -122,6 +129,7 @@ public class Player : MonoBehaviour
                     if (worldSpaceCanvas != null)
                     {
                         worldSpaceCanvas.transform.localScale *= new Vector2(-1, 1);
+                        if (currentItem != null) currentItem.transform.localScale *= new Vector2(-1, 1);
                     }
                 }
             }
@@ -134,6 +142,7 @@ public class Player : MonoBehaviour
                     if (worldSpaceCanvas != null)
                     {
                         worldSpaceCanvas.transform.localScale *= new Vector2(-1, 1);
+                        if (currentItem != null) currentItem.transform.localScale *= new Vector2(-1, 1);
                     }
                 }
             }
@@ -214,6 +223,11 @@ public class Player : MonoBehaviour
         moveSpeed = normalSpeed;
         hasSpeedBoost = false;
         speedBoostUI.SetActive(false);
+    }
+
+    public void SimulateDropItem()
+    {
+        currentItem.GetComponent<Item>().ForceDropItem();
     }
     #endregion
 

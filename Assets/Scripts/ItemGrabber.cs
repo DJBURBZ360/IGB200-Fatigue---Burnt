@@ -2,17 +2,29 @@
 
 public class ItemGrabber : MonoBehaviour
 {
+    private GameObject currentItem;
+
+    private void GetNewItem()
+    {
+        if (Item.numInstance < 1)
+        {
+            Vector3 offset = Player.instance.transform.position + Player.instance.ItemOffset;
+            Player.instance.CurrentItem = Instantiate(currentItem, offset, currentItem.transform.rotation, Player.instance.transform);
+            Player.instance.HasItem = true;
+        }
+    }
+
     public void OnCursorClick(GameObject item)
     {
+        currentItem = item;
         if (!Player.instance.HasItem)
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePos.z = 0;
-
-            if (Item.numInstance < 1)
-            {
-                Instantiate(item, mousePos, item.transform.rotation);
-            }
+            GetNewItem();
+        }
+        else
+        {
+            Player.instance.SimulateDropItem();
+            GetNewItem();
         }
     }
 }

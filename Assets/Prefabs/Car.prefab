@@ -261,7 +261,7 @@ Transform:
   m_GameObject: {fileID: 5456790244276226408}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalScale: {x: 0.02, y: 0.02, z: 1}
   m_Children: []
   m_Father: {fileID: 5456790243767682738}
   m_RootOrder: 0
@@ -303,7 +303,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 017e96049581f14499c3aa06557b4739, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9983a4dadcea14d0cbfdd8639d954195, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -334,17 +334,17 @@ MonoBehaviour:
   defaultDriverState: {fileID: 21300000, guid: 017e96049581f14499c3aa06557b4739, type: 3}
   driverStates:
   - spritesArray:
-    - {fileID: 21300000, guid: ce439f73e5c32ea40b8182d52b083980, type: 3}
-    - {fileID: 21300000, guid: cbbd3907f37606a46b5b6cb25e21973a, type: 3}
-    - {fileID: 21300000, guid: ae0adbf5d8d5fd0499f03b0be0f340bd, type: 3}
+    - {fileID: 21300000, guid: d00f033942bcd425f990e0e7406bfb3f, type: 3}
+    - {fileID: 21300000, guid: 4ea975926886d4c479f5ab583c7f6a43, type: 3}
+    - {fileID: 21300000, guid: dfe72d33cb5ca4d6c8fc92c443d378ef, type: 3}
   - spritesArray:
-    - {fileID: 21300000, guid: 84243ed5e3d9dbf4da39caab35249e42, type: 3}
-    - {fileID: 21300000, guid: e717020f5cb8876478ac0c8850348ff5, type: 3}
-    - {fileID: 21300000, guid: a6e4f87c9be28d047a3cf8c0b00626cc, type: 3}
+    - {fileID: 21300000, guid: 0a9095847470b4506b5ce564c3cd3800, type: 3}
+    - {fileID: 21300000, guid: 633e8b38882764c6fb5f26bf43058165, type: 3}
+    - {fileID: 21300000, guid: 67e9097fa6eab4ac4a50e2f30c33a61d, type: 3}
   - spritesArray:
-    - {fileID: 21300000, guid: fc98052dc851f414a9273ff84f01a614, type: 3}
-    - {fileID: 21300000, guid: 08ad19410a4d25047870d7109e4d8818, type: 3}
-    - {fileID: 21300000, guid: a13b49c84a3e5454182e83ccb26a4ee1, type: 3}
+    - {fileID: 21300000, guid: fb505c448425343fbaf3a6591f580911, type: 3}
+    - {fileID: 21300000, guid: 243e324e514a549839233dd9a1165614, type: 3}
+    - {fileID: 21300000, guid: 960a9d5d956e34e1a95445444d25fc13, type: 3}
 --- !u!61 &5456790244276226412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -362,14 +362,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.98, y: 6.81}
+    oldSize: {x: 15.88, y: 15.66}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.1, y: 6.75}
+  m_Size: {x: 15.88, y: 15.66}
   m_EdgeRadius: 0
 --- !u!50 &5456790244276226413
 Rigidbody2D:
