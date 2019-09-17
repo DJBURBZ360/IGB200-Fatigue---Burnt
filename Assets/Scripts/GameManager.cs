@@ -23,10 +23,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Accessors
-    public int NumFatiguedDrivers
+    public float NumFatiguedDrivers
     {
         get { return numFatiguedDrivers; }
-        set { numFatiguedDrivers = value; }
+        set { numFatiguedDrivers = (int)value; }
     }
 
     public int NumDrivers
@@ -35,9 +35,9 @@ public class GameManager : MonoBehaviour
         set { numDrivers = value; }
     }
 
-    public int NumFatiguedDriversThreshold
+    public float NumFatiguedDriversThreshold
     {
-        get { return numFatiguedDriversThreshold; }
+        get { return (float) numFatiguedDriversThreshold; }
     }
 
     public bool IsPlaying
