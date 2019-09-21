@@ -719,11 +719,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 51e29ffd77c233e4caee2afd0b9fd61c, type: 3}
-  - {fileID: 8300000, guid: 92e72300f913e0f4cb03b82dce1b79b0, type: 3}
-  - {fileID: 8300000, guid: f7dcef08828159b4ebfdf7899f65aea4, type: 3}
-  - {fileID: 8300000, guid: 0cfb54be73fbb614593147b16b4c438e, type: 3}
-  walkRate: 0.3
+  - {fileID: 8300000, guid: 35b60422177fd0343b73ac41a7fbd0e3, type: 3}
+  - {fileID: 8300000, guid: 43b1021422a706c4bae0e3a5688804f8, type: 3}
+  - {fileID: 8300000, guid: 4fb59513cec78e44297c757075c84b22, type: 3}
+  - {fileID: 8300000, guid: cf79514bceb1a4f4485fad2d5c228f98, type: 3}
+  walkRate: 0.5
   sprintRate: 0.2
 --- !u!82 &2963590220259292708
 AudioSource:
