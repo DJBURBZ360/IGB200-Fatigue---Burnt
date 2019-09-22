@@ -10,6 +10,7 @@ public class CarSFX : MonoBehaviour
     private AudioSource source;
     private CarManager car;
     private bool forceStop = false;
+    private bool hasGeneratedNewPitch = false;
     #endregion
 
     #region Methods
@@ -19,7 +20,7 @@ public class CarSFX : MonoBehaviour
             car.IsArriving &&
             !car.IsParked)
         {
-            source.pitch = Random.Range(-0.8f, 1.3f);
+            GenerateRandomPitch();
 
             source.clip = arrivalSFX;
             source.loop = false;
@@ -40,8 +41,13 @@ public class CarSFX : MonoBehaviour
             source.loop = false;
 
             //forces the audio to play once
-            if (!forceStop) source.Play();
+            if (!forceStop)
+            {
+                source.Play();
+            }
+
             forceStop = true;
+            hasGeneratedNewPitch = false;
         }
     }
 
@@ -69,6 +75,15 @@ public class CarSFX : MonoBehaviour
             source.mute = false;
         }
     }
+
+    private void GenerateRandomPitch()
+    {
+        if (!hasGeneratedNewPitch)
+        {
+            source.pitch = Random.Range(1.0f, 1.5f);
+        }
+        hasGeneratedNewPitch = true;
+    }
     #endregion
 
     // Start is called before the first frame update
@@ -76,7 +91,7 @@ public class CarSFX : MonoBehaviour
     {
         car = gameObject.GetComponent<CarManager>();
         source = gameObject.GetComponent<AudioSource>();
-        source.pitch = Random.Range(-1.5f, 1.5f);
+        GenerateRandomPitch();
     }
 
     // Update is called once per frame

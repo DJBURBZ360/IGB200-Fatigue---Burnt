@@ -59,12 +59,12 @@ public class UI_Manager : MonoBehaviour
     private void UpdateDeliveryUI()
     {
         numDeliveriesSlider.value = 100 - ((gameManager.NumDrivers / originalNumDrivers) * 100);
+        numDeliveriesText.text = string.Format("{0} / {1}", originalNumDrivers - gameManager.NumDrivers, originalNumDrivers);
     }
 
     private void UpdateFatiguedDriversUI()
     {
-        numDriversFatiguedUI.value = 100 - ((gameManager.NumFatiguedDrivers / gameManager.NumFatiguedDriversThreshold) * 100);
-        numDeliveriesText.text = string.Format("{0} / {1}", gameManager.NumFatiguedDrivers, gameManager.NumFatiguedDriversThreshold);
+        numDriversFatiguedUI.value = (gameManager.NumFatiguedDrivers / gameManager.NumFatiguedDriversThreshold) * 100;
     }
     #endregion
 
