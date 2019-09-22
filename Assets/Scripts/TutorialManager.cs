@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-
     public GameObject pageOne;
     public GameObject pageTwo;
     public GameObject pageThree;
