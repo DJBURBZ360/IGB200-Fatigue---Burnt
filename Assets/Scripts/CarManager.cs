@@ -163,7 +163,7 @@ public class CarManager : MonoBehaviour
         if (!isDeparting &&
             isArriving)
         {
-             GenerateDepartureTime();
+            GenerateDepartureTime();
             sliderTimer.value = 100 - Percentage.GetPercentage(currentDepartureDelay - Time.time, departureTime, sliderTimer.value);
             textTimer.text = string.Format("Departing in {0:0.00}s", currentDepartureDelay - Time.time);
         }

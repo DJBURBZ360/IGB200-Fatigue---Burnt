@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
         CheckGameState();
         CountEmployees();
 
-        if (!tutorialUI.activeSelf) PauseGame();
+        if (tutorialUI != null && !tutorialUI.activeSelf) PauseGame();
         if (!isPlaying) DoFailEvent();
     }
 }
