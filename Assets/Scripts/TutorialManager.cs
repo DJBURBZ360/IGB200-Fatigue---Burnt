@@ -8,6 +8,9 @@ public class TutorialManager : MonoBehaviour
     public GameObject pageOne;
     public GameObject pageTwo;
     public GameObject pageThree;
+    public GameObject pageFour;
+    public GameObject pageFive;
+    public GameObject pageSix;
 
     private bool tutComplete = false;
     
@@ -22,6 +25,10 @@ public class TutorialManager : MonoBehaviour
     {
         pageOne.SetActive(false);
         pageTwo.SetActive(false);
+        pageThree.SetActive(false);
+        pageFour.SetActive(false);
+        pageFive.SetActive(false);
+        pageSix.SetActive(false);
         Time.timeScale = 1f;
         tutComplete = true;
 
@@ -30,7 +37,7 @@ public class TutorialManager : MonoBehaviour
 
     public void FinishedTutorial()
     {
-        pageThree.SetActive(false);
+        pageSix.SetActive(false);
         Time.timeScale = 1f;
         tutComplete = true;
 
@@ -48,4 +55,24 @@ public class TutorialManager : MonoBehaviour
         pageTwo.SetActive(false);
         pageThree.SetActive(true);
     }
+
+
+    public void FourthPage()
+    {
+        pageThree.SetActive(false);
+        pageFour.SetActive(true);
+    }
+
+    public void FifthPage()
+    {
+        pageFour.SetActive(false);
+        pageFive.SetActive(true);
+    }
+
+    public void SixthPage()
+    {
+        pageFive.SetActive(false);
+        pageSix.SetActive(true);
+    }
+
 }
