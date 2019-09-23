@@ -46,11 +46,11 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 77, y: 57, z: 130, w: 56}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -72,7 +72,63 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
+    outline:
+    - - {x: -597.5, y: 612}
+      - {x: -597.5, y: -614}
+      - {x: 541.5, y: -614}
+      - {x: 541.5, y: 612}
+    - - {x: 197.5, y: -611}
+      - {x: 198.5, y: -614}
+      - {x: 203.5, y: -614}
+      - {x: 205.5, y: -612}
+      - {x: 204.5, y: -609}
+      - {x: 199.5, y: -609}
+    - - {x: 327.5, y: -614}
+      - {x: 330.5, y: -613}
+      - {x: 330.5, y: -610}
+      - {x: 327.5, y: -609}
+      - {x: 325.5, y: -611}
+    - - {x: 516.5, y: -192}
+      - {x: 518.5, y: -194}
+      - {x: 521.5, y: -193}
+      - {x: 521.5, y: -189}
+      - {x: 519.5, y: -187}
+      - {x: 516.5, y: -188}
+    - - {x: -581.5, y: -28}
+      - {x: -578.5, y: -31}
+      - {x: -575.5, y: -30}
+      - {x: -575.5, y: -27}
+      - {x: -578.5, y: -24}
+      - {x: -581.5, y: -25}
+    - - {x: -597.5, y: 1}
+      - {x: -595.5, y: -1}
+      - {x: -592.5, y: 0}
+      - {x: -592.5, y: 6}
+      - {x: -594.5, y: 8}
+      - {x: -597.5, y: 7}
+    - - {x: -333.5, y: 585}
+      - {x: -331.5, y: 583}
+      - {x: -328.5, y: 584}
+      - {x: -328.5, y: 588}
+      - {x: -330.5, y: 590}
+      - {x: -333.5, y: 589}
+    - - {x: 250.5, y: 583}
+      - {x: 253.5, y: 584}
+      - {x: 253.5, y: 587}
+      - {x: 250.5, y: 588}
+      - {x: 248.5, y: 586}
+    - - {x: 240.5, y: 610}
+      - {x: 240.5, y: 608}
+      - {x: 242.5, y: 606}
+      - {x: 243.5, y: 606}
+      - {x: 246.5, y: 609}
+      - {x: 245.5, y: 612}
+      - {x: 242.5, y: 612}
+    - - {x: 19.5, y: 607}
+      - {x: 22.5, y: 608}
+      - {x: 22.5, y: 611}
+      - {x: 19.5, y: 612}
+      - {x: 17.5, y: 610}
     physicsShape: []
     bones: []
     spriteID: 2d1faf2dd2dd7704caf9ddb6006a86d9
