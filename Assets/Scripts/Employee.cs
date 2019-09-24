@@ -150,17 +150,7 @@ public class Employee : MonoBehaviour
     /// </summary>
     public void ResetFatigueLevel()
     {
-        GenerateRandomFatigueType();
-
-        if (doGenerateRandomFatigueLevel)
-        {
-            GenerateRandomFatigueLevel();
-        }
-        else
-        {
-            currentFatigueLevel = 0;
-        }
-
+        currentFatigueLevel = 0;
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
         fillColor.color = gameManager.fatigueLevelColors[0];
@@ -176,15 +166,16 @@ public class Employee : MonoBehaviour
         currentFatigueDelay = temp;
     }
 
-    private void GenerateRandomFatigueType()
+    public void GenerateRandomFatigueType()
     {
         int num = Random.Range(0, gameManager.AvailableFatigueTypes.Length);
         currentFatigueType = gameManager.AvailableFatigueTypes[num];
     }
 
-    private void GenerateRandomFatigueLevel()
+    public void GenerateRandomFatigueLevel()
     {
-        currentFatigueLevel = Random.Range(0, maxRandomFatigueLevel);
+        if (doGenerateRandomFatigueLevel)
+        { currentFatigueLevel = Random.Range(0, maxRandomFatigueLevel); }
     }
 
     /// <summary>

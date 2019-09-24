@@ -36,6 +36,18 @@ public class UI_Browser : MonoBehaviour
     }
     #endregion
 
+    #region Level Management
+    public void LoadPreviousLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    #endregion
+
     #region Other Methods
     public void HideGameObject(GameObject target)
     {
@@ -60,6 +72,6 @@ public class UI_Browser : MonoBehaviour
     public void DestroyGameObject(GameObject target)
     {
         Destroy(target);
-    }
+    }    
     #endregion
 }
