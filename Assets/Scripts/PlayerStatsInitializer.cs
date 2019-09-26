@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerStatsInitializer : MonoBehaviour
@@ -19,11 +17,5 @@ public class PlayerStatsInitializer : MonoBehaviour
         txt_numItemsGiven.text = string.Format("Number of items given: {0}", PlayerStats.NumItemsGiven);
         txt_numItemsDropped.text = string.Format("Number of items dropped: {0}", PlayerStats.NumItemsDropped);
         txt_numItemsGrabbed.text = string.Format("Number of items grabbed: {0}", PlayerStats.NumItemsGrabbed);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

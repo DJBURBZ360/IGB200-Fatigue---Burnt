@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
+            SaveDataManagement.SaveState();
+
             //show fail UI
             uiManager.ShowWinUI();
 

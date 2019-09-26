@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SaveDataManagement : MonoBehaviour
 {
-    public void SaveState()
+    #region Public Methods
+    public static void SaveState()
     {
         PlayerPrefs.SetInt("NumFails", PlayerStats.NumFails);
         PlayerPrefs.SetInt("NumFatiguedDrivers", PlayerStats.NumFatiguedDrivers);
@@ -16,7 +17,7 @@ public class SaveDataManagement : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void LoadState()
+    public static void LoadState()
     {
         PlayerStats.NumFails = PlayerPrefs.GetInt("NumFails");
         PlayerStats.NumFatiguedDrivers = PlayerPrefs.GetInt("NumFatiguedDrivers");
@@ -30,5 +31,24 @@ public class SaveDataManagement : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         PlayerStats.ResetStats();
+    }
+    #endregion
+    
+    public int saveFrequency = 30;
+
+    /// <summary>
+    /// Saves player stats frequently.
+    /// </summary>
+    /// <param name="saveFrequency">The frequency of saving.</param>
+    /// <returns></returns>
+    private IEnumerator AutoSave(int saveFrequency)
+    {
+        yield return new WaitForSeconds(saveFrequency);
+        SaveState();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(AutoSave(saveFrequency));
     }
 }

@@ -1396,18 +1396,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4382026514857564377}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &884157646 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4382026513992561687, guid: 88e960bfc02b06f448806d1b36b60a18,
-    type: 3}
-  m_PrefabInstance: {fileID: 4382026514857564377}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &898586032 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5802163789867536898, guid: 6838452d0176e734d9e0c3ce785ccf0c,
@@ -4233,18 +4221,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
-    - target: {fileID: -1527282216355183389, guid: 51491020ae8db064283e90c055f10865,
-        type: 3}
-      propertyPath: normal
-      value: 
-      objectReference: {fileID: 24500006, guid: 145101e67858edb459f8cccf1b6dc214,
-        type: 2}
-    - target: {fileID: -1527282216355183389, guid: 51491020ae8db064283e90c055f10865,
-        type: 3}
-      propertyPath: paused
-      value: 
-      objectReference: {fileID: 2641988601286317915, guid: 145101e67858edb459f8cccf1b6dc214,
-        type: 2}
     - target: {fileID: 5536607891287036779, guid: 51491020ae8db064283e90c055f10865,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4305,48 +4281,16 @@ PrefabInstance:
       propertyPath: tutorialUI
       value: 
       objectReference: {fileID: 478955824}
-    - target: {fileID: 5536607891287036776, guid: 51491020ae8db064283e90c055f10865,
-        type: 3}
-      propertyPath: SFX_Pause
-      value: 
-      objectReference: {fileID: 7435746917755982654, guid: ae37dba12d42476428f600951300e4bc,
-        type: 3}
-    - target: {fileID: 5536607891287036776, guid: 51491020ae8db064283e90c055f10865,
-        type: 3}
-      propertyPath: SFX_Unpause
-      value: 
-      objectReference: {fileID: 7435746917755982654, guid: 58e5cff8c5be6e447847c78036f57528,
-        type: 3}
-    - target: {fileID: 5536607891287036776, guid: 51491020ae8db064283e90c055f10865,
-        type: 3}
-      propertyPath: availableFatigueTypes.Array.data[0]
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5536607891287036776, guid: 51491020ae8db064283e90c055f10865,
-        type: 3}
-      propertyPath: numDrivers
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5536607891287036776, guid: 51491020ae8db064283e90c055f10865,
-        type: 3}
-      propertyPath: numFatiguedDrivers
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5536607891287036778, guid: 51491020ae8db064283e90c055f10865,
-        type: 3}
-      propertyPath: numDeliveriesUI
-      value: 
-      objectReference: {fileID: 884157646}
-    - target: {fileID: 5536607891287036778, guid: 51491020ae8db064283e90c055f10865,
-        type: 3}
-      propertyPath: numDriversFatiguedUI
-      value: 
-      objectReference: {fileID: 1561524778}
     - target: {fileID: 5536607891287036778, guid: 51491020ae8db064283e90c055f10865,
         type: 3}
       propertyPath: deliveryUI
       value: 
       objectReference: {fileID: 1584429321}
+    - target: {fileID: 5536607891287036778, guid: 51491020ae8db064283e90c055f10865,
+        type: 3}
+      propertyPath: numDriversFatiguedUI
+      value: 
+      objectReference: {fileID: 1561524778}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51491020ae8db064283e90c055f10865, type: 3}
 --- !u!1001 &7322084350886208470
