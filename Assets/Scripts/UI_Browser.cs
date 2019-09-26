@@ -73,5 +73,10 @@ public class UI_Browser : MonoBehaviour
     {
         Destroy(target);
     }    
+
+    public void ResetProgress()
+    {
+        SaveDataManagement.ResetProgress();
+    }
     #endregion
 }

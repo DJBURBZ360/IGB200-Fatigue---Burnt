@@ -297,6 +297,8 @@ public class Employee : MonoBehaviour
         {
             if (!collision.GetComponent<Item>().IsDragged)
             {
+                PlayerStats.NumItemsGiven++;
+
                 CheckForItem(collision);
                 Player.instance.HasItem = false;
                 Item.numInstance--;

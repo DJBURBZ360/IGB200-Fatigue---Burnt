@@ -26,6 +26,9 @@ public class UI_Manager : MonoBehaviour
 
     private GameManager gameManager;
     private float originalNumDrivers = 0;
+
+    public GameObject statsUI_Prefab;
+    private GameObject statsUI_Instance;
     #endregion
 
     #region Public Methods
@@ -52,6 +55,16 @@ public class UI_Manager : MonoBehaviour
     public void HidePauseMenu()
     {
         Destroy(pauseMenu_Instance);
+    }
+
+    public void ShowPlayerStats()
+    {
+        statsUI_Instance = Instantiate(statsUI_Prefab, GameObject.FindWithTag("UI").transform);
+    }
+
+    public void HidePlayerStats()
+    {
+        Destroy(statsUI_Instance);
     }
     #endregion
 
