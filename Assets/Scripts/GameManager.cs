@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
+            PlayerStats.NumFails++;
+
             //show fail UI
             uiManager.ShowFailUI();
 
@@ -79,6 +81,8 @@ public class GameManager : MonoBehaviour
     {
         if (Time.timeScale != 0)
         {
+            SaveDataManagement.SaveState();
+
             //show fail UI
             uiManager.ShowWinUI();
 
@@ -98,7 +102,11 @@ public class GameManager : MonoBehaviour
 
     public void DoRNG(int fatigueLevel)
     {
-        if (fatigueLevel == 1)
+        if (fatigueLevel == 0)
+        {
+            PlayerStats.NumSavedDrivers++;
+        }
+        else if (fatigueLevel == 1)
         {
             var list = new[] {
                 ProportionValue.Create(0.2, "true"),
@@ -107,7 +115,11 @@ public class GameManager : MonoBehaviour
 
             if (list.ChooseByRandom() == "true")
             {
-                numFatiguedDrivers++;
+                IncreaseNumFatiguedDrivers();
+            }
+            else
+            {
+                PlayerStats.NumSavedDrivers++;
             }
         }
         else if (fatigueLevel == 2)
@@ -119,13 +131,23 @@ public class GameManager : MonoBehaviour
 
             if (list.ChooseByRandom() == "true")
             {
-                numFatiguedDrivers++;
+                IncreaseNumFatiguedDrivers();
+            }
+            else
+            {
+                PlayerStats.NumSavedDrivers++;
             }
         }
         else if (fatigueLevel == 3)
         {
-            numFatiguedDrivers++;
+            IncreaseNumFatiguedDrivers();
         }
+    }
+
+    private void IncreaseNumFatiguedDrivers()
+    {
+        numFatiguedDrivers++;
+        PlayerStats.NumFatiguedDrivers++;
     }
 
     private void PauseGame()
@@ -161,7 +183,7 @@ public class GameManager : MonoBehaviour
         CheckGameState();
         CountEmployees();
 
-        if (tutorialUI != null && !tutorialUI.activeSelf) PauseGame();
+        if (tutorialUI == null) PauseGame();
         if (!isPlaying) DoFailEvent();
     }
 }

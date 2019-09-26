@@ -189,6 +189,9 @@ public class CarManager : MonoBehaviour
         //reset employee
         gameManager.DoRNG(employee.CurrentFatigueLevel);
         employee.ResetFatigueLevel();
+        employee.GenerateRandomFatigueType();
+        employee.GenerateRandomFatigueLevel();
+        employee.ChangeSpriteColor();
         gameManager.NumDrivers--;
         employee.FatigueUI.SetActive(false);
 

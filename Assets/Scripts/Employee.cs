@@ -30,16 +30,19 @@ public class Employee : MonoBehaviour
 
     private GameManager gameManager;
     private CarManager car;
-
-    //[SerializeField] private Sprite[] driverStates = new Sprite [4];
-    [SerializeField] private int[][] test;
-    private SpriteRenderer renderer;
-    private Sprite defaultDriverState;
-    [SerializeField] Sprites2DArray[] driverStates;//row = fatigue type
+    
+    //[SerializeField] Sprites2DArray[] driverStates;//row = fatigue type
                                                    //col = fatigue stage
 
     [SerializeField] private bool doGenerateRandomFatigueLevel = false;
     [SerializeField] private int maxRandomFatigueLevel = 3;
+    private int driverColorArrayIndex = 0;
+
+    private SpriteRenderer renderer;
+    [SerializeField] private Sprite[] defaultDriverStates = new Sprite[3];
+    [SerializeField] Sprites3DArray[] driverStates; //axis Z = color type
+                                                    //axis Y = fatigue type
+                                                    //axis X = fatigue level
     #endregion
 
     #region Accessors
@@ -150,17 +153,7 @@ public class Employee : MonoBehaviour
     /// </summary>
     public void ResetFatigueLevel()
     {
-        GenerateRandomFatigueType();
-
-        if (doGenerateRandomFatigueLevel)
-        {
-            GenerateRandomFatigueLevel();
-        }
-        else
-        {
-            currentFatigueLevel = 0;
-        }
-
+        currentFatigueLevel = 0;
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
         fillColor.color = gameManager.fatigueLevelColors[0];
@@ -176,15 +169,16 @@ public class Employee : MonoBehaviour
         currentFatigueDelay = temp;
     }
 
-    private void GenerateRandomFatigueType()
+    public void GenerateRandomFatigueType()
     {
         int num = Random.Range(0, gameManager.AvailableFatigueTypes.Length);
         currentFatigueType = gameManager.AvailableFatigueTypes[num];
     }
 
-    private void GenerateRandomFatigueLevel()
+    public void GenerateRandomFatigueLevel()
     {
-        currentFatigueLevel = Random.Range(0, maxRandomFatigueLevel);
+        if (doGenerateRandomFatigueLevel)
+        { currentFatigueLevel = Random.Range(0, maxRandomFatigueLevel); }
     }
 
     /// <summary>
@@ -225,16 +219,22 @@ public class Employee : MonoBehaviour
     /// </summary>
     private void ChangeState()
     {
-        int row = (int)currentFatigueType;
+        int axisY = (int)currentFatigueType;
 
         if (currentFatigueLevel == 0 &&
-            defaultDriverState != null)
-            renderer.sprite = defaultDriverState;
+            defaultDriverStates.Length > 0)
+        {
+            renderer.sprite = defaultDriverStates[driverColorArrayIndex];
+        }
 
-        else if (currentFatigueLevel > 0 && 
+        else if (currentFatigueLevel > 0 &&
                  currentFatigueLevel < maxFatigueLevel &&
-                 driverStates[row].spritesArray[currentFatigueLevel - 1] != null)
-            renderer.sprite = driverStates[row].spritesArray[currentFatigueLevel - 1];
+                 driverStates.Length > 0)
+        {
+            renderer.sprite = driverStates[driverColorArrayIndex].
+                              arrayAxisY[axisY].
+                              arrayAxisX[currentFatigueLevel - 1];
+        }
     }
 
     private void UpdateTimerUI()
@@ -248,6 +248,11 @@ public class Employee : MonoBehaviour
             fatigueText.text = string.Format("Fatigue Level: {0}", currentFatigueLevel);
         else
             fatigueText.text = "Totally Fatigued!!!";
+    }
+
+    public void ChangeSpriteColor()
+    {
+        driverColorArrayIndex = Random.Range(0, 3);
     }
     #endregion
 
@@ -267,7 +272,10 @@ public class Employee : MonoBehaviour
         //initialize fatigue timer
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
-        defaultDriverState = renderer.sprite;
+
+        //choose random sprite color variation
+        ChangeSpriteColor();
+        renderer.sprite = defaultDriverStates[driverColorArrayIndex];
     }
 
     // Update is called once per frame
@@ -289,6 +297,8 @@ public class Employee : MonoBehaviour
         {
             if (!collision.GetComponent<Item>().IsDragged)
             {
+                PlayerStats.NumItemsGiven++;
+
                 CheckForItem(collision);
                 Player.instance.HasItem = false;
                 Item.numInstance--;

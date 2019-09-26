@@ -8,6 +8,8 @@ public class ItemGrabber : MonoBehaviour
     {
         if (Item.numInstance < 1)
         {
+            PlayerStats.NumItemsGrabbed++;
+
             Vector3 offset = Player.instance.transform.position + Player.instance.ItemOffset;
             Player.instance.CurrentItem = Instantiate(currentItem, offset, currentItem.transform.rotation, Player.instance.transform);
             Player.instance.HasItem = true;

@@ -1030,12 +1030,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc4ba8d8fc47646b9258665a790410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pageOne: {fileID: 622952703}
-  pageTwo: {fileID: 1768774819}
-  pageThree: {fileID: 161880365}
-  pageFour: {fileID: 708180124}
-  pageFive: {fileID: 1723639244}
-  pageSix: {fileID: 645089268}
 --- !u!1 &510618185
 GameObject:
   m_ObjectHideFlags: 0

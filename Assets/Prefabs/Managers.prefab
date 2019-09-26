@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5536607891287036776}
   - component: {fileID: 5536607891287036778}
   - component: {fileID: -1527282216355183389}
+  - component: {fileID: 1466350263062651022}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Managers
@@ -51,7 +52,7 @@ MonoBehaviour:
   - {r: 1, g: 0.9215687, b: 0, a: 1}
   - {r: 1, g: 0.40695798, b: 0, a: 1}
   - {r: 0.9245283, g: 0.19624424, b: 0.26259315, a: 1}
-  numDrivers: 100
+  numDrivers: 5
   numFatiguedDrivers: 0
   numFatiguedDriversThreshold: 3
   fatiguedChances:
@@ -59,8 +60,12 @@ MonoBehaviour:
   - 20
   - 50
   - 100
-  availableFatigueTypes: 01000000
+  availableFatigueTypes: 00000000
   tutorialUI: {fileID: 0}
+  SFX_Pause: {fileID: 7435746917755982654, guid: ae37dba12d42476428f600951300e4bc,
+    type: 3}
+  SFX_Unpause: {fileID: 7435746917755982654, guid: 58e5cff8c5be6e447847c78036f57528,
+    type: 3}
 --- !u!114 &5536607891287036778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +84,9 @@ MonoBehaviour:
     type: 3}
   pauseMenu_Prefab: {fileID: 3754880305166953178, guid: 18ebc3b40426bcd46ac83431de2a02a4,
     type: 3}
+  deliveryUI: {fileID: 0}
+  numDriversFatiguedUI: {fileID: 0}
+  statsUI_Prefab: {fileID: 0}
 --- !u!114 &-1527282216355183389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,3 +99,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a09acece1cd8b42abfa7ffafa9a824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normal: {fileID: 24500006, guid: 145101e67858edb459f8cccf1b6dc214, type: 2}
+  paused: {fileID: 2641988601286317915, guid: 145101e67858edb459f8cccf1b6dc214, type: 2}
+--- !u!114 &1466350263062651022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5536607891287036777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c55ebe8539caa4e8789fcf2e4d2c1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveFrequency: 30

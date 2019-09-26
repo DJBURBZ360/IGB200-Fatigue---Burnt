@@ -31,6 +31,7 @@ public class Item : MonoBehaviour
     #endregion
 
     #region Methods
+    /*
     private void GrabItem()
     {
         if (Input.GetMouseButton(0))
@@ -59,20 +60,21 @@ public class Item : MonoBehaviour
             }
         }
     }
+    */
 
     private void DropItem()
     {
         if (Input.GetMouseButtonDown(1) ||
             Input.GetButton("Drop Item"))
         {
-            Player.instance.HasItem = false;
-            numInstance--;
-            Destroy(this.gameObject);
+            ForceDropItem();
         }
     }
 
     public void ForceDropItem()
     {
+        PlayerStats.NumItemsDropped++;
+
         Player.instance.HasItem = false;
         numInstance--;
         Destroy(this.gameObject);
