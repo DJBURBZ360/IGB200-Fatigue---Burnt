@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3356349080289150930}
   - component: {fileID: 2827703867951577423}
   - component: {fileID: 3203837341410010589}
+  - component: {fileID: 3386627274541654803}
   m_Layer: 0
   m_Name: SFX_BrushOff
   m_TagString: Untagged
@@ -146,3 +147,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3386627274541654803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8655352799328647701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f520b054e7c7ffc418a9b02179a1bf50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
