@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: 850c0c3ab372848538a921af289a2dfe
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 8467001565668251202
+    second: Back Cycle_0
+  - first:
+      213: -5830327908895078531
+    second: Back Cycle_1
+  - first:
+      213: -4822010207554983208
+    second: Back Cycle_2
+  - first:
+      213: 1437291901512865984
+    second: Back Cycle_3
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -45,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1000
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,7 +127,91 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Back Cycle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1158
+        height: 3836
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75782fd6a7dcec749a9463a452e9b884
+      internalID: 8467001565668251202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back Cycle_1
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 0
+        width: 1158
+        height: 3836
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2610462d48ab1041b54a74a9b8e8996
+      internalID: -5830327908895078531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back Cycle_2
+      rect:
+        serializedVersion: 2
+        x: 2316
+        y: 0
+        width: 1158
+        height: 3836
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d98f411c451994b4a8c04dceaf01126d
+      internalID: -4822010207554983208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back Cycle_3
+      rect:
+        serializedVersion: 2
+        x: 3474
+        y: 0
+        width: 1158
+        height: 3836
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c4ffd8983999d14983824e4f707b10a
+      internalID: 1437291901512865984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
