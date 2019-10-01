@@ -36,6 +36,7 @@ public class UI_Browser : MonoBehaviour
     {
         Application.Quit();
     }
+
     #endregion
 
     #region Level Management
