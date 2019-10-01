@@ -276,6 +276,9 @@ public class Employee : MonoBehaviour
         //choose random sprite color variation
         ChangeSpriteColor();
         renderer.sprite = defaultDriverStates[driverColorArrayIndex];
+
+        GenerateRandomFatigueType();
+        GenerateRandomFatigueLevel();
     }
 
     // Update is called once per frame
