@@ -17,6 +17,13 @@ public class TutorialManager : MonoBehaviour
     [SerializeField][Range(0.0f, 1.0f)]private float carInterpolationValue = 1;
     #endregion
 
+    #region Accessors
+    public int ScenarioNumber
+    {
+        get { return scenarioNum; }
+    }
+    #endregion
+
     #region Public Methods
     public void DoNext()
     {
@@ -37,6 +44,11 @@ public class TutorialManager : MonoBehaviour
     public void OverrideEmployeeFatigueLevel(int level)
     {
         employee.OverrideFatigueLevel(level);
+    }
+
+    public void Test(int i, float j)
+    {
+
     }
     #endregion
 
