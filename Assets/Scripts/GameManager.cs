@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (GameObject.FindGameObjectWithTag("Tutorial").GetComponent<TutorialManager>() != null)
+        if (GameObject.FindGameObjectWithTag("Tutorial") != null)
         {
             isTutorialActive = true;
         }

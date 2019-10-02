@@ -7,6 +7,7 @@ using UnityEditor;
 public class Employee : MonoBehaviour
 {
     public enum FatigueTypes { Dizziness, Headache, Sleepiness };
+    public const int NUM_FATIGUE_TYPES = 3;
 
     #region Variables
     [SerializeField]
@@ -65,7 +66,7 @@ public class Employee : MonoBehaviour
     }
     #endregion
 
-    #region Methods
+    #region Private Methods
     private void IncreaseFatigueLevel()
     {
         //countdown then incease fatigue level
@@ -137,24 +138,7 @@ public class Employee : MonoBehaviour
                     break;
             }
         }
-    }
-
-    public void SendHome()
-    {
-        isSentHome = true;
-        car.ChangeDriver();
-    }
-
-    /// <summary>
-    /// Resets fatigue level and fatigue timer.
-    /// </summary>
-    public void ResetFatigueLevel()
-    {
-        currentFatigueLevel = 0;
-        currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
-        currentFatigueDelay = currentFatigueRate + Time.time;
-        fillColor.color = gameManager.fatigueLevelColors[0];
-    }
+    }    
 
     /// <summary>
     /// -25% from the current gauge.
@@ -164,19 +148,7 @@ public class Employee : MonoBehaviour
         float temp = currentFatigueDelay - Time.time <= 0 ? 0 : currentFatigueDelay - Time.time;
         temp = (temp + (currentFatigueRate * 0.25f)) + Time.time;
         currentFatigueDelay = temp;
-    }
-
-    public void GenerateRandomFatigueType()
-    {
-        int num = Random.Range(0, gameManager.AvailableFatigueTypes.Length);
-        currentFatigueType = gameManager.AvailableFatigueTypes[num];
-    }
-
-    public void GenerateRandomFatigueLevel()
-    {
-        if (doGenerateRandomFatigueLevel)
-        { currentFatigueLevel = Random.Range(0, maxRandomFatigueLevel); }
-    }
+    }    
 
     /// <summary>
     /// Do fail event when reached fatigue level 4.
@@ -247,9 +219,47 @@ public class Employee : MonoBehaviour
             fatigueText.text = "Totally Fatigued!!!";
     }
 
+
+    #endregion
+
+    #region Public Methods
     public void ChangeSpriteColor()
     {
         driverColorArrayIndex = Random.Range(0, 3);
+    }
+
+    public void GenerateRandomFatigueType()
+    {
+        int num = Random.Range(0, gameManager.AvailableFatigueTypes.Length);
+        currentFatigueType = gameManager.AvailableFatigueTypes[num];
+    }
+
+    public void GenerateRandomFatigueLevel()
+    {
+        if (doGenerateRandomFatigueLevel)
+        { currentFatigueLevel = Random.Range(0, maxRandomFatigueLevel); }
+    }
+
+    public void SendHome()
+    {
+        isSentHome = true;
+        car.ChangeDriver();
+    }
+
+    /// <summary>
+    /// Resets fatigue level and fatigue timer.
+    /// </summary>
+    public void ResetFatigueLevel()
+    {
+        currentFatigueLevel = 0;
+        currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
+        currentFatigueDelay = currentFatigueRate + Time.time;
+        fillColor.color = gameManager.fatigueLevelColors[0];
+    }
+
+    public void OverrideFatigueLevel(int level)
+    {
+        currentFatigueLevel = level;
     }
     #endregion
 
@@ -290,9 +300,9 @@ public class Employee : MonoBehaviour
             if (currentFatigueLevel < maxFatigueLevel) IncreaseFatigueLevel();
 
             UpdateTimerUI();
+            CheckStatus();
         }
-
-        CheckStatus();
+        
         ChangeState();        
     }
 

@@ -209,6 +209,18 @@ public class CarManager : MonoBehaviour
     {
         interpolate = value;
     }
+
+    public void ForceArrive()
+    {
+        isArriving = true;
+        isDeparting = false;
+    }
+
+    public void ForceDepart()
+    {
+        isArriving = false;
+        isDeparting = true;
+    }
     #endregion
 
     // Start is called before the first frame update
@@ -249,11 +261,12 @@ public class CarManager : MonoBehaviour
         if (!gameManager.IsTutorialActive)
         {
             if (!isTimerPaused) ManageTimer();
-            if (isDeparting) Depart();
-            if (isArriving) Arrive();
-
+            
             CheckCurrentState();
         }
+
+        if (isDeparting) Depart();
+        if (isArriving) Arrive();
 
         if (interpolate <= 0)
         {

@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     private Animator animator;
     private Text speedBoostTimeText;
     private GameObject currentItem;
+    private GameManager gameManager;
     #endregion
 
     #region Accessors
@@ -239,19 +240,24 @@ public class Player : MonoBehaviour
         travelPoints[0] = transform.position;
         moveSpeed = normalSpeed;
         speedBoostTimeText = speedBoostUI.transform.GetChild(0).GetComponent<Text>();
+        gameManager = GameObject.FindWithTag("Managers").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hasSpeedBoost)
+        if (!gameManager.IsTutorialActive)
         {
-            UpdateSpeedBoostUI();
-            animator.speed = 2;
-        }
-        else
-        {
-            animator.speed = 1;
+            if (hasSpeedBoost)
+            {
+                UpdateSpeedBoostUI();
+                animator.speed = 2;
+            }
+            else
+            {
+                animator.speed = 1;
+            }
+            CheckSpeedBoostState();
         }
 
         if (enableMovement)
@@ -261,8 +267,7 @@ public class Player : MonoBehaviour
         }
 
         DoMoveAnimation();
-        LimitMovement();
-        CheckSpeedBoostState();
+        LimitMovement();        
         SendEmployeeHome();
     }
 
