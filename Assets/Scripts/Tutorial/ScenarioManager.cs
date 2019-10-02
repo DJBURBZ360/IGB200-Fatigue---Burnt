@@ -5,16 +5,13 @@ using UnityEditor;
 
 public class ScenarioManager : MonoBehaviour
 {   
-    public enum TriggerType { OnSpawn, OnDestroy, OnKeyPress }
+    public enum TriggerType { OnSpawn, OnDestroy, OnKeyPress, OnCollision }
 
     #region Variables
     private TutorialManager tutorial;
     [SerializeField] private TriggerType trigger;
     [SerializeField] private GameObject thisScenarioButton; //the button for this task   
     [SerializeField] private GameObject nextTask;
-
-    [SerializeField] private bool showButtonOnNext = true;
-    [SerializeField] private GameObject nextButton; //the button AFTER this task
 
     [Header("For OnKeypress Trigger")]
     //on key press
@@ -26,6 +23,10 @@ public class ScenarioManager : MonoBehaviour
     //on spawn or destroy
     [SerializeField] private string targetGameObjectTag;
     private bool isAttached = false;
+
+    [Header("For OnCollision Trigger")]
+    [SerializeField] private string collisionTag = "Player";
+    private Collider2D collider;
     #endregion
 
     #region Co-Routines
@@ -66,7 +67,11 @@ public class ScenarioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tutorial = GameObject.FindWithTag("Tutorial").GetComponent<TutorialManager>();        
+        //tutorial = GameObject.FindWithTag("Tutorial").GetComponent<TutorialManager>();  
+        if (trigger == TriggerType.OnCollision)
+        {
+            collider = this.gameObject.GetComponent<Collider2D>();
+        }
     }
 
     // Update is called once per frame
@@ -102,17 +107,19 @@ public class ScenarioManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (showButtonOnNext)
-        {
-            if (thisScenarioButton != null) thisScenarioButton.SetActive(true);
-        }
-        else
-        {
-            tutorial.DoNext();
-            if (nextButton != null) nextButton.SetActive(true);
-        }
-
+        if (thisScenarioButton != null) thisScenarioButton.SetActive(true);
         if (nextTask != null) nextTask.SetActive(true);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (trigger == TriggerType.OnCollision)
+        {
+            if (collision.tag == collisionTag)
+            {
+                DoNextTask();
+            }
+        }
     }
 }
 
