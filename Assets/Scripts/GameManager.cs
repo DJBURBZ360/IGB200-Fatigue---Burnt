@@ -9,17 +9,17 @@ public class GameManager : MonoBehaviour
     //level 0, 1, 2, 3, 4
     public Color[] fatigueLevelColors = new Color[5];
     private bool isPlaying = true;
+    private bool isTutorialActive = false;
 
     [SerializeField] private int numDrivers = 15;
     [SerializeField] private int numFatiguedDrivers = 0;
     [SerializeField] private int numFatiguedDriversThreshold = 1;
     [SerializeField] private float[] fatiguedChances = new float[4]; //0 = lvl0, 1 = lvl1...
     [SerializeField] private Employee.FatigueTypes[] availableFatigueTypes;
-    [SerializeField] private GameObject tutorialUI;
     [SerializeField] private GameObject SFX_Pause;
     [SerializeField] private GameObject SFX_Unpause;
     private GameObject[] employees;
-    private UI_Manager uiManager;
+    private UI_Manager uiManager;    
     #endregion
 
     #region Accessors
@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
     public Employee.FatigueTypes[] AvailableFatigueTypes
     {
         get { return availableFatigueTypes; }
+    }
+
+    public bool IsTutorialActive
+    {
+        get { return isTutorialActive; }
     }
     #endregion
 
@@ -170,11 +175,23 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    private void Awake()
+    {
+        if (GameObject.FindGameObjectWithTag("Tutorial").GetComponent<TutorialManager>() != null)
+        {
+            isTutorialActive = true;
+        }
+        else
+        {
+            isTutorialActive = false;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         uiManager = this.gameObject.GetComponent<UI_Manager>();
-        employees = GameObject.FindGameObjectsWithTag("Employee");
+        employees = GameObject.FindGameObjectsWithTag("Employee");        
     }
 
     // Update is called once per frame
@@ -182,8 +199,8 @@ public class GameManager : MonoBehaviour
     {
         CheckGameState();
         CountEmployees();
+        PauseGame();
 
-        if (tutorialUI == null) PauseGame();
         if (!isPlaying) DoFailEvent();
     }
 }

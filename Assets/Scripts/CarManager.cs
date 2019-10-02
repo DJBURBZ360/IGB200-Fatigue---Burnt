@@ -60,7 +60,7 @@ public class CarManager : MonoBehaviour
     }
     #endregion
 
-    #region Methods
+    #region Private Methods
     /// <summary>
     /// Make the sprite look like it's moving away.
     /// </summary>
@@ -177,7 +177,9 @@ public class CarManager : MonoBehaviour
             textTimer.text = string.Format("Arriving in {0:0.00}s", currentArrivalTimeDelay - Time.time);
         }
     }
+    #endregion
 
+    #region Public Methods
     public void ChangeDriver()
     {
         isTimerPaused = true;
@@ -202,6 +204,11 @@ public class CarManager : MonoBehaviour
         hasTimeStamped = false;
         isTimerPaused = false;
     }
+
+    public void OverrideInterpolationValue(float value)
+    {
+        interpolate = value;
+    }
     #endregion
 
     // Start is called before the first frame update
@@ -213,8 +220,11 @@ public class CarManager : MonoBehaviour
         gameManager = GameObject.FindWithTag("Managers").GetComponent<GameManager>();
         sprite = this.gameObject;
 
-        sliderTimer = timerUI.transform.GetChild(0).GetComponent<Slider>();
-        textTimer = timerUI.transform.GetChild(1).GetComponent<Text>();
+        if (!gameManager.IsTutorialActive)
+        {
+            sliderTimer = timerUI.transform.GetChild(0).GetComponent<Slider>();
+            textTimer = timerUI.transform.GetChild(1).GetComponent<Text>();
+        }
 
         originalPos = this.gameObject.transform.position;
         originalScale = this.gameObject.transform.localScale;
@@ -236,9 +246,14 @@ public class CarManager : MonoBehaviour
             sprite.transform.localScale = Vector2.Lerp(originalScale, exitPos.transform.localScale, interpolate);
         }
 
-        if (!isTimerPaused) ManageTimer();
-        if (isDeparting) Depart();
-        if (isArriving) Arrive();
+        if (!gameManager.IsTutorialActive)
+        {
+            if (!isTimerPaused) ManageTimer();
+            if (isDeparting) Depart();
+            if (isArriving) Arrive();
+
+            CheckCurrentState();
+        }
 
         if (interpolate <= 0)
         {
@@ -247,8 +262,6 @@ public class CarManager : MonoBehaviour
         else
         {
             isParked = false;
-        }
-
-        CheckCurrentState();
+        }        
     }
 }

@@ -30,9 +30,6 @@ public class Employee : MonoBehaviour
 
     private GameManager gameManager;
     private CarManager car;
-    
-    //[SerializeField] Sprites2DArray[] driverStates;//row = fatigue type
-                                                   //col = fatigue stage
 
     [SerializeField] private bool doGenerateRandomFatigueLevel = false;
     [SerializeField] private int maxRandomFatigueLevel = 3;
@@ -263,33 +260,40 @@ public class Employee : MonoBehaviour
         renderer = this.gameObject.GetComponent<SpriteRenderer>();
         car = this.gameObject.transform.parent.GetComponent<CarManager>();
 
-        //UI setup
-        fatigueSlider = fatigueUI.transform.GetChild(0).GetComponent<Slider>();
-        fatigueText = fatigueUI.transform.GetChild(1).GetComponent<Text>();
-        fillColor = fatigueSlider.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>();
-        fillColor.color = gameManager.fatigueLevelColors[currentFatigueLevel];
+        if (!gameManager.IsTutorialActive)
+        {
+            //UI setup
+            fatigueSlider = fatigueUI.transform.GetChild(0).GetComponent<Slider>();
+            fatigueText = fatigueUI.transform.GetChild(1).GetComponent<Text>();
+            fillColor = fatigueSlider.transform.GetChild(1).transform.GetChild(0).GetComponent<Image>();
+            fillColor.color = gameManager.fatigueLevelColors[currentFatigueLevel];
 
-        //initialize fatigue timer
-        currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
-        currentFatigueDelay = currentFatigueRate + Time.time;
+            //initialize fatigue timer
+            currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
+            currentFatigueDelay = currentFatigueRate + Time.time;
+
+            GenerateRandomFatigueType();
+            GenerateRandomFatigueLevel();
+        }
 
         //choose random sprite color variation
         ChangeSpriteColor();
-        renderer.sprite = defaultDriverStates[driverColorArrayIndex];
-
-        GenerateRandomFatigueType();
-        GenerateRandomFatigueLevel();
+        renderer.sprite = defaultDriverStates[driverColorArrayIndex];        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //increase only when below max fatigue level
-        if (currentFatigueLevel < maxFatigueLevel) IncreaseFatigueLevel();
+        if (!gameManager.IsTutorialActive)
+        {
+            //increase only when below max fatigue level
+            if (currentFatigueLevel < maxFatigueLevel) IncreaseFatigueLevel();
+
+            UpdateTimerUI();
+        }
 
         CheckStatus();
-        ChangeState();
-        UpdateTimerUI();
+        ChangeState();        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

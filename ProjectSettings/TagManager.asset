@@ -8,6 +8,7 @@ TagManager:
   - UI
   - Managers
   - SnackArea
+  - Tutorial
   layers:
   - Default
   - TransparentFX

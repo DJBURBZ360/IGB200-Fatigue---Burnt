@@ -2,20 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class TutorialManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    #region Variables    
+    [SerializeField] private Sprite[] tutorialCues = new Sprite[17];
+    [SerializeField] private GameObject employeeInstance;
+    private CarManager car;
+    private Employee employee;
+    private SpriteRenderer renderer;
+
+    private int cueNum = 0;
+    [SerializeField][Range(0.0f, 1.0f)]private float carInterpolationValue = 1;
+    #endregion
+
+    #region Public Methods
+    public void DoNext()
     {
-        Time.timeScale = 0f;
+        cueNum++;
+        renderer.sprite = tutorialCues[cueNum];
+    }
+    #endregion
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        renderer = this.gameObject.GetComponent<SpriteRenderer>();
+        renderer.sprite = tutorialCues[cueNum];
+
+        car = employeeInstance.GetComponent<CarManager>();
+        employee = employeeInstance.transform.GetChild(0).GetComponent<Employee>();
+
+        //force the car to intially moved away
+        car.OverrideInterpolationValue(1);
     }
 
-    /// <summary>
-    /// Destroy the tutorial game object and set the time scale to 1.
-    /// </summary>
-    public void FinishTutorial()
+    private void Update()
     {
-        Time.timeScale = 1;
-        Destroy(this.gameObject);
+        car.OverrideInterpolationValue(carInterpolationValue);
     }
 }
