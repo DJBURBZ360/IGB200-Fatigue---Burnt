@@ -22,13 +22,19 @@ public class UI_Manager : MonoBehaviour
     private Slider numDeliveriesSlider;
     private Text numDeliveriesText;
 
-    public Slider numDriversFatiguedUI;
+    public GameObject numFatiguedDriversUI;
+    private Slider numFatiguedDriversSlider;
+    private Text numFatiguedDriversText;
 
     private GameManager gameManager;
     private float originalNumDrivers = 0;
 
     public GameObject statsUI_Prefab;
     private GameObject statsUI_Instance;
+
+    [SerializeField] private float notificationTime = 3.0f;
+    public FlashObject notifyDelivery_Instance;
+    public FlashObject notifyNumFatigued_Instance;
     #endregion
 
     #region Public Methods
@@ -71,13 +77,36 @@ public class UI_Manager : MonoBehaviour
     #region Private Methods
     private void UpdateDeliveryUI()
     {
-        numDeliveriesSlider.value = 100 - ((gameManager.NumDrivers / originalNumDrivers) * 100);
-        numDeliveriesText.text = string.Format("{0}/{1}", originalNumDrivers - gameManager.NumDrivers, originalNumDrivers);
+        float oldVal = numDeliveriesSlider.value;
+        numDeliveriesSlider.value = Percentage.GetPercentage(gameManager.NumDrivers, 
+                                                             originalNumDrivers,
+                                                             numDeliveriesSlider.value);
+        numDeliveriesText.text = string.Format("{0}/{1}", 
+                                               originalNumDrivers - gameManager.NumDrivers, 
+                                               originalNumDrivers);
+
+        if (oldVal != numDeliveriesSlider.value)
+        {
+            StartCoroutine(notifyDelivery_Instance.DoFlash(notificationTime));
+            oldVal = numDeliveriesSlider.value;
+        }
     }
 
     private void UpdateFatiguedDriversUI()
     {
-        numDriversFatiguedUI.value = (gameManager.NumFatiguedDrivers / gameManager.NumFatiguedDriversThreshold) * 100;
+        float oldVal = numFatiguedDriversSlider.value;
+        numFatiguedDriversSlider.value = Percentage.GetReversePercentage(gameManager.NumFatiguedDrivers, 
+                                                                         gameManager.NumFatiguedDriversThreshold, 
+                                                                         numFatiguedDriversSlider.value);
+        numFatiguedDriversText.text = string.Format("{0}/{1}", 
+                                      gameManager.NumFatiguedDrivers, 
+                                      gameManager.NumFatiguedDriversThreshold);
+
+        if (oldVal != numFatiguedDriversSlider.value)
+        {
+            StartCoroutine(notifyNumFatigued_Instance.DoFlash(notificationTime));
+            oldVal = numFatiguedDriversSlider.value;
+        }
     }
     #endregion
 
@@ -88,6 +117,9 @@ public class UI_Manager : MonoBehaviour
 
         numDeliveriesSlider = deliveryUI.transform.GetChild(0).GetComponent<Slider>();
         numDeliveriesText = deliveryUI.transform.GetChild(1).GetComponent<Text>();
+
+        numFatiguedDriversSlider = numFatiguedDriversUI.transform.GetChild(0).GetComponent<Slider>();
+        numFatiguedDriversText = numFatiguedDriversUI.transform.GetChild(1).GetComponent<Text>();
     }
 
     private void Update()

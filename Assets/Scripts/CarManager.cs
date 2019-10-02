@@ -73,6 +73,7 @@ public class CarManager : MonoBehaviour
         else if (interpolate > 1)
         {
             interpolate = 1;
+            employee.ChangeSpriteColor();
         }        
     }
 
@@ -193,9 +194,8 @@ public class CarManager : MonoBehaviour
         employee.ResetFatigueLevel();
         employee.GenerateRandomFatigueType();
         employee.GenerateRandomFatigueLevel();
-        employee.ChangeSpriteColor();
         gameManager.NumDrivers--;
-        employee.FatigueUI.SetActive(false);
+        if (!gameManager.IsTutorialActive) employee.FatigueUI.SetActive(false);
 
         //reset timers
         departureTime = 0;
@@ -275,6 +275,6 @@ public class CarManager : MonoBehaviour
         else
         {
             isParked = false;
-        }        
+        }
     }
 }

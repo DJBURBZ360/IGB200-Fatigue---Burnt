@@ -254,7 +254,11 @@ public class Employee : MonoBehaviour
         currentFatigueLevel = 0;
         currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
         currentFatigueDelay = currentFatigueRate + Time.time;
-        fillColor.color = gameManager.fatigueLevelColors[0];
+
+        if (!gameManager.IsTutorialActive)
+        {
+            fillColor.color = gameManager.fatigueLevelColors[0];
+        }
     }
 
     public void OverrideFatigueLevel(int level)
@@ -281,10 +285,11 @@ public class Employee : MonoBehaviour
             //initialize fatigue timer
             currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
             currentFatigueDelay = currentFatigueRate + Time.time;
-
-            GenerateRandomFatigueType();
+                        
             GenerateRandomFatigueLevel();
         }
+
+        GenerateRandomFatigueType();
 
         //choose random sprite color variation
         ChangeSpriteColor();
