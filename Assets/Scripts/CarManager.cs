@@ -73,7 +73,9 @@ public class CarManager : MonoBehaviour
         else if (interpolate > 1)
         {
             interpolate = 1;
+
             employee.ChangeSpriteColor();
+            employee.GenerateRandomFatigueType();
         }        
     }
 
@@ -191,8 +193,7 @@ public class CarManager : MonoBehaviour
 
         //reset employee
         gameManager.DoRNG(employee.CurrentFatigueLevel);
-        employee.ResetFatigueLevel();
-        employee.GenerateRandomFatigueType();
+        employee.ResetFatigueLevel();        
         employee.GenerateRandomFatigueLevel();
         gameManager.NumDrivers--;
         if (!gameManager.IsTutorialActive) employee.FatigueUI.SetActive(false);
