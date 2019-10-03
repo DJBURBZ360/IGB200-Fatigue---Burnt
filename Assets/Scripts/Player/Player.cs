@@ -79,38 +79,39 @@ public class Player : MonoBehaviour
         if (enableMovement)
         {
             //left & right
-            if (Input.GetButtonDown("Horizontal"))
+            if (Input.GetAxis("Horizontal") > 0 ||
+                Input.GetAxis("Horizontal") < 0)
             {
                 animator.SetBool("Move_Horizontal", true);
+                animator.SetBool("Move_Up", false);
+                animator.SetBool("Move_Down", false);
             }
-            else if (Input.GetButtonUp("Horizontal"))
+            else
             {
                 animator.SetBool("Move_Horizontal", false);
-            }
-
-            //up
-            if (Input.GetButtonDown("Vertical"))
-            {
-                if (Input.GetAxis("Vertical") > 0)
+                
+                if (Input.GetAxis("Vertical") > 0) //up
                 {
                     animator.SetBool("Move_Up", true);
                     animator.SetBool("Move_Down", false);
                 }
+                else if (Input.GetAxis("Vertical") < 0) //down
+                {
+                    animator.SetBool("Move_Up", false);
+                    animator.SetBool("Move_Down", true);
+                }
                 else
                 {
-                    animator.SetBool("Move_Down", true);
                     animator.SetBool("Move_Up", false);
+                    animator.SetBool("Move_Down", false);
                 }
-            }
-            else if (Input.GetButtonUp("Vertical"))
-            {
-                animator.SetBool("Move_Up", false);
-                animator.SetBool("Move_Down", false);
-            }
+            }                
         }
         else
         {
             animator.SetBool("Move_Horizontal", false);
+            animator.SetBool("Move_Up", false);
+            animator.SetBool("Move_Down", false);
         }
     }
 
@@ -119,7 +120,7 @@ public class Player : MonoBehaviour
     /// </summary>
     private void Flip()
     {
-        if (Input.GetButtonDown("Horizontal"))
+        if (Input.GetButton("Horizontal"))
         {
             if (Input.GetAxis("Horizontal") < 0) //left
             {
