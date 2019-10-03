@@ -210,7 +210,9 @@ public class Player : MonoBehaviour
             ResetSpeedBoost();
         }
     }
+    #endregion
 
+    #region Public Methods
     public void ApplySpeedBoost()
     {
         moveSpeed = speedBoostSpeed;
@@ -229,6 +231,12 @@ public class Player : MonoBehaviour
     public void SimulateDropItem()
     {
         currentItem.GetComponent<Item>().ForceDropItem();
+    }
+
+    public void ForceFlipItem()
+    {
+        currentItem.transform.localScale *= new Vector2(-1, 1);
+        currentItem.transform.localPosition *= new Vector2(-1, 1);
     }
     #endregion
 

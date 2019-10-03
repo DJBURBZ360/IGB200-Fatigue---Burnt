@@ -719,10 +719,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips:
-  - {fileID: 8300000, guid: 35b60422177fd0343b73ac41a7fbd0e3, type: 3}
-  - {fileID: 8300000, guid: 43b1021422a706c4bae0e3a5688804f8, type: 3}
-  - {fileID: 8300000, guid: 4fb59513cec78e44297c757075c84b22, type: 3}
-  - {fileID: 8300000, guid: cf79514bceb1a4f4485fad2d5c228f98, type: 3}
+  - {fileID: 8300000, guid: aa7dc3d6783388f42adf63a9b5abf8b1, type: 3}
+  - {fileID: 8300000, guid: fa2268dce066ec345813f0eac4958c17, type: 3}
+  - {fileID: 8300000, guid: fd1783b603f16bd41a545d8eb14461b6, type: 3}
+  - {fileID: 8300000, guid: ea24914042199024ea1c65650cbcff52, type: 3}
   walkRate: 0.5
   sprintRate: 0.2
 --- !u!82 &2963590220259292708

@@ -10,8 +10,9 @@ public class ItemGrabber : MonoBehaviour
         {
             PlayerStats.NumItemsGrabbed++;
 
-            Vector3 offset = Player.instance.transform.position + Player.instance.ItemOffset;
+            Vector3 offset = Player.instance.transform.position + Player.instance.ItemOffset;            
             Player.instance.CurrentItem = Instantiate(currentItem, offset, currentItem.transform.rotation, Player.instance.transform);
+            if (Player.instance.transform.localScale.x < 0) Player.instance.ForceFlipItem();
             Player.instance.HasItem = true;
         }
     }
