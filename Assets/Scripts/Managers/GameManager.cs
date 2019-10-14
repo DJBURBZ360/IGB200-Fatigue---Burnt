@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
 
             //pause game   
             Time.timeScale = 0;
-            Item.numInstance = 0;
+            Item.ResetNumInstance();
         }
     }
 
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
             //pause game   
             Time.timeScale = 0;
-            Item.numInstance = 0;
+            Item.ResetNumInstance();
         }
     }
 

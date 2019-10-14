@@ -14,13 +14,15 @@ public class UI_Browser : MonoBehaviour
 
     public void Restart()
     {
+        Item.ResetNumInstance();
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
         OnLevelWasLoaded(sceneIndex);
         SceneManager.LoadScene(sceneIndex);
     }
 
     public void ReturnToMainMenu()
-    {        
+    {
+        Item.ResetNumInstance();
         SceneManager.LoadScene("MainMenu");
     }
     #endregion
@@ -42,15 +44,17 @@ public class UI_Browser : MonoBehaviour
     #region Level Management
     public void LoadPreviousLevel()
     {
+        Item.ResetNumInstance();
         int sceneIndex = SceneManager.GetActiveScene().buildIndex - 1;
-        OnLevelWasLoaded(sceneIndex);
+        //OnLevelWasLoaded(sceneIndex);
         SceneManager.LoadScene(sceneIndex);
     }
 
     public void LoadNextLevel()
     {
+        Item.ResetNumInstance();
         int sceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        OnLevelWasLoaded(sceneIndex);
+        //OnLevelWasLoaded(sceneIndex);
         SceneManager.LoadScene(sceneIndex);
     }
     #endregion

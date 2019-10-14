@@ -84,6 +84,14 @@ public class Item : MonoBehaviour
     {
         Instantiate(itemSFX, transform.position, Quaternion.identity);
     }
+
+    /// <summary>
+    /// Resets the counter for number of item instances to 0
+    /// </summary>
+    public static void ResetNumInstance()
+    {
+        numInstance = 0;
+    }
     #endregion
 
     private void Start()

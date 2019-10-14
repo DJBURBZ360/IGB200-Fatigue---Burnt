@@ -29,12 +29,15 @@ public class UI_Initializer : MonoBehaviour
 
     private void Update()
     {
-        Vector2 currentScreenPos = this.gameObject.transform.position;
+        if (!Application.isPlaying)
+        {
+            Vector2 currentScreenPos = this.gameObject.transform.position;
 
-        if (timerUI != null)
-            timerUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset);
+            if (timerUI != null)
+                timerUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset);
 
-        if (fatigueUI != null)
-            fatigueUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset + UIspacing);        
+            if (fatigueUI != null)
+                fatigueUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset + UIspacing);
+        }
     }
 }

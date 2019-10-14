@@ -9,8 +9,8 @@ public class RadialMenu : MonoBehaviour
     [SerializeField] private float fadeRate = 3f;
     [SerializeField] private GameObject[] radialMenuChunks = new GameObject[3];
 
-    public Button[] forcedLockedButtons = new Button[6];
-    public Image[] forcedLockedImages = new Image[12];
+    private Button[] forcedLockedButtons = new Button[6];
+    private Image[] forcedLockedImages = new Image[12];
 
     private Button[] items = new Button[6];           //indices 0 - 1 = SLPS, 2 - 3 = HDCH, 4 - 5 = DZNS
     private Image[] radialMenuImages = new Image[12]; //indices 0 - 3 = SLPS, 4 - 7 = HDCH, 8 - 11 = DZNS    
@@ -87,6 +87,32 @@ public class RadialMenu : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Disables the button if the radial menu is not opaque.
+    /// </summary>
+    public void ToggleButtons(bool enableButtons)
+    {
+        if (enableButtons)
+        {
+            //If an item's fatigue type is available in the level, then make it interactable. Else, don't
+            for (int i = 0; i < items.Length; i++)
+            {
+                //tweak only when it's not on the forced lock list
+                if (forcedLockedButtons[i] != items[i])
+                {
+                    items[i].interactable = CheckForFatigueTypes(i, items.Length);
+                }
+            }
+        }
+        else
+        {
+            foreach (Button button in items)
+            {
+                button.interactable = false;
+            }
+        }
+    }
     #endregion
 
     #region Private Methods
@@ -130,22 +156,7 @@ public class RadialMenu : MonoBehaviour
             }
         }       
         return judgement;
-    }
-
-    /// <summary>
-    /// If an item's fatigue type is available in the level, then make it interactable. Else, don't
-    /// </summary>
-    private void ChangeButtonInteractivity()
-    {
-        for (int i = 0; i < items.Length; i++)
-        {
-            //tweak only when it's not on the forced lock list
-            if (forcedLockedButtons[i] != items[i])
-            {
-                items[i].interactable = CheckForFatigueTypes(i, items.Length);
-            }
-        }
-    }
+    }   
     #endregion
 
     void Start()
@@ -218,6 +229,6 @@ public class RadialMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ChangeButtonInteractivity();
+
     }
 }

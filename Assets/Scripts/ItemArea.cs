@@ -16,12 +16,14 @@ public class ItemArea : MonoBehaviour
     {
         if (isPlayerNear)
         {
-            radialMenu.FadeInMenu();
+            radialMenu.FadeInMenu();            
         }
         else
         {
             radialMenu.FadeOutMenu();
         }
+        //Only make the buttons interactable when the player is near
+        radialMenu.ToggleButtons(isPlayerNear);
     }
     #endregion
 
