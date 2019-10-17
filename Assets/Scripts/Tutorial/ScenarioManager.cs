@@ -10,8 +10,12 @@ public class ScenarioManager : MonoBehaviour
     #region Variables
     private TutorialManager tutorial;
     [SerializeField] private TriggerType trigger;
+    //[SerializeField] private ScenarioManager secondTrigger;
+    [SerializeField] private bool automateNextTask = false;
     [SerializeField] private GameObject thisScenarioButton; //the button for this task   
-    [SerializeField] private GameObject nextTask;
+    [SerializeField] private GameObject[] nextTasks;
+    [SerializeField] private GameObject[] hideTasks;
+    [SerializeField] private GameObject[] destroyTasks;    
 
     [Header("For OnKeypress Trigger")]
     //on key press
@@ -21,7 +25,7 @@ public class ScenarioManager : MonoBehaviour
 
     [Header("For OnSpawn or OnDestroy Trigger")]
     //on spawn or destroy
-    [SerializeField] private string targetGameObjectTag;
+    [SerializeField] private string targetGameObjectName;
     private bool isAttached = false;
 
     [Header("For OnCollision Trigger")]
@@ -77,11 +81,11 @@ public class ScenarioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (targetGameObjectTag != null)
+        if (targetGameObjectName != null)
         {
             if (trigger == TriggerType.OnSpawn)
             {
-                if (GameObject.FindWithTag(targetGameObjectTag) != null)
+                if (GameObject.Find(targetGameObjectName) != null)
                 {
                     DoNextTask();
                 }
@@ -90,9 +94,9 @@ public class ScenarioManager : MonoBehaviour
             {
                 if (!isAttached)
                 {
-                    if (GameObject.FindWithTag(targetGameObjectTag) != null)
+                    if (GameObject.Find(targetGameObjectName) != null)
                     {
-                        this.gameObject.transform.parent = GameObject.FindWithTag(targetGameObjectTag).transform;
+                        this.gameObject.transform.parent = GameObject.Find(targetGameObjectName).transform;
                         isAttached = true;
                     }
                 }
@@ -108,7 +112,31 @@ public class ScenarioManager : MonoBehaviour
     private void OnDestroy()
     {
         if (thisScenarioButton != null) thisScenarioButton.SetActive(true);
-        if (nextTask != null) nextTask.SetActive(true);
+        if (nextTasks.Length > 0)
+        {
+            foreach (GameObject task in nextTasks)
+            {
+                task.SetActive(true);
+            }
+        }
+
+        if (hideTasks.Length > 0)
+        {
+            foreach (GameObject task in hideTasks)
+            {
+                task.SetActive(false);
+            }
+        }
+
+        if (destroyTasks.Length > 0)
+        {
+            foreach (GameObject task in destroyTasks)
+            {
+                Destroy(task);
+            }
+        }
+
+        if (automateNextTask) GameObject.FindWithTag("Tutorial").GetComponent<TutorialManager>().DoNext();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

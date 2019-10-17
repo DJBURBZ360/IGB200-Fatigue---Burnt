@@ -17,17 +17,46 @@ public class ItemGrabber : MonoBehaviour
         }
     }
 
-    public void OnCursorClick(GameObject item)
+    /// <summary>
+    /// Returns true if the currently held item and the new item doesn't match their types or when there's not currently held item.
+    /// </summary>
+    private bool CheckForItem()
     {
-        currentItem = item;
-        if (!Player.instance.HasItem)
+        if (Player.instance.CurrentItem != null)
         {
-            GetNewItem();
+            Item newInstance = currentItem.GetComponent<Item>();
+            Item currentInstance = Player.instance.CurrentItem.GetComponent<Item>();
+
+            if (newInstance.name + "(Clone)" != currentInstance.name)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }            
         }
         else
         {
-            Player.instance.SimulateDropItem();
-            GetNewItem();
+            return true;
+        }
+    }
+
+    public void OnCursorClick(GameObject item)
+    {
+        currentItem = item;
+        if (CheckForItem())
+        {
+            print("grabbed");
+            if (!Player.instance.HasItem)
+            {
+                GetNewItem();
+            }
+            else
+            {
+                Player.instance.SimulateDropItem();
+                GetNewItem();
+            }
         }
     }
 }

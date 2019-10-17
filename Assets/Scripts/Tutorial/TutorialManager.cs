@@ -45,11 +45,6 @@ public class TutorialManager : MonoBehaviour
     {
         employee.OverrideFatigueLevel(level);
     }
-
-    public void Test(int i, float j)
-    {
-
-    }
     #endregion
 
     // Start is called before the first frame update

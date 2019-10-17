@@ -316,6 +316,90 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!1 &26231201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 26231204}
+  - component: {fileID: 26231203}
+  - component: {fileID: 26231202}
+  m_Layer: 0
+  m_Name: GiveItem_Tea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!61 &26231202
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26231201}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &26231203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26231201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34384a0f44777d749934be8a07ba6972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 3
+  automateNextTask: 1
+  thisScenarioButton: {fileID: 0}
+  nextTasks:
+  - {fileID: 506872488}
+  hideTasks:
+  - {fileID: 1966330137}
+  - {fileID: 1827737736}
+  destroyTasks:
+  - {fileID: 2129535581}
+  keys: 
+  destroyDelay: 1
+  targetGameObjectName: 
+  collisionTag: Player
+--- !u!4 &26231204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26231201}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.73, y: -1.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1410414762}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &30822470 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 312629333931791553, guid: 104d61a8ea4d0a24fb7e057f263d623e,
@@ -601,11 +685,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: 0
+  automateNextTask: 0
   thisScenarioButton: {fileID: 0}
-  nextTask: {fileID: 1115736289}
+  nextTasks: []
+  hideTasks: []
+  destroyTasks: []
   keys: 
   destroyDelay: 1
-  targetGameObjectTag: Item
+  targetGameObjectName: 
   collisionTag: Player
 --- !u!4 &258708823
 Transform:
@@ -865,7 +952,6 @@ GameObject:
   - component: {fileID: 411349517}
   - component: {fileID: 411349520}
   - component: {fileID: 411349519}
-  - component: {fileID: 411349518}
   m_Layer: 0
   m_Name: Collision Entry_Items
   m_TagString: Untagged
@@ -887,27 +973,6 @@ Transform:
   m_Father: {fileID: 1410414762}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &411349518
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 411349516}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &411349519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,11 +986,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: 3
-  thisScenarioButton: {fileID: 752652140}
-  nextTask: {fileID: 0}
+  automateNextTask: 1
+  thisScenarioButton: {fileID: 0}
+  nextTasks:
+  - {fileID: 1806458558}
+  - {fileID: 1827737736}
+  - {fileID: 1115736289}
+  hideTasks:
+  - {fileID: 9141488564066747319}
+  destroyTasks:
+  - {fileID: 752652140}
   keys: 
   destroyDelay: 0
-  targetGameObjectTag: 
+  targetGameObjectName: 
   collisionTag: Player
 --- !u!58 &411349520
 CircleCollider2D:
@@ -1736,7 +1809,7 @@ RectTransform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 9141488564434724146}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2409,11 +2482,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: 1
+  automateNextTask: 0
   thisScenarioButton: {fileID: 2031400397}
-  nextTask: {fileID: 0}
+  nextTasks: []
+  hideTasks: []
+  destroyTasks: []
   keys: 
   destroyDelay: 1
-  targetGameObjectTag: Item
+  targetGameObjectName: Sleepiness_Level 1(Clone)
   collisionTag: Player
 --- !u!1 &668621162
 GameObject:
@@ -2877,7 +2953,7 @@ GameObject:
   - component: {fileID: 752652142}
   - component: {fileID: 752652141}
   m_Layer: 5
-  m_Name: btn_Scenario 5
+  m_Name: btn_Scenario 5 [UNUSED]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3509,7 +3585,7 @@ MonoBehaviour:
         m_MethodName: ShowGameObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1618788362}
+          m_ObjectArgument: {fileID: 1390408615}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4280,12 +4356,12 @@ GameObject:
   - component: {fileID: 1065041781}
   - component: {fileID: 1065041782}
   m_Layer: 0
-  m_Name: Move (1)
+  m_Name: KeyPress_Send Home
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1065041781
 Transform:
   m_ObjectHideFlags: 0
@@ -4298,7 +4374,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1410414762}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1065041782
 MonoBehaviour:
@@ -4313,11 +4389,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: 2
+  automateNextTask: 0
   thisScenarioButton: {fileID: 1759361722}
-  nextTask: {fileID: 0}
+  nextTasks: []
+  hideTasks: []
+  destroyTasks: []
   keys: 65000000
   destroyDelay: 0
-  targetGameObjectTag: Item
+  targetGameObjectName: 
   collisionTag: Player
 --- !u!1 &1115736289
 GameObject:
@@ -4349,11 +4428,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: 1
+  automateNextTask: 0
   thisScenarioButton: {fileID: 1061058577}
-  nextTask: {fileID: 0}
+  nextTasks: []
+  hideTasks: []
+  destroyTasks: []
   keys: 
   destroyDelay: 1
-  targetGameObjectTag: Item
+  targetGameObjectName: Sleepiness_Level 1(Clone)
   collisionTag: Player
 --- !u!4 &1115736291
 Transform:
@@ -5546,6 +5628,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388319410}
   m_CullTransparentMesh: 0
+--- !u!1 &1390408615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1390408616}
+  - component: {fileID: 1390408618}
+  - component: {fileID: 1390408617}
+  m_Layer: 0
+  m_Name: Collision Entry_Get Tea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1390408616
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390408615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1.8}
+  m_Children: []
+  m_Father: {fileID: 1410414762}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1390408617
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390408615}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.24}
+  serializedVersion: 2
+  m_Radius: 0.89
+--- !u!114 &1390408618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1390408615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34384a0f44777d749934be8a07ba6972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 3
+  automateNextTask: 0
+  thisScenarioButton: {fileID: 0}
+  nextTasks:
+  - {fileID: 1618788362}
+  - {fileID: 1966330137}
+  hideTasks:
+  - {fileID: 9141488564066747319}
+  destroyTasks:
+  - {fileID: 1390408615}
+  keys: 
+  destroyDelay: 1
+  targetGameObjectName: Sleepiness_Level 2(Clone)
+  collisionTag: Player
 --- !u!1 &1393459787
 GameObject:
   m_ObjectHideFlags: 0
@@ -5657,7 +5813,9 @@ Transform:
   - {fileID: 2083875690}
   - {fileID: 411349517}
   - {fileID: 657108430}
+  - {fileID: 1390408616}
   - {fileID: 1618788363}
+  - {fileID: 26231204}
   - {fileID: 1065041781}
   m_Father: {fileID: 0}
   m_RootOrder: 12
@@ -6247,7 +6405,7 @@ GameObject:
   - component: {fileID: 1618788363}
   - component: {fileID: 1618788364}
   m_Layer: 0
-  m_Name: GiveItem 3
+  m_Name: GetItem_Tea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6260,12 +6418,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618788362}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -416.13818, y: -270.9095, z: 24.71279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1410414762}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1618788364
 MonoBehaviour:
@@ -6279,12 +6437,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34384a0f44777d749934be8a07ba6972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 1
-  thisScenarioButton: {fileID: 2129535581}
-  nextTask: {fileID: 0}
+  trigger: 0
+  automateNextTask: 0
+  thisScenarioButton: {fileID: 0}
+  nextTasks:
+  - {fileID: 26231201}
+  hideTasks: []
+  destroyTasks:
+  - {fileID: 1618788362}
   keys: 
   destroyDelay: 1
-  targetGameObjectTag: Item
+  targetGameObjectName: Sleepiness_Level 2(Clone)
   collisionTag: Player
 --- !u!1 &1637357968
 GameObject:
@@ -6953,7 +7116,7 @@ RectTransform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 9141488564434724146}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7144,14 +7307,14 @@ PrefabInstance:
       propertyPath: fadeRate
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1924452870709606338, guid: 03a9f3bfe55b07041b6cff50085d5f2b,
-        type: 3}
-      propertyPath: m_Interactable
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1924452872122804164, guid: 03a9f3bfe55b07041b6cff50085d5f2b,
         type: 3}
       propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924452870709606338, guid: 03a9f3bfe55b07041b6cff50085d5f2b,
+        type: 3}
+      propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7279,7 +7442,7 @@ RectTransform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 9141488564434724146}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7583,6 +7746,96 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939592410}
+  m_CullTransparentMesh: 0
+--- !u!1 &1966330137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1966330138}
+  - component: {fileID: 1966330141}
+  - component: {fileID: 1966330140}
+  - component: {fileID: 1966330139}
+  m_Layer: 5
+  m_Name: onTea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1966330138
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966330137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9141488564434724146}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -83.1, y: -183.9}
+  m_SizeDelta: {x: 1000, y: 1000}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1966330139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966330137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199e5172d1426cf4796459fddf24618b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appearaceTime: 0.1
+  fadeSpeed: 3
+  doFlash: 1
+--- !u!114 &1966330140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966330137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.7960785, b: 0, a: 1}
+  m_RaycastTarget: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 3ad0a8145e5005d4683bb5274cb3b63a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1966330141
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966330137}
   m_CullTransparentMesh: 0
 --- !u!1 &1974202613
 GameObject:
@@ -8070,7 +8323,7 @@ GameObject:
   - component: {fileID: 2083875690}
   - component: {fileID: 2083875689}
   m_Layer: 0
-  m_Name: Move
+  m_Name: KeyPress_Move
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8089,11 +8342,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: 2
+  automateNextTask: 0
   thisScenarioButton: {fileID: 1551374020}
-  nextTask: {fileID: 0}
+  nextTasks: []
+  hideTasks: []
+  destroyTasks: []
   keys: 7700000061000000730000006400000011010000120100001401000013010000
   destroyDelay: 3
-  targetGameObjectTag: Item
+  targetGameObjectName: 
   collisionTag: Player
 --- !u!4 &2083875690
 Transform:
@@ -8324,7 +8580,7 @@ GameObject:
   - component: {fileID: 2129535583}
   - component: {fileID: 2129535582}
   m_Layer: 5
-  m_Name: btn_Scenario 10
+  m_Name: btn_Scenario 10 [UNUSED]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9340,6 +9596,7 @@ RectTransform:
   m_Children:
   - {fileID: 9141488564066747318}
   - {fileID: 1806458559}
+  - {fileID: 1966330138}
   - {fileID: 1827737737}
   - {fileID: 1911720878}
   - {fileID: 552096231}
