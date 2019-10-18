@@ -4557,7 +4557,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1166611414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.34, y: 0.73, z: 0}
+  m_LocalPosition: {x: -1.74, y: 3.06, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6078,12 +6078,12 @@ PrefabInstance:
     - target: {fileID: 5456790243767682738, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.75
+      value: -7.05
       objectReference: {fileID: 0}
     - target: {fileID: 5456790243767682738, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.66
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 5456790243767682738, guid: 4e1a8e577d487d24d8fb2c858151d870,
         type: 3}
@@ -6197,6 +6197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: array3D.Array.data[0].sprites3DArray.Array.data[2].spritesArray.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5531441830686678557, guid: 4e1a8e577d487d24d8fb2c858151d870,
+        type: 3}
+      propertyPath: m_Name
+      value: Truck
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e1a8e577d487d24d8fb2c858151d870, type: 3}
@@ -7123,8 +7128,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -259.9, y: -79.9}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_AnchoredPosition: {x: -272, y: 0}
+  m_SizeDelta: {x: 2414.7, y: 2414.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1827737738
 MonoBehaviour:
