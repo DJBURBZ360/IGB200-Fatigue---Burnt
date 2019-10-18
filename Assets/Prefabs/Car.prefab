@@ -327,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4447bf29fbab18e43b38113baceccfdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groanSFX: {fileID: 989204185802178294, guid: acc520caebe7e6f4685efb18d928c6a0, type: 3}
   randomNumRange:
   - 5
   - 10
@@ -437,7 +438,7 @@ GameObject:
   - component: {fileID: 4475973226753461148}
   - component: {fileID: 961134676233532772}
   m_Layer: 0
-  m_Name: Fixed Coloured Truck 1
+  m_Name: Truck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

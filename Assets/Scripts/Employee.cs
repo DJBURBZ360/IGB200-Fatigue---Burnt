@@ -10,6 +10,7 @@ public class Employee : MonoBehaviour
     public const int NUM_FATIGUE_TYPES = 3;
 
     #region Variables
+    [SerializeField] private GameObject groanSFX;
     [SerializeField]
     [Header("Generate Random Fatigue Time Between (in seconds)")]
     private float[] randomNumRange = new float[2];
@@ -86,6 +87,9 @@ public class Employee : MonoBehaviour
             
             //reset slider fill then change color
             fatigueSlider.value = 0;
+
+            //play SFX
+            Instantiate(groanSFX, this.transform.position, Quaternion.identity);
         }
 
         if (fillColor.color != gameManager.fatigueLevelColors[currentFatigueLevel])

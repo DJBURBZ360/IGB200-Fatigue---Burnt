@@ -16,7 +16,7 @@ public class UI_Browser : MonoBehaviour
     {
         Item.ResetNumInstance();
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        OnLevelWasLoaded(sceneIndex);
+        //OnLevelWasLoaded(sceneIndex);
         SceneManager.LoadScene(sceneIndex);
     }
 
@@ -90,9 +90,4 @@ public class UI_Browser : MonoBehaviour
         SaveDataManagement.ResetProgress();
     }
     #endregion
-
-    private void OnLevelWasLoaded(int level)
-    {
-        Time.timeScale = 1;
-    }
 }

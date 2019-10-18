@@ -43,6 +43,7 @@ public class RadialMenu : MonoBehaviour
                 }
             }
             radialMenuImages[i].color = color;
+            radialMenuImages[i].raycastTarget = true;
         }        
     }
 
@@ -53,6 +54,7 @@ public class RadialMenu : MonoBehaviour
             Color color = radialMenuImages[i].color;
             fader.DoFadeOut(ref color.a, fadeRate);
             radialMenuImages[i].color = color;
+            radialMenuImages[i].raycastTarget = false;
         }
     }
 
@@ -221,6 +223,7 @@ public class RadialMenu : MonoBehaviour
                                     image.color.g, 
                                     image.color.b, 
                                     0f);
+            image.raycastTarget = false;
         }
 
         manager = GameObject.FindWithTag("Managers").GetComponent<GameManager>();
