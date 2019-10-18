@@ -120,6 +120,90 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &126375431
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2497489782238632139, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_Name
+      value: Game BGM
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6950376357474757762, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634563118890710625, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634563118890710625, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634563118890710625, guid: f285d23584753154ba1fbd629d8a724d,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b8fb54f7c1c318a4daa5d57d1266b3b7, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f285d23584753154ba1fbd629d8a724d, type: 3}
 --- !u!1 &307459804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,6 +1476,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373163383}
   m_CullTransparentMesh: 0
+--- !u!1 &1375954125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2497489782238632139, guid: f285d23584753154ba1fbd629d8a724d,
+    type: 3}
+  m_PrefabInstance: {fileID: 126375431}
+  m_PrefabAsset: {fileID: 0}
+--- !u!164 &1375954128
+AudioReverbFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375954125}
+  m_Enabled: 1
+  m_DryLevel: 0
+  m_Room: -1000
+  m_RoomHF: -237
+  m_DecayTime: 2.7
+  m_DecayHFRatio: 0.79
+  m_ReflectionsLevel: -1214
+  m_ReverbLevel: 395
+  m_ReverbDelay: 0.02
+  m_Diffusion: 100
+  m_Density: 100
+  m_HFReference: 5000
+  m_RoomLF: 0
+  m_LFReference: 250
+  m_ReflectionsDelay: 0
+  m_ReverbPreset: 14
 --- !u!1 &1382706017
 GameObject:
   m_ObjectHideFlags: 0
