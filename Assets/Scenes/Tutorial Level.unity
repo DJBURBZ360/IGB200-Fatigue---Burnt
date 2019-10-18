@@ -4389,11 +4389,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trigger: 2
-  automateNextTask: 0
+  automateNextTask: 1
   thisScenarioButton: {fileID: 1759361722}
-  nextTasks: []
-  hideTasks: []
-  destroyTasks: []
+  nextTasks:
+  - {fileID: 753645086}
+  hideTasks:
+  - {fileID: 1827737736}
+  destroyTasks:
+  - {fileID: 1759361722}
   keys: 65000000
   destroyDelay: 0
   targetGameObjectName: 
@@ -6764,7 +6767,7 @@ GameObject:
   - component: {fileID: 1759361724}
   - component: {fileID: 1759361723}
   m_Layer: 5
-  m_Name: btn_Scenario 16
+  m_Name: btn_Scenario 16 [UNUSED]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7601,6 +7604,17 @@ MonoBehaviour:
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1827737736}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1237434701}
+        m_MethodName: ShowGameObject
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1065041780}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

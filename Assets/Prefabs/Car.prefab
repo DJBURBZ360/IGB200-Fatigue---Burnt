@@ -335,23 +335,23 @@ MonoBehaviour:
   doGenerateRandomFatigueLevel: 0
   maxRandomFatigueLevel: 3
   defaultDriverStates:
-  - {fileID: 21300000, guid: 98cd93a2034e24b23ae4b239b5bb8c2d, type: 3}
+  - {fileID: 21300000, guid: 6cf0881f9e49f49bc975e428dd59e1d0, type: 3}
   - {fileID: 21300000, guid: f5eb0bfe4577d46b4bca2657c0396c53, type: 3}
-  - {fileID: 21300000, guid: 46bbd26a35aa14543ac7f72f7ad5f100, type: 3}
+  - {fileID: 21300000, guid: 0b76d9f92c94e4e1fabf25eeb7f4faf2, type: 3}
   driverStates:
   - arrayAxisY:
     - arrayAxisX:
-      - {fileID: 21300000, guid: eb554009619d74394b63770031df01db, type: 3}
-      - {fileID: 21300000, guid: 5cc896aea011c4da5ad11b6253a6978c, type: 3}
-      - {fileID: 21300000, guid: 843b98e197e7b4a38bdfe80b5d187195, type: 3}
+      - {fileID: 21300000, guid: 427d994a347b04c4f9a02247e7cec91b, type: 3}
+      - {fileID: 21300000, guid: bf64fd59709d046f2913493d1eb35610, type: 3}
+      - {fileID: 21300000, guid: 40ca751ae8fab4c4291405ef3da113c4, type: 3}
     - arrayAxisX:
-      - {fileID: 21300000, guid: 1c0a406bd045243d0af483d8a3b29f6f, type: 3}
-      - {fileID: 21300000, guid: 0b5175560bf7645d4bf7ed59cb670c85, type: 3}
-      - {fileID: 21300000, guid: 32bb6aecf23734e04bce4243a2610400, type: 3}
+      - {fileID: 21300000, guid: 14fba6bc24d204b92890ab4abefd6e03, type: 3}
+      - {fileID: 21300000, guid: a1aedd308925849148f2a6cbac8aca39, type: 3}
+      - {fileID: 21300000, guid: 8e35f8f7a7c8a4fbf8f4d6189fdae057, type: 3}
     - arrayAxisX:
-      - {fileID: 21300000, guid: ee8ea1d5c2fe1479fa9dfccf1a7361b3, type: 3}
-      - {fileID: 21300000, guid: 1b34cef53461b4d97bebd1e65b05dbd5, type: 3}
-      - {fileID: 21300000, guid: e4bc58e7023dd48cc887120e3d36d024, type: 3}
+      - {fileID: 21300000, guid: d5cc26eb116014cf0a48be074cc60efb, type: 3}
+      - {fileID: 21300000, guid: 105e1e5ae84c1444595b2e6f244a8d07, type: 3}
+      - {fileID: 21300000, guid: 04247e22b691845e1bf4bbca8ce5de19, type: 3}
   - arrayAxisY:
     - arrayAxisX:
       - {fileID: 21300000, guid: c6f4ed3433b564c1c95f3fd7d7e6c57c, type: 3}
@@ -367,17 +367,17 @@ MonoBehaviour:
       - {fileID: 21300000, guid: 63e7168c02caa4d3fb48d72f09576de7, type: 3}
   - arrayAxisY:
     - arrayAxisX:
-      - {fileID: 21300000, guid: 6ca3f3360483849908af7d65944a4ec9, type: 3}
-      - {fileID: 21300000, guid: 14b5495402fff48cfa5f87883311069e, type: 3}
-      - {fileID: 21300000, guid: e329ec6362f06498bb362ed119c0b6fe, type: 3}
+      - {fileID: 21300000, guid: 85a2fa134259c4256bbac539084c5d4b, type: 3}
+      - {fileID: 21300000, guid: b518ae0e724f141bc9f606490a1b0f8d, type: 3}
+      - {fileID: 21300000, guid: 5077bacb773184ad18f80e15872a15bc, type: 3}
     - arrayAxisX:
-      - {fileID: 21300000, guid: 770bd9fe39a4645d38f7b829bf145017, type: 3}
-      - {fileID: 21300000, guid: fc7ec0f99f331411696e7f1269ac1d2a, type: 3}
-      - {fileID: 21300000, guid: cae218870a0a34719b172b4a98d6168c, type: 3}
+      - {fileID: 21300000, guid: 5b3df3d442bce41659285c1374de81b2, type: 3}
+      - {fileID: 21300000, guid: 26a151f4aa71645d6bf6e81171cb632a, type: 3}
+      - {fileID: 21300000, guid: e0bb6e8d2a1f748469dd470f941aced0, type: 3}
     - arrayAxisX:
-      - {fileID: 21300000, guid: d7c42b6cafe404bea933905554a54b1b, type: 3}
-      - {fileID: 21300000, guid: f1acedf072d3b4b1f83daaa3d5cf9b7b, type: 3}
-      - {fileID: 21300000, guid: 583175634ea914a99a4a88a2b67cfe1a, type: 3}
+      - {fileID: 21300000, guid: 80def227295c04b149dcc5477c7c095f, type: 3}
+      - {fileID: 21300000, guid: 4e31dfa1233fc49ce8de6617f3372d19, type: 3}
+      - {fileID: 21300000, guid: 20ff345cba7b849a8afdd1406dd753f4, type: 3}
 --- !u!61 &5456790244276226412
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -47,7 +47,6 @@ public class ItemGrabber : MonoBehaviour
         currentItem = item;
         if (CheckForItem())
         {
-            print("grabbed");
             if (!Player.instance.HasItem)
             {
                 GetNewItem();
