@@ -61,7 +61,6 @@ MonoBehaviour:
   - 50
   - 100
   availableFatigueTypes: 00000000
-  tutorialUI: {fileID: 0}
   SFX_Pause: {fileID: 7435746917755982654, guid: ae37dba12d42476428f600951300e4bc,
     type: 3}
   SFX_Unpause: {fileID: 7435746917755982654, guid: 58e5cff8c5be6e447847c78036f57528,
@@ -85,8 +84,11 @@ MonoBehaviour:
   pauseMenu_Prefab: {fileID: 3754880305166953178, guid: 18ebc3b40426bcd46ac83431de2a02a4,
     type: 3}
   deliveryUI: {fileID: 0}
-  numDriversFatiguedUI: {fileID: 0}
+  numFatiguedDriversUI: {fileID: 0}
   statsUI_Prefab: {fileID: 0}
+  notificationTime: 3
+  notifyDelivery_Instance: {fileID: 0}
+  notifyNumFatigued_Instance: {fileID: 0}
 --- !u!114 &-1527282216355183389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normal: {fileID: 24500006, guid: 145101e67858edb459f8cccf1b6dc214, type: 2}
-  paused: {fileID: 2641988601286317915, guid: 145101e67858edb459f8cccf1b6dc214, type: 2}
+  paused: {fileID: 8243265220948651502, guid: 145101e67858edb459f8cccf1b6dc214, type: 2}
 --- !u!114 &1466350263062651022
 MonoBehaviour:
   m_ObjectHideFlags: 0

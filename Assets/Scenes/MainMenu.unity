@@ -509,7 +509,7 @@ MonoBehaviour:
           m_MethodName: InstanceGameObjectOutside
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 7435746917755982654, guid: 143bc7a8e610afc4fbd6b33491990694,
+            m_ObjectArgument: {fileID: 7414807379119684904, guid: e9d20c6d90a9ac044873aa2bd3cb22f4,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
@@ -1703,7 +1703,7 @@ MonoBehaviour:
           m_MethodName: InstanceGameObjectOutside
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 7435746917755982654, guid: 143bc7a8e610afc4fbd6b33491990694,
+            m_ObjectArgument: {fileID: 7414807379119684904, guid: e9d20c6d90a9ac044873aa2bd3cb22f4,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
@@ -2052,7 +2052,7 @@ MonoBehaviour:
           m_MethodName: InstanceGameObjectOutside
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 7435746917755982654, guid: 143bc7a8e610afc4fbd6b33491990694,
+            m_ObjectArgument: {fileID: 7414807379119684904, guid: e9d20c6d90a9ac044873aa2bd3cb22f4,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
