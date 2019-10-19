@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Employee.FatigueTypes[] availableFatigueTypes;
     [SerializeField] private GameObject SFX_Pause;
     [SerializeField] private GameObject SFX_Unpause;
+    [SerializeField] private GameObject SFX_FatigueWarning;
     private GameObject[] employees;
     private UI_Manager uiManager;    
     #endregion
@@ -54,6 +55,11 @@ public class GameManager : MonoBehaviour
     public bool IsTutorialActive
     {
         get { return isTutorialActive; }
+    }
+
+    public GameObject FatigueWarningSFX
+    {
+        get { return SFX_FatigueWarning; }
     }
     #endregion
 

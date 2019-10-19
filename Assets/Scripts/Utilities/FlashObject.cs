@@ -67,7 +67,8 @@ public class FlashObject : MonoBehaviour
             {
                 fader.ResetFader();
             }
-            fader.DoFade(ref color.a, fadeSpeed, appearaceTime, originalOpacity);
+            float targetOpacity = originalOpacity > 0 ? originalOpacity : 1;
+            fader.DoFade(ref color.a, fadeSpeed, appearaceTime, targetOpacity);
             renderer.color = color;
         }
         else

@@ -2511,6 +2511,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UITopBar
       objectReference: {fileID: 0}
+    - target: {fileID: 312629334354620730, guid: 104d61a8ea4d0a24fb7e057f263d623e,
+        type: 3}
+      propertyPath: enableFlash
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 312629334049481492, guid: 104d61a8ea4d0a24fb7e057f263d623e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2615,6 +2620,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 312629334232546535, guid: 104d61a8ea4d0a24fb7e057f263d623e,
+        type: 3}
+      propertyPath: enableFlash
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 312629334139978563, guid: 104d61a8ea4d0a24fb7e057f263d623e,
         type: 3}
@@ -2799,6 +2809,12 @@ PrefabInstance:
       propertyPath: availableFatigueTypes.Array.data[0]
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5536607891287036776, guid: 51491020ae8db064283e90c055f10865,
+        type: 3}
+      propertyPath: SFX_FatigueWarning
+      value: 
+      objectReference: {fileID: 6695314140110232619, guid: c6948dd5da079934aae6d851f74538e8,
+        type: 3}
     - target: {fileID: 5536607891287036778, guid: 51491020ae8db064283e90c055f10865,
         type: 3}
       propertyPath: numDriversFatiguedUI

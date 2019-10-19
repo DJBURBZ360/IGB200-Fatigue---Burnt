@@ -508,6 +508,7 @@ MonoBehaviour:
   appearaceTime: 0.1
   fadeSpeed: 3
   enableFlash: 0
+  renderer: {fileID: 312629334232546534}
 --- !u!1 &312629334291258288
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +842,7 @@ MonoBehaviour:
   appearaceTime: 0.1
   fadeSpeed: 3
   enableFlash: 0
+  renderer: {fileID: 312629334354620729}
 --- !u!1 &312629334378838332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,6 +1403,7 @@ MonoBehaviour:
   appearaceTime: 0.1
   fadeSpeed: 3
   enableFlash: 1
+  renderer: {fileID: 0}
 --- !u!1 &312629334956989705
 GameObject:
   m_ObjectHideFlags: 0

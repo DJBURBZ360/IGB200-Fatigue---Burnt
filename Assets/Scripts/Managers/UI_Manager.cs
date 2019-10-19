@@ -80,7 +80,7 @@ public class UI_Manager : MonoBehaviour
         float oldVal = numDeliveriesSlider.value;
         numDeliveriesSlider.value = Percentage.GetPercentage(gameManager.NumDrivers, 
                                                              originalNumDrivers,
-                                                             numDeliveriesSlider.value);
+                                                             oldVal);
         numDeliveriesText.text = string.Format("{0}/{1}", 
                                                originalNumDrivers - gameManager.NumDrivers, 
                                                originalNumDrivers);
@@ -88,7 +88,6 @@ public class UI_Manager : MonoBehaviour
         if (oldVal != numDeliveriesSlider.value)
         {
             StartCoroutine(notifyDelivery_Instance.DoFlash(notificationTime));
-            oldVal = numDeliveriesSlider.value;
         }        
     }
 
@@ -97,7 +96,7 @@ public class UI_Manager : MonoBehaviour
         float oldVal = numFatiguedDriversSlider.value;
         numFatiguedDriversSlider.value = Percentage.GetReversePercentage(gameManager.NumFatiguedDrivers, 
                                                                          gameManager.NumFatiguedDriversThreshold, 
-                                                                         numFatiguedDriversSlider.value);
+                                                                         oldVal);
         numFatiguedDriversText.text = string.Format("{0}/{1}", 
                                       gameManager.NumFatiguedDrivers, 
                                       gameManager.NumFatiguedDriversThreshold);
@@ -105,7 +104,10 @@ public class UI_Manager : MonoBehaviour
         if (oldVal != numFatiguedDriversSlider.value)
         {
             StartCoroutine(notifyNumFatigued_Instance.DoFlash(notificationTime));
-            oldVal = numFatiguedDriversSlider.value;
+
+            Vector2 alarmPos = Camera.main.ScreenToWorldPoint(GameObject.Find("Alarm - Fatigued").transform.position);
+            GameObject alarm = Instantiate(gameManager.FatigueWarningSFX, alarmPos, Quaternion.identity);
+            alarm.GetComponent<SFX_Randomizer>().Duration = notificationTime;
         }
     }
     #endregion
