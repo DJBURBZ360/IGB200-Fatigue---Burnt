@@ -84,12 +84,12 @@ public class UI_Manager : MonoBehaviour
         numDeliveriesText.text = string.Format("{0}/{1}", 
                                                originalNumDrivers - gameManager.NumDrivers, 
                                                originalNumDrivers);
-
+        
         if (oldVal != numDeliveriesSlider.value)
         {
             StartCoroutine(notifyDelivery_Instance.DoFlash(notificationTime));
             oldVal = numDeliveriesSlider.value;
-        }
+        }        
     }
 
     private void UpdateFatiguedDriversUI()

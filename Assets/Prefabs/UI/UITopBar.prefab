@@ -507,7 +507,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appearaceTime: 0.1
   fadeSpeed: 3
-  doFlash: 0
+  enableFlash: 0
 --- !u!1 &312629334291258288
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appearaceTime: 0.1
   fadeSpeed: 3
-  doFlash: 0
+  enableFlash: 0
 --- !u!1 &312629334378838332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,7 +1044,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -821, y: 381}
+  m_AnchoredPosition: {x: -839, y: 381}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &312629334649847958
@@ -1400,7 +1400,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appearaceTime: 0.1
   fadeSpeed: 3
-  doFlash: 1
+  enableFlash: 1
 --- !u!1 &312629334956989705
 GameObject:
   m_ObjectHideFlags: 0

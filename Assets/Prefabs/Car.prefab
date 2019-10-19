@@ -328,6 +328,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groanSFX: {fileID: 989204185802178294, guid: acc520caebe7e6f4685efb18d928c6a0, type: 3}
+  percentageThreshold:
+  - 20
+  - 80
+  fatigueLevelMessages:
+  - Normal
+  - Slightly Fatigued
+  - Moderately Fatigued
+  - Critically Fatigued
+  - Totally Fatigued!!!
   randomNumRange:
   - 5
   - 10

@@ -11,6 +11,22 @@ public class Employee : MonoBehaviour
 
     #region Variables
     [SerializeField] private GameObject groanSFX;
+
+    [SerializeField]
+    [Header("Appear Fatigue Gauge at Gauge [min, max] %")]
+    [Range(0.0f, 100.0f)]
+    private float[] percentageThreshold = { 20, 80 };
+
+    [SerializeField]
+    [Header("Fatigue Gauge Text Per Level")]
+    private string[] fatigueLevelMessages = new string[5];
+
+    [SerializeField]
+    [Header("Fatigue Gauge Components With FlashObject Script Attached")]
+    private FlashObject[] fatigueGaugeComponents;
+    [SerializeField] private float gaugeFlashTime = 1;
+    private Fader fader = new Fader();
+
     [SerializeField]
     [Header("Generate Random Fatigue Time Between (in seconds)")]
     private float[] randomNumRange = new float[2];
@@ -24,6 +40,7 @@ public class Employee : MonoBehaviour
 
     private bool isChecking = true;
     private bool isSentHome = false;
+    private bool isGaugeFlashed = false;
 
     private GameObject fatigueUI;
     private Slider fatigueSlider;
@@ -92,9 +109,13 @@ public class Employee : MonoBehaviour
             Instantiate(groanSFX, this.transform.position, Quaternion.identity);
         }
 
-        if (fillColor.color != gameManager.fatigueLevelColors[currentFatigueLevel])
+
+        Color color = gameManager.fatigueLevelColors[currentFatigueLevel];
+        color.a = fillColor.color.a;
+        if (fillColor.color != color)
         {
-            fillColor.color = gameManager.fatigueLevelColors[currentFatigueLevel];
+            //fillColor.color = gameManager.fatigueLevelColors[currentFatigueLevel];
+            fillColor.color = color;
         }
     }
 
@@ -214,16 +235,61 @@ public class Employee : MonoBehaviour
     {
         fatigueSlider.value = Percentage.GetPercentage(currentFatigueDelay - Time.time, currentFatigueRate, fatigueSlider.value);
 
+        //Manage gauge appearance time
+        //if the car is parked appear gauge only between thresholds
+        //else hide gauge
+        if (car.IsParked)
+        {
+            if (currentFatigueLevel < maxFatigueLevel)
+            {
+                if (fatigueSlider.value <= percentageThreshold[0] ||
+                    fatigueSlider.value >= percentageThreshold[1])
+                {
+                    fatigueUI.SetActive(true);
+                    if (!isGaugeFlashed)
+                    {
+                        foreach (FlashObject component in fatigueGaugeComponents)
+                        {
+                            StartCoroutine(component.DoFlash(gaugeFlashTime));
+                        }
+                        isGaugeFlashed = true;
+                    }
+                }
+                else
+                {
+                    fatigueUI.SetActive(false);
+
+                    isGaugeFlashed = false;
+                }
+            }
+        }
+        else
+        {
+            fatigueUI.SetActive(false);
+        }
+
+        //Manage gauge text
+        if (fatigueLevelMessages.Length >= maxFatigueLevel) //prevents IndexArrayOutOfBounds error
+        {
+            fatigueText.text = fatigueLevelMessages[currentFatigueLevel];
+        }
+
+        /*
         if (currentFatigueLevel < 1)
+        {
             fatigueText.text = "Normal";
+        }
         else if (currentFatigueLevel < maxFatigueLevel &&
                  currentFatigueLevel > 0)
+        {
             fatigueText.text = string.Format("Fatigue Level: {0}", currentFatigueLevel);
+        }
         else
+        {
             fatigueText.text = "Totally Fatigued!!!";
+        }
+        */
     }
-
-
     #endregion
 
     #region Public Methods
@@ -261,7 +327,9 @@ public class Employee : MonoBehaviour
 
         if (!gameManager.IsTutorialActive)
         {
-            fillColor.color = gameManager.fatigueLevelColors[0];
+            Color currentColor = gameManager.fatigueLevelColors[0];
+            currentColor.a = fillColor.color.a;
+            fillColor.color = currentColor;
         }
     }
 
@@ -297,7 +365,7 @@ public class Employee : MonoBehaviour
 
         //choose random sprite color variation
         ChangeSpriteColor();
-        renderer.sprite = defaultDriverStates[driverColorArrayIndex];        
+        renderer.sprite = defaultDriverStates[driverColorArrayIndex];
     }
 
     // Update is called once per frame
