@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SaveDataManagement : MonoBehaviour
+public static class SaveDataManagement
 {
-    #region Public Methods
     public static void SaveState()
     {
         PlayerPrefs.SetInt("NumFails", PlayerStats.NumFails);
@@ -31,24 +28,5 @@ public class SaveDataManagement : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         PlayerStats.ResetStats();
-    }
-    #endregion
-    
-    public int saveFrequency = 30;
-
-    /// <summary>
-    /// Saves player stats frequently.
-    /// </summary>
-    /// <param name="saveFrequency">The frequency of saving.</param>
-    /// <returns></returns>
-    private IEnumerator AutoSave(int saveFrequency)
-    {
-        yield return new WaitForSeconds(saveFrequency);
-        SaveState();
-    }
-
-    private void Start()
-    {
-        StartCoroutine(AutoSave(saveFrequency));
     }
 }

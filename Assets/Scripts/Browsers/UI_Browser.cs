@@ -36,6 +36,7 @@ public class UI_Browser : MonoBehaviour
 
     public void ExitGame()
     {
+        SaveDataManagement.SaveState();
         Application.Quit();
     }
 
