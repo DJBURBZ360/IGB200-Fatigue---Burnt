@@ -337,7 +337,6 @@ MonoBehaviour:
   - Moderately Fatigued
   - Critically Fatigued
   - Totally Fatigued!!!
-  fatigueGaugeComponents: []
   gaugeFlashTime: 1
   randomNumRange:
   - 5

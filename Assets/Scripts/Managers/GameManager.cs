@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject SFX_Unpause;
     [SerializeField] private GameObject SFX_FatigueWarning;
     private GameObject[] employees;
-    private UI_Manager uiManager;    
+    private UI_Manager uiManager;
+    private bool isLevelStarted = false;
     #endregion
 
     #region Accessors
@@ -163,7 +164,8 @@ public class GameManager : MonoBehaviour
 
     private void PauseGame()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (isLevelStarted && 
+            Input.GetButtonDown("Cancel"))
         {
             if (Time.timeScale == 1)
             {
@@ -178,6 +180,14 @@ public class GameManager : MonoBehaviour
                 if (SFX_Unpause != null) Instantiate(SFX_Unpause);
             }
         }
+    }
+
+    /// <summary>
+    /// Makes the pause button enabled.
+    /// </summary>
+    public void StartLevel()
+    {
+        isLevelStarted = true;
     }
     #endregion
 

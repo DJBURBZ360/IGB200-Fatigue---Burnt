@@ -106,7 +106,7 @@ public class Employee : MonoBehaviour
             fatigueSlider.value = 0;
 
             //play SFX
-            Instantiate(groanSFX, this.transform.position, Quaternion.identity);
+            if (car.IsParked) Instantiate(groanSFX, this.transform.position, Quaternion.identity);
         }
 
 
