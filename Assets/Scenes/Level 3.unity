@@ -3429,7 +3429,7 @@ PrefabInstance:
     - target: {fileID: 5536607891287036776, guid: 51491020ae8db064283e90c055f10865,
         type: 3}
       propertyPath: numFatiguedDriversThreshold
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5536607891287036776, guid: 51491020ae8db064283e90c055f10865,
         type: 3}

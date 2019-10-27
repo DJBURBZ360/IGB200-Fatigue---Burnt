@@ -263,18 +263,17 @@ public class CarManager : MonoBehaviour
 
         if (!gameManager.IsTutorialActive)
         {
-            if (!isTimerPaused) ManageTimer();
-            
+            if (!isTimerPaused) ManageTimer();            
             CheckCurrentState();
+
+            //hides or shows the timer UI
+            timerUI.GetComponent<LerpPosition>().DoLerp = !isParked;
         }
 
         if (isDeparting) Depart();
         if (isArriving) Arrive();
 
         if (interpolate <= 0) isParked = true;
-        else isParked = false;
-
-        //hides or shows the timer UI
-        timerUI.GetComponent<LerpPosition>().DoLerp = !isParked;
+        else isParked = false;        
     }
 }

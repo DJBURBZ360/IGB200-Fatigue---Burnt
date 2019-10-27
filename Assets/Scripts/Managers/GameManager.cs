@@ -114,45 +114,55 @@ public class GameManager : MonoBehaviour
 
     public void DoRNG(int fatigueLevel)
     {
-        if (fatigueLevel == 0)
+        if (!isTutorialActive)
         {
-            PlayerStats.NumSavedDrivers++;
-        }
-        else if (fatigueLevel == 1)
-        {
-            var list = new[] {
-                ProportionValue.Create(0.2, "true"),
-                ProportionValue.Create(0.8, "false")
-            };
-
-            if (list.ChooseByRandom() == "true")
-            {
-                IncreaseNumFatiguedDrivers();
-            }
-            else
+            if (fatigueLevel == 0)
             {
                 PlayerStats.NumSavedDrivers++;
             }
-        }
-        else if (fatigueLevel == 2)
-        {
-            var list = new[] {
-                ProportionValue.Create(0.5, "true"),
-                ProportionValue.Create(0.5, "false")
+            else if (fatigueLevel == 1)
+            {
+                var list = new[] {
+                ProportionValue.Create(fatiguedChances[1] / 100, "true"),
+                ProportionValue.Create((100 - fatiguedChances[1]) / 100, "false")
             };
 
-            if (list.ChooseByRandom() == "true")
+                if (list.ChooseByRandom() == "true")
+                {
+                    IncreaseNumFatiguedDrivers();
+                }
+                else
+                {
+                    PlayerStats.NumSavedDrivers++;
+                }
+            }
+            else if (fatigueLevel == 2)
+            {
+                var list = new[] {
+                ProportionValue.Create(fatiguedChances[2] / 100, "true"),
+                ProportionValue.Create((100 - fatiguedChances[2]) / 100, "false")
+            };
+
+                if (list.ChooseByRandom() == "true")
+                {
+                    IncreaseNumFatiguedDrivers();
+                }
+                else
+                {
+                    PlayerStats.NumSavedDrivers++;
+                }
+            }
+            else if (fatigueLevel == 3)
             {
                 IncreaseNumFatiguedDrivers();
             }
-            else
-            {
-                PlayerStats.NumSavedDrivers++;
-            }
         }
-        else if (fatigueLevel == 3)
+        else
         {
-            IncreaseNumFatiguedDrivers();
+            if (fatigueLevel == 3)
+            {
+                numFatiguedDrivers++;
+            }
         }
     }
 

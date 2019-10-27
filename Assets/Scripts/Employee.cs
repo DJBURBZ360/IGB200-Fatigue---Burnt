@@ -87,26 +87,29 @@ public class Employee : MonoBehaviour
     #region Private Methods
     private void IncreaseFatigueLevel()
     {
-        //countdown then incease fatigue level
-        if (currentFatigueDelay < Time.time)
+        if (car.IsParked)
         {
-            //randomly generate a number
-            currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
-            currentFatigueDelay = currentFatigueRate + Time.time;
-            
-            //limits the current fatigue level
-            int temp = ++currentFatigueLevel;
-            if (temp > maxFatigueLevel)
+            //countdown then incease fatigue level
+            if (currentFatigueDelay < Time.time)
             {
-                temp = maxFatigueLevel;
-            }
-            currentFatigueLevel = temp;
-            
-            //reset slider fill then change color
-            fatigueSlider.value = 0;
+                //randomly generate a number
+                currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
+                currentFatigueDelay = currentFatigueRate + Time.time;
 
-            //play SFX
-            if (car.IsParked) Instantiate(groanSFX, this.transform.position, Quaternion.identity);
+                //limits the current fatigue level
+                int temp = ++currentFatigueLevel;
+                if (temp > maxFatigueLevel)
+                {
+                    temp = maxFatigueLevel;
+                }
+                currentFatigueLevel = temp;
+
+                //reset slider fill then change color
+                fatigueSlider.value = 0;
+
+                //play SFX
+                Instantiate(groanSFX, this.transform.position, Quaternion.identity);
+            }
         }
 
 
