@@ -20,11 +20,11 @@ public class Employee : MonoBehaviour
     [SerializeField]
     [Header("Fatigue Gauge Text Per Level")]
     private string[] fatigueLevelMessages = new string[5];
-
+        
     [SerializeField]
-    [Header("Fatigue Gauge Components With FlashObject Script Attached")]
+    [Header("Fatigue Gauge Flash Time")]
+    private float gaugeFlashTime = 1;
     private FlashObject[] fatigueGaugeComponents;
-    [SerializeField] private float gaugeFlashTime = 1;
     private Fader fader = new Fader();
 
     [SerializeField]
@@ -357,6 +357,7 @@ public class Employee : MonoBehaviour
             //initialize fatigue timer
             currentFatigueRate = Random.Range(randomNumRange[0], randomNumRange[1]);
             currentFatigueDelay = currentFatigueRate + Time.time;
+            fatigueGaugeComponents = fatigueUI.transform.GetComponentsInChildren<FlashObject>();
                         
             GenerateRandomFatigueLevel();
         }

@@ -119,8 +119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerUI: {fileID: 0}
   fatigueUI: {fileID: 0}
-  UIoffset: {x: -7.15, y: -2.5}
-  UIspacing: {x: 0, y: -0.5}
+  UIoffset: {x: -7.15, y: -3}
+  UIspacing: {x: 8, y: 6.3}
 --- !u!114 &-7806232500375270827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,6 +337,8 @@ MonoBehaviour:
   - Moderately Fatigued
   - Critically Fatigued
   - Totally Fatigued!!!
+  fatigueGaugeComponents: []
+  gaugeFlashTime: 1
   randomNumRange:
   - 5
   - 10

@@ -33,11 +33,11 @@ public class UI_Initializer : MonoBehaviour
         {
             Vector2 currentScreenPos = this.gameObject.transform.position;
 
-            //if (timerUI != null)
-            //    timerUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset);
+            if (timerUI != null)
+                timerUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset + UIspacing);
 
             if (fatigueUI != null)
-                fatigueUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset + UIspacing);
+                fatigueUI.transform.position = Camera.main.WorldToScreenPoint(currentScreenPos + UIoffset);
         }
     }
 }

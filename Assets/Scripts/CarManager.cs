@@ -167,7 +167,7 @@ public class CarManager : MonoBehaviour
             isArriving)
         {
             GenerateDepartureTime();
-            sliderTimer.value = 100 - Percentage.GetPercentage(currentDepartureDelay - Time.time, departureTime, sliderTimer.value);
+            sliderTimer.value = Percentage.GetReversePercentage(currentDepartureDelay - Time.time, departureTime, sliderTimer.value);
             textTimer.text = string.Format("Departing in {0:0.00}s", currentDepartureDelay - Time.time);
         }
 
@@ -176,8 +176,10 @@ public class CarManager : MonoBehaviour
                  isDeparting)
         {
             GenerateArrivalTime();
-            sliderTimer.value = Percentage.GetPercentage(currentArrivalTimeDelay - Time.time, arrivalTime, sliderTimer.value);
-            textTimer.text = string.Format("Arriving in {0:0.00}s", currentArrivalTimeDelay - Time.time);
+            sliderTimer.value = 0;
+            textTimer.text = "";
+            //sliderTimer.value = Percentage.GetPercentage(currentArrivalTimeDelay - Time.time, arrivalTime, sliderTimer.value);
+            //textTimer.text = string.Format("Arriving in {0:0.00}s", currentArrivalTimeDelay - Time.time);
         }
     }
     #endregion
@@ -235,8 +237,8 @@ public class CarManager : MonoBehaviour
 
         if (!gameManager.IsTutorialActive)
         {
-            sliderTimer = timerUI.transform.GetChild(0).GetComponent<Slider>();
-            textTimer = timerUI.transform.GetChild(1).GetComponent<Text>();
+            sliderTimer = timerUI.transform.GetChild(1).GetComponent<Slider>();
+            textTimer = timerUI.transform.GetChild(2).GetComponent<Text>();
         }
 
         originalPos = this.gameObject.transform.position;
@@ -269,13 +271,10 @@ public class CarManager : MonoBehaviour
         if (isDeparting) Depart();
         if (isArriving) Arrive();
 
-        if (interpolate <= 0)
-        {
-            isParked = true;
-        }
-        else
-        {
-            isParked = false;
-        }
+        if (interpolate <= 0) isParked = true;
+        else isParked = false;
+
+        //hides or shows the timer UI
+        timerUI.GetComponent<LerpPosition>().DoLerp = !isParked;
     }
 }

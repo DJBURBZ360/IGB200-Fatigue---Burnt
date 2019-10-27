@@ -65,7 +65,8 @@ MonoBehaviour:
     type: 3}
   SFX_Unpause: {fileID: 7435746917755982654, guid: 58e5cff8c5be6e447847c78036f57528,
     type: 3}
-  SFX_FatigueWarning: {fileID: 0}
+  SFX_FatigueWarning: {fileID: 6695314140110232619, guid: c6948dd5da079934aae6d851f74538e8,
+    type: 3}
 --- !u!114 &5536607891287036778
 MonoBehaviour:
   m_ObjectHideFlags: 0

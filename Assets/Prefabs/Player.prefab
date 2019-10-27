@@ -585,7 +585,7 @@ MonoBehaviour:
   speedBoostSpeed: 10
   boundaries:
   - {x: -7.8, y: -4}
-  - {x: 8.4, y: -1}
+  - {x: 8.4, y: -1.5}
   speedBoostUI: {fileID: 0}
   sendHomeUI: {fileID: 1898421232617254034}
   worldSpaceCanvas: {fileID: 3441184838607420789}
