@@ -14,14 +14,15 @@ public class UI_Browser : MonoBehaviour
 
     public void Restart()
     {
+        SaveDataManagement.SaveState();
         Item.ResetNumInstance();
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        //OnLevelWasLoaded(sceneIndex);
         SceneManager.LoadScene(sceneIndex);
     }
 
     public void ReturnToMainMenu()
     {
+        SaveDataManagement.SaveState();
         Item.ResetNumInstance();
         SceneManager.LoadScene("MainMenu");
     }
@@ -30,6 +31,7 @@ public class UI_Browser : MonoBehaviour
     #region Main Menu
     public void LoadScene(string sceneName)
     {
+        SaveDataManagement.SaveState();
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneName);
     }
@@ -45,17 +47,17 @@ public class UI_Browser : MonoBehaviour
     #region Level Management
     public void LoadPreviousLevel()
     {
+        SaveDataManagement.SaveState();
         Item.ResetNumInstance();
         int sceneIndex = SceneManager.GetActiveScene().buildIndex - 1;
-        //OnLevelWasLoaded(sceneIndex);
         SceneManager.LoadScene(sceneIndex);
     }
 
     public void LoadNextLevel()
     {
+        SaveDataManagement.SaveState();
         Item.ResetNumInstance();
         int sceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-        //OnLevelWasLoaded(sceneIndex);
         SceneManager.LoadScene(sceneIndex);
     }
     #endregion

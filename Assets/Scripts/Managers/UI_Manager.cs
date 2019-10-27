@@ -40,11 +40,13 @@ public class UI_Manager : MonoBehaviour
     #region Public Methods
     public void ShowFailUI()
     {
+        SaveDataManagement.SaveState();
         failUI_Instance = Instantiate(failUI_Prefab, GameObject.FindWithTag("UI").transform);
     }
 
     public void ShowWinUI()
     {
+        SaveDataManagement.SaveState();
         winUI_Instance = Instantiate(winUI_Prefab, GameObject.FindWithTag("UI").transform);
     }
 
