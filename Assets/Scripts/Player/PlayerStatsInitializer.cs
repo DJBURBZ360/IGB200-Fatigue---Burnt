@@ -26,5 +26,7 @@ public class PlayerStatsInitializer : MonoBehaviour
         if (txt_numItemsGiven != null) txt_numItemsGiven.text = PlayerStats.NumItemsGiven.ToString();
         if (txt_numItemsDropped != null) txt_numItemsDropped.text = PlayerStats.NumItemsDropped.ToString();
         if (txt_numItemsGrabbed != null) txt_numItemsGrabbed.text = PlayerStats.NumItemsGrabbed.ToString();
+
+        Time.timeScale = 1;
     }
 }

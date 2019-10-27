@@ -49,6 +49,7 @@ public class UI_Browser : MonoBehaviour
     {
         SaveDataManagement.SaveState();
         Item.ResetNumInstance();
+        Time.timeScale = 1;
         int sceneIndex = SceneManager.GetActiveScene().buildIndex - 1;
         SceneManager.LoadScene(sceneIndex);
     }
@@ -57,6 +58,7 @@ public class UI_Browser : MonoBehaviour
     {
         SaveDataManagement.SaveState();
         Item.ResetNumInstance();
+        Time.timeScale = 1;
         int sceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(sceneIndex);
     }
