@@ -54,6 +54,12 @@ public class Employee : MonoBehaviour
     [SerializeField] private int maxRandomFatigueLevel = 3;
     private int driverColorArrayIndex = 0;
 
+    [SerializeField]
+    [Header("For Video Trailer Use Only")]
+    [Range(-1, 2)]
+    private int driverColor = -1;
+    public bool enableRandomFatigueType = true;
+
     private SpriteRenderer renderer;
     [SerializeField] private Sprite[] defaultDriverStates = new Sprite[3];
     [SerializeField] Sprites3DArray[] driverStates; //axis Z = color type
@@ -298,13 +304,23 @@ public class Employee : MonoBehaviour
     #region Public Methods
     public void ChangeSpriteColor()
     {
-        driverColorArrayIndex = Random.Range(0, 3);
+        if (driverColor < 0)
+        {
+            driverColorArrayIndex = Random.Range(0, 3);
+        }
+        else
+        {
+            driverColorArrayIndex = driverColor;
+        }
     }
 
     public void GenerateRandomFatigueType()
     {
-        int num = Random.Range(0, gameManager.AvailableFatigueTypes.Length);
-        currentFatigueType = gameManager.AvailableFatigueTypes[num];
+        if (enableRandomFatigueType)
+        {
+            int num = Random.Range(0, gameManager.AvailableFatigueTypes.Length);
+            currentFatigueType = gameManager.AvailableFatigueTypes[num];
+        }
     }
 
     public void GenerateRandomFatigueLevel()

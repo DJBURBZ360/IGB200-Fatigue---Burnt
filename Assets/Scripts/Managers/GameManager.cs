@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject SFX_FatigueWarning;
     private GameObject[] employees;
     private UI_Manager uiManager;
-    private bool isLevelStarted = false;
+    [SerializeField] private bool isLevelStarted = false;
     #endregion
 
     #region Accessors
