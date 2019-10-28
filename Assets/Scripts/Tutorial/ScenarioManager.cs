@@ -142,7 +142,7 @@ public class ScenarioManager : MonoBehaviour
         {
             foreach (GameObject task in nextTasks)
             {
-                task.SetActive(true);
+                if (task != null) task.SetActive(true);
             }
         }
 

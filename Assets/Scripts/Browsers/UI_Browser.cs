@@ -14,6 +14,7 @@ public class UI_Browser : MonoBehaviour
 
     public void Restart()
     {
+        Time.timeScale = 1;
         SaveDataManagement.SaveState();
         Item.ResetNumInstance();
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -22,6 +23,7 @@ public class UI_Browser : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        Time.timeScale = 1;
         SaveDataManagement.SaveState();
         Item.ResetNumInstance();
         SceneManager.LoadScene("MainMenu");
@@ -31,8 +33,8 @@ public class UI_Browser : MonoBehaviour
     #region Main Menu
     public void LoadScene(string sceneName)
     {
-        SaveDataManagement.SaveState();
         Time.timeScale = 1;
+        SaveDataManagement.SaveState();
         SceneManager.LoadScene(sceneName);
     }
 
