@@ -145,3 +145,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f47681d20cbb46c4c988d955f1f1132f, type: 3}
   - {fileID: 8300000, guid: 2d333606344d7b9409dcdc1b5387129b, type: 3}
   - {fileID: 8300000, guid: 3f9d47dadf331b04fbffab732f0383d9, type: 3}
+  duration: 0
