@@ -385,6 +385,7 @@ MonoBehaviour:
   keys: 
   destroyDelay: 1
   targetGameObjectName: 
+  targetGameObjectTag: 
   collisionTag: Player
 --- !u!4 &26231204
 Transform:
@@ -406,6 +407,61 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 553102451}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &61192880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 61192881}
+  - component: {fileID: 61192882}
+  m_Layer: 0
+  m_Name: KeyPress_Drop Item
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &61192881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61192880}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1410414762}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &61192882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61192880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34384a0f44777d749934be8a07ba6972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 2
+  automateNextTask: 1
+  thisScenarioButton: {fileID: 0}
+  nextTasks:
+  - {fileID: 753645086}
+  hideTasks: []
+  destroyTasks: []
+  keys: 44010000
+  destroyDelay: 0
+  targetGameObjectName: 
+  targetGameObjectTag: 
+  collisionTag: Player
 --- !u!1 &64047246
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +749,7 @@ MonoBehaviour:
   keys: 
   destroyDelay: 1
   targetGameObjectName: 
+  targetGameObjectTag: 
   collisionTag: Player
 --- !u!4 &258708823
 Transform:
@@ -999,6 +1056,7 @@ MonoBehaviour:
   keys: 
   destroyDelay: 0
   targetGameObjectName: 
+  targetGameObjectTag: 
   collisionTag: Player
 --- !u!58 &411349520
 CircleCollider2D:
@@ -2449,6 +2507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 657108430}
   - component: {fileID: 657108431}
+  - component: {fileID: 657108432}
   m_Layer: 0
   m_Name: GiveItem 2
   m_TagString: Untagged
@@ -2463,8 +2522,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 657108429}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -416.13818, y: -270.9095, z: 24.71279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.91, y: -0.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1410414762}
@@ -2482,7 +2541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34384a0f44777d749934be8a07ba6972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 1
+  trigger: 3
   automateNextTask: 0
   thisScenarioButton: {fileID: 2031400397}
   nextTasks: []
@@ -2491,7 +2550,34 @@ MonoBehaviour:
   keys: 
   destroyDelay: 1
   targetGameObjectName: Sleepiness_Level 1(Clone)
-  collisionTag: Player
+  targetGameObjectTag: 
+  collisionTag: Item
+--- !u!61 &657108432
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657108429}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.11104202}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.82, y: 3.1764145}
+  m_EdgeRadius: 0
 --- !u!1 &668621162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3153,7 +3239,7 @@ GameObject:
   - component: {fileID: 753645088}
   - component: {fileID: 753645087}
   m_Layer: 5
-  m_Name: btn_Scenario 18
+  m_Name: btn_Scenario 19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4446,7 +4532,8 @@ MonoBehaviour:
   automateNextTask: 1
   thisScenarioButton: {fileID: 1759361722}
   nextTasks:
-  - {fileID: 1502242558}
+  - {fileID: 2060986165}
+  - {fileID: 9141488564066747319}
   hideTasks:
   - {fileID: 1827737736}
   destroyTasks:
@@ -4454,6 +4541,7 @@ MonoBehaviour:
   keys: 65000000
   destroyDelay: 0
   targetGameObjectName: 
+  targetGameObjectTag: 
   collisionTag: Player
 --- !u!1 &1115736289
 GameObject:
@@ -4465,6 +4553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1115736291}
   - component: {fileID: 1115736290}
+  - component: {fileID: 1115736292}
   m_Layer: 0
   m_Name: GiveItem
   m_TagString: Untagged
@@ -4484,7 +4573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34384a0f44777d749934be8a07ba6972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 1
+  trigger: 3
   automateNextTask: 0
   thisScenarioButton: {fileID: 1061058577}
   nextTasks: []
@@ -4493,7 +4582,8 @@ MonoBehaviour:
   keys: 
   destroyDelay: 1
   targetGameObjectName: Sleepiness_Level 1(Clone)
-  collisionTag: Player
+  targetGameObjectTag: 
+  collisionTag: Item
 --- !u!4 &1115736291
 Transform:
   m_ObjectHideFlags: 0
@@ -4501,13 +4591,39 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115736289}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -416.13818, y: -270.9095, z: 24.71279}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.91, y: -0.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1410414762}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1115736292
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115736289}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.044416666, y: 0.12214613}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.7322478, y: 3.1542044}
+  m_EdgeRadius: 0
 --- !u!1 &1156533386
 GameObject:
   m_ObjectHideFlags: 0
@@ -4810,6 +4926,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9b5e20fce40db3d4b915f328a4091ffc, type: 3}
   - {fileID: 21300000, guid: 7ca020f7a67176846941c06ba9c18271, type: 3}
   - {fileID: 21300000, guid: e6365482fa5994e4e97bd918cbe05ccd, type: 3}
+  - {fileID: 21300000, guid: 866a9f3c6f4ad50438851e651bc43cb6, type: 3}
   - {fileID: 21300000, guid: f102c5fc02556e14a82db78a20452ea0, type: 3}
   - {fileID: 21300000, guid: 1405385ceb181bc4f9eaeac89256698a, type: 3}
   employeeInstance: {fileID: 786333184}
@@ -5760,6 +5877,7 @@ MonoBehaviour:
   keys: 
   destroyDelay: 1
   targetGameObjectName: Sleepiness_Level 2(Clone)
+  targetGameObjectTag: 
   collisionTag: Player
 --- !u!1 &1393459787
 GameObject:
@@ -5876,6 +5994,8 @@ Transform:
   - {fileID: 1618788363}
   - {fileID: 26231204}
   - {fileID: 1065041781}
+  - {fileID: 61192881}
+  - {fileID: 2060986166}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5928,7 +6048,7 @@ GameObject:
   - component: {fileID: 1502242561}
   - component: {fileID: 1502242560}
   m_Layer: 5
-  m_Name: btn_Scenario 17
+  m_Name: btn_Scenario 18 [UNUSED]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6678,6 +6798,7 @@ MonoBehaviour:
   keys: 
   destroyDelay: 1
   targetGameObjectName: Sleepiness_Level 2(Clone)
+  targetGameObjectTag: 
   collisionTag: Player
 --- !u!1 &1637357968
 GameObject:
@@ -8648,6 +8769,62 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2060986165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2060986166}
+  - component: {fileID: 2060986167}
+  m_Layer: 0
+  m_Name: Grab Item to drop
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2060986166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060986165}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1410414762}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2060986167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060986165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34384a0f44777d749934be8a07ba6972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 0
+  automateNextTask: 1
+  thisScenarioButton: {fileID: 0}
+  nextTasks:
+  - {fileID: 61192880}
+  hideTasks:
+  - {fileID: 9141488564066747319}
+  destroyTasks: []
+  keys: 
+  destroyDelay: 0
+  targetGameObjectName: 
+  targetGameObjectTag: Item
+  collisionTag: Player
 --- !u!1 &2083875688
 GameObject:
   m_ObjectHideFlags: 0
@@ -8686,6 +8863,7 @@ MonoBehaviour:
   keys: 7700000061000000730000006400000011010000120100001401000013010000
   destroyDelay: 3
   targetGameObjectName: 
+  targetGameObjectTag: 
   collisionTag: Player
 --- !u!4 &2083875690
 Transform:
@@ -9614,6 +9792,11 @@ PrefabInstance:
         type: 3}
       propertyPath: availableFatigueTypes.Array.data[0]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536607891287036776, guid: 51491020ae8db064283e90c055f10865,
+        type: 3}
+      propertyPath: isLevelStarted
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5536607891287036778, guid: 51491020ae8db064283e90c055f10865,
         type: 3}

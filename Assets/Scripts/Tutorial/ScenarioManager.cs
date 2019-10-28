@@ -26,6 +26,7 @@ public class ScenarioManager : MonoBehaviour
     [Header("For OnSpawn or OnDestroy Trigger")]
     //on spawn or destroy
     [SerializeField] private string targetGameObjectName;
+    [SerializeField] private string targetGameObjectTag;
     private bool isAttached = false;
 
     [Header("For OnCollision Trigger")]
@@ -81,27 +82,52 @@ public class ScenarioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (targetGameObjectName != null)
+        if (trigger == TriggerType.OnSpawn)
         {
-            if (trigger == TriggerType.OnSpawn)
+            if (targetGameObjectName != null)
             {
-                if (GameObject.Find(targetGameObjectName) != null)
+                if (targetGameObjectName != "" &&
+                    GameObject.Find(targetGameObjectName) != null)
                 {
                     DoNextTask();
                 }
             }
-            else if (trigger == TriggerType.OnDestroy)
+
+            if (targetGameObjectTag != null)
             {
-                if (!isAttached)
+                if (targetGameObjectTag != "" && 
+                    GameObject.FindWithTag(targetGameObjectTag) != null)
                 {
-                    if (GameObject.Find(targetGameObjectName) != null)
+                    DoNextTask();
+                }
+            }
+        }
+        else if (trigger == TriggerType.OnDestroy)
+        {
+            if (!isAttached)
+            {
+                if (targetGameObjectName != null)
+                {
+                    if (targetGameObjectName != "" &&
+                        GameObject.Find(targetGameObjectName) != null)
                     {
                         this.gameObject.transform.parent = GameObject.Find(targetGameObjectName).transform;
                         isAttached = true;
                     }
                 }
+
+                if (targetGameObjectTag != null)
+                {
+                    if (targetGameObjectTag != "" &&
+                        GameObject.FindWithTag(targetGameObjectTag) != null)
+                    {
+                        this.gameObject.transform.parent = GameObject.FindWithTag(targetGameObjectTag).transform;
+                        isAttached = true;
+                    }
+                }
             }
         }
+        
 
         if (trigger == TriggerType.OnKeyPress)
         {
