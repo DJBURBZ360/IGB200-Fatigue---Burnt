@@ -197,7 +197,6 @@ public class CarManager : MonoBehaviour
         gameManager.DoRNG(employee.CurrentFatigueLevel);
         employee.ResetFatigueLevel();        
         employee.GenerateRandomFatigueLevel();
-        gameManager.NumDrivers--;
         if (!gameManager.IsTutorialActive) employee.FatigueUI.SetActive(false);
 
         //reset timers
